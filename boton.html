@@ -1,0 +1,118 @@
+<!-- 
+  =================================
+  CÓDIGO CORREGIDO DEL BOTÓN ACTIVADOR
+  =================================
+  Este código utiliza un ID único para evitar conflictos y asegurar que el popup se abra.
+-->
+
+<!-- Contenedor para centrar el botón horizontalmente -->
+<div style="text-align: center">
+  <!-- HTML del Botón con un ID nuevo y único: "externalTriggerButton" -->
+  <button
+    class="main-trigger-button-external"
+    id="externalTriggerButton"
+    style="
+      /* Apariencia */
+      background-color: #a370ba;
+      color: white;
+      font-family: sans-serif;
+      font-size: 1.1rem;
+      font-weight: bold;
+      text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+      padding: 18px 35px;
+
+      /* Forma y borde para efecto 3D */
+      border-radius: 8px;
+      border-width: 1px;
+      border-style: solid;
+      border-color: #8e5a9e;
+      border-bottom-width: 4px;
+
+      /* Animación y transición */
+      animation: fadeInExternal 0.8s ease-in-out forwards;
+      transition: all 0.1s ease-in-out;
+
+      /* Otros */
+      cursor: pointer;
+      outline: none;
+    "
+  >
+    Haz el Test ahora
+  </button>
+</div>
+
+<!-- 
+    Estilos y Animación para el nuevo botón
+  -->
+<style>
+  @keyframes fadeInExternal {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  /* Se usa una clase nueva para los efectos, para no interferir con otros botones */
+  .main-trigger-button-external:hover {
+    background-color: #ac7bc4 !important;
+    transform: translateY(-2px);
+  }
+
+  .main-trigger-button-external:active {
+    transform: translateY(2px);
+    border-bottom-width: 2px !important;
+    box-shadow: none;
+  }
+</style>
+
+<!-- 
+    =================================
+    JAVASCRIPT CORREGIDO Y MÁS ROBUSTO
+    =================================
+    Este script busca los elementos de forma repetida hasta que los encuentra
+    o hasta que pasan 10 segundos.
+  -->
+<script>
+  const connectButtonToPopup = () => {
+    // Esta variable global previene que el script se ejecute múltiples veces
+    if (window.buttonPopupHasBeenConnected) {
+      return;
+    }
+
+    let attempts = 0;
+    const maxAttempts = 100; // 100 intentos * 100ms = 10 segundos de espera
+
+    const intervalId = setInterval(() => {
+      const triggerButton = document.getElementById("externalTriggerButton");
+      const popupOverlay = document.getElementById("testPopupOverlay");
+
+      // Si ambos elementos existen en la página...
+      if (triggerButton && popupOverlay) {
+        clearInterval(intervalId); // 1. Detener la búsqueda
+        window.buttonPopupHasBeenConnected = true; // 2. Marcar como conectado
+
+        // 3. Asignar el evento de clic
+        triggerButton.addEventListener("click", () => {
+          popupOverlay.classList.add("active");
+        });
+        console.log(
+          "Éxito: El botón y el popup se han enlazado correctamente."
+        );
+      } else {
+        attempts++;
+        // Si se superan los intentos, detener la búsqueda y mostrar error
+        if (attempts >= maxAttempts) {
+          clearInterval(intervalId);
+          console.error(
+            "Error: Se superó el tiempo de espera (10s). No se encontró el botón 'externalTriggerButton' o el popup 'testPopupOverlay'. Verifica que los IDs sean correctos y que el popup exista en la página."
+          );
+        }
+      }
+    }, 100); // Reintentar la búsqueda cada 100 milisegundos
+  };
+
+  // Iniciar la función de conexión
+  connectButtonToPopup();
+</script>
