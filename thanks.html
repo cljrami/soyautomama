@@ -6,27 +6,25 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Lato:wght@300;400;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,700&family=Kristi&display=swap"
       rel="stylesheet"
     />
-
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
-
+    <title>AutoMama | Gracias por completar el test</title>
     <style>
-      /* --- VARIABLES Y ESTILOS GLOBALES --- */
       :root {
-        --brand-bg: #9663a3;
-        --brand-card-solid: #ffffff;
-        --brand-accent: #d4afb9;
-        --brand-accent-dark: #b08994;
-        --brand-text-light: #f5f5f5;
-        --brand-text-deep: #402d45;
-        --brand-green-footer: #2e4034; /* Color verde oscuro del nuevo footer */
+        --brand-bg: #5c3a63;
+        --brand-bg-light: #f9f7fa;
+        --brand-accent: #e8c3cf;
+        --brand-accent-dark: #d1a3b1;
+        --brand-text-light: #fdfcff;
+        --brand-text-deep: #332138;
+        --font-primary: "Poppins", sans-serif;
         --font-serif: "Playfair Display", serif;
-        --font-sans: "Lato", sans-serif;
+        --font-signature: "Kristi", cursive;
       }
 
       *,
@@ -37,706 +35,597 @@
         padding: 0;
       }
 
-      /* Forzamos que el HTML y BODY de GHL no interfieran */
       html,
       body {
         margin: 0 !important;
         padding: 0 !important;
+        scroll-behavior: smooth;
       }
 
-      /* Contenedor principal que actúa como capa superpuesta */
       .page-wrapper {
         position: fixed;
         top: 0;
         left: 0;
         width: 100vw;
         height: 100vh;
-        overflow-y: auto; /* Permite el scroll DENTRO de nuestra página */
+        overflow-y: auto;
         overflow-x: hidden;
-        z-index: 999999; /* Asegura que esté por encima de todo */
-
-        font-family: var(--font-sans);
+        z-index: 999999;
+        font-family: var(--font-primary);
         color: var(--brand-text-light);
         background-color: var(--brand-bg);
-        background-image: radial-gradient(
-          circle at 1px 1px,
-          rgba(255, 255, 255, 0.04) 1px,
-          transparent 0
-        );
-        background-size: 30px 30px;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
       }
 
       .container {
-        max-width: 1280px;
-        margin-left: auto;
-        margin-right: auto;
-        padding: 0 1rem;
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
       }
 
-      /* --- ESTILOS DE COMPONENTES Y TARJETAS --- */
-      .glass-card {
-        background-color: rgba(255, 255, 255, 0.05);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 1.5rem;
-        padding: 2rem;
-        transition: all 0.3s ease-in-out;
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(40px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .scroll-reveal {
+        opacity: 0;
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+      }
+      .scroll-reveal.visible {
+        opacity: 1;
+        transform: translateY(0) !important;
       }
 
-      .glass-card:hover {
-        transform: translateY(-8px) scale(1.01);
-        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-        border-color: rgba(255, 255, 255, 0.2);
-      }
-
-      .solid-card {
-        background-color: var(--brand-card-solid);
-        color: var(--brand-text-deep);
-        border-radius: 1.5rem;
-        padding: 2rem;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        box-shadow: 0 20px 40px -15px rgba(40, 20, 45, 0.3);
-      }
-      .solid-card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 30px 50px -20px rgba(40, 20, 45, 0.4);
-      }
-
-      .cta-button {
-        display: inline-block;
-        font-weight: 700;
-        font-size: 1.25rem;
-        line-height: 1.75rem;
-        padding: 1.25rem 4rem;
-        border-radius: 9999px;
-        text-decoration: none;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      }
-
-      .cta-button:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 10px 15px -3px rgba(176, 137, 148, 0.3),
-          0 4px 6px -4px rgba(176, 137, 148, 0.3);
-      }
-
-      /* --- MAQUETACIÓN Y ESPACIADO --- */
-      header,
-      main > section,
-      .emotional-signature {
-        text-align: center;
-      }
-
-      header {
-        max-width: 56rem;
-        margin-left: auto;
-        margin-right: auto;
-        margin-bottom: 5rem;
-        padding-top: 4rem;
-      }
-
-      main > * + * {
-        margin-top: 6rem;
-      }
-
-      section {
-        max-width: 56rem;
-        margin-left: auto;
-        margin-right: auto;
-      }
-
-      #low-ticket-offer {
-        max-width: 64rem;
-      }
-
-      .emotional-signature {
-        padding-top: 3rem;
-        margin-top: 6rem;
-        padding-bottom: 4rem;
-      }
-
-      /* --- ESTILOS DE TEXTO Y TIPOGRAFÍA --- */
-      h1 {
-        font-family: var(--font-serif);
-        font-size: 3rem;
-        font-weight: 700;
-        line-height: 1.1;
-        letter-spacing: -0.025em;
-      }
-
+      h1,
       h2 {
         font-family: var(--font-serif);
-        font-size: 2.25rem;
-        font-weight: 700;
+      }
+      h1 {
+        font-size: clamp(2.5rem, 6vw, 3.5rem);
+        line-height: 1.2;
+        color: #fff;
+      }
+      h2 {
+        font-size: clamp(2rem, 5vw, 2.75rem);
+        line-height: 1.2;
       }
       h3 {
-        font-family: var(--font-sans);
-        font-size: 1.25rem;
+        font-size: 1.1rem;
         font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
       }
-      h4 {
-        font-family: var(--font-sans);
-        font-size: 1.125rem;
-        font-weight: 700;
-      }
-
-      header p {
-        font-size: 1.25rem;
-        font-weight: 300;
-        opacity: 0.8;
-        max-width: 42rem;
-        margin: 1.5rem auto 0;
+      p {
+        font-size: 1.05rem;
+        line-height: 1.8;
+        font-weight: 400;
+        opacity: 0.9;
       }
 
-      blockquote {
-        border-left: 4px solid var(--brand-accent);
-        padding: 1.5rem;
-        margin: 2rem 0;
-        border-radius: 0 0.5rem 0.5rem 0;
+      main > section {
+        padding: 6rem 0;
+        text-align: center;
       }
-      blockquote p {
-        font-family: var(--font-serif);
-        font-size: 1.25rem;
-        font-style: italic;
-        line-height: 1.6;
+      .bg-light {
+        background-color: var(--brand-bg-light);
+        color: var(--brand-text-deep);
       }
-
-      .solid-card blockquote {
-        background-color: transparent;
-        color: rgba(64, 45, 69, 0.8);
-      }
-
-      /* --- NUEVO FOOTER DEL SITIO --- */
-      .site-footer {
-        background-color: var(--brand-green-footer);
+      .bg-dark {
+        background-color: var(--brand-bg);
         color: var(--brand-text-light);
-        padding: 4rem 1rem;
+      }
+      .text-deep {
+        color: var(--brand-text-deep);
+      }
+      .text-light {
+        color: var(--brand-text-light);
       }
 
-      .site-footer .footer-container {
-        max-width: 64rem;
-        margin: 0 auto;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: 2rem;
-      }
-
-      .footer-logo {
-        text-align: left;
-      }
-      .footer-logo .logo-text {
-        font-family: var(--font-serif);
-        font-size: 1.75rem;
-        font-weight: 700;
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-      }
-      .footer-logo .logo-subtext {
-        font-size: 0.75rem;
-        letter-spacing: 0.1em;
-        font-weight: 300;
-        opacity: 0.7;
-        margin-top: 0.25rem;
-      }
-
-      .footer-contact h3 {
-        font-weight: 700;
-        margin-bottom: 1rem;
-        font-size: 1.125rem;
-      }
-      .footer-contact ul {
-        list-style: none;
+      /* --- HERO --- */
+      .hero-section {
+        min-height: 80vh;
         display: flex;
         flex-direction: column;
-        gap: 0.5rem;
-        font-weight: 300;
-        font-size: 0.875rem;
+        justify-content: center;
+        text-align: center;
+        background-image: radial-gradient(
+          circle at 50% 0%,
+          rgba(232, 195, 207, 0.15) 0%,
+          transparent 70%
+        );
+        padding-top: 2rem;
       }
-      .footer-contact li {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
+      .page-logo {
+        max-width: 180px;
+        margin-bottom: 2rem;
+        opacity: 0.9;
+      }
+      .hero-content {
+        max-width: 45rem;
+        margin: 0 auto;
+      }
+      .hero-content .subtitle {
+        font-size: 1.2rem;
+        margin-top: 1.5rem;
       }
 
-      .footer-social {
-        display: flex;
-        gap: 1rem;
+      /* --- BOTONES --- */
+      .cta-button {
+        background: linear-gradient(
+          145deg,
+          var(--brand-accent),
+          var(--brand-accent-dark)
+        );
+        color: var(--brand-text-deep);
+        font-weight: 700;
+        font-size: 1.1rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        padding: 1.25rem 3rem;
+        border-radius: 999px;
+        text-decoration: none;
+        border: none;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.75rem;
+        box-shadow: 0 8px 20px rgba(225, 183, 195, 0.5);
+        transition: all 0.3s ease;
       }
-      .footer-social a {
-        color: var(--brand-green-footer);
-        background-color: var(--brand-text-light);
-        width: 2.5rem;
-        height: 2.5rem;
+      .cta-button .icon {
+        transition: transform 0.3s ease;
+      }
+      .cta-button:hover {
+        transform: translateY(-5px) scale(1.05);
+        box-shadow: 0 15px 30px -5px rgba(200, 154, 171, 0.7);
+      }
+      .cta-button:hover .icon {
+        transform: translateX(5px);
+      }
+
+      /* --- ESTILO GLASS CARD --- */
+      .glass-card {
+        background-color: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 1.5rem;
+        padding: 3rem;
+      }
+
+      /* --- SECCIÓN DE RESULTADO --- */
+      .profile-card {
+        background: #fff;
+        color: var(--brand-text-deep);
+        border-radius: 1.5rem;
+        padding: clamp(2rem, 5vw, 4rem);
+        text-align: left;
+        box-shadow: 0 30px 60px -15px rgba(40, 20, 45, 0.3);
+      }
+
+      .profile-header {
+        text-align: center;
+        margin-bottom: 3rem;
+      }
+      .profile-header h2 {
+        color: var(--brand-text-deep);
+      }
+      .profile-header p {
+        font-size: 1.1rem;
+        color: var(--brand-text-deep);
+        opacity: 0.7;
+        max-width: 40rem;
+        margin: 1rem auto 0;
+      }
+
+      .profile-flow {
+        position: relative;
+        padding-left: 2.5rem;
+        border-left: 2px solid #eee;
+      }
+      .flow-step {
+        margin-bottom: 3rem;
+        position: relative;
+      }
+      .flow-step:last-child {
+        margin-bottom: 0;
+      }
+      .flow-icon {
+        position: absolute;
+        left: -2.5rem;
+        top: 0;
+        transform: translateX(-50%);
+        background-color: var(--brand-accent);
+        color: var(--brand-text-deep);
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
         display: inline-flex;
         justify-content: center;
         align-items: center;
-        border-radius: 50%;
+        font-size: 1rem;
+        border: 4px solid #fff;
+      }
+      .flow-step h3 {
+        font-size: 1.1rem;
+        color: var(--brand-text-deep);
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 0.75rem;
+      }
+      .flow-step p,
+      .flow-step li {
+        font-size: 1rem;
+        line-height: 1.8;
+        color: var(--brand-text-deep);
+        opacity: 0.8;
+        font-weight: 400;
+      }
+
+      .consequences-list {
+        list-style: none;
+        padding: 0;
+        margin-top: 1rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+      .consequences-list li {
+        background-color: rgba(212, 175, 185, 0.1);
+        padding: 1rem;
+        border-radius: 0.75rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+      .consequences-list i {
+        color: #c53030;
+        font-size: 1.2rem;
+      }
+
+      .danja-note-wrapper {
+        margin: 2rem 0;
+        padding: 2.5rem;
+        text-align: center;
+      }
+      .danja-note-wrapper p {
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-weight: 400;
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: var(--brand-text-deep);
+        margin: 0;
+        max-width: 35rem;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .danja-note-wrapper .name {
+        font-family: var(--font-signature);
+        font-size: 2.5rem;
+        color: var(--brand-accent-dark);
+        margin-top: 1rem;
+      }
+
+      .first-step {
+        margin-top: 2rem;
+        background: linear-gradient(
+          135deg,
+          var(--brand-accent),
+          var(--brand-accent-dark)
+        );
+        border-radius: 1.25rem;
+        padding: 2.5rem;
+        text-align: center;
+        color: var(--brand-text-deep);
+        box-shadow: 0 10px 25px -5px rgba(200, 154, 171, 0.5);
+      }
+      .first-step h3 {
+        color: var(--brand-text-deep);
+        justify-content: center;
+      }
+      .first-step p {
+        font-size: clamp(1.2rem, 4vw, 1.75rem);
+        color: var(--brand-text-deep);
+        font-weight: 600;
+        opacity: 1;
+        line-height: 1.4;
+        font-family: var(--font-serif);
+        font-style: italic;
+      }
+
+      /* OTRAS SECCIONES */
+      .transition-section h2 {
+        font-style: italic;
+      }
+      .transition-section p {
+        max-width: 45rem;
+        margin: 1.5rem auto 0;
+      }
+
+      .cta-final-section p {
+        max-width: 40rem;
+        margin: 1.5rem auto 2.5rem;
+      }
+
+      /* --- FOOTER MEJORADO --- */
+      .site-footer {
+        background-color: var(--brand-text-deep);
+        padding: 4rem 1.5rem;
+      }
+      .footer-content {
+        display: grid;
+        grid-template-areas:
+          "logo signature"
+          "logo links"
+          "logo social";
+        gap: 1rem 3rem;
+        align-items: center;
+        text-align: left;
+      }
+      .footer-logo {
+        grid-area: logo;
+        max-width: 150px;
+      }
+      .footer-signature {
+        grid-area: signature;
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-size: 1.5rem;
+        color: var(--brand-text-light);
+        opacity: 0.9;
+        margin-bottom: 1rem;
+      }
+      .footer-title {
+        grid-area: signature; /* To align with the signature text */
+        margin-top: 2.5rem; /* Pushes it down below signature */
+        font-size: 0.9rem;
+        opacity: 0.8;
+      }
+      .footer-links {
+        grid-area: links;
+        display: flex;
+        gap: 1.5rem;
+      }
+      .footer-links a {
+        color: var(--brand-text-light);
         text-decoration: none;
-        transition: all 0.3s ease;
+        opacity: 0.7;
+        transition: opacity 0.3s;
+      }
+      .footer-links a:hover {
+        opacity: 1;
+      }
+
+      .footer-social {
+        grid-area: social;
+      }
+      .footer-social a {
+        color: var(--brand-text-light);
+        font-size: 1.5rem;
+        transition: color 0.3s;
       }
       .footer-social a:hover {
-        background-color: var(--brand-accent);
-        color: var(--brand-text-deep);
-        transform: scale(1.1);
-      }
-
-      /* --- MEDIA QUERIES PARA RESPONSIVIDAD --- */
-      @media (min-width: 768px) {
-        header {
-          margin-bottom: 8rem;
-          padding-top: 6rem;
-        }
-        main > * + * {
-          margin-top: 8rem;
-        }
-        .emotional-signature {
-          margin-top: 8rem;
-          padding-bottom: 6rem;
-        }
-
-        h1 {
-          font-size: 3.75rem;
-        }
-        h2 {
-          font-size: 3rem;
-        }
-        h3 {
-          font-size: 1.5rem;
-        }
-        header p {
-          font-size: 1.5rem;
-        }
-        blockquote p {
-          font-size: 1.5rem;
-        }
-        .solid-card,
-        .glass-card {
-          padding: 3rem;
-        }
+        color: var(--brand-accent);
       }
 
       @media (max-width: 768px) {
-        .site-footer .footer-container {
-          flex-direction: column;
-          align-items: center;
+        .footer-content {
+          grid-template-areas:
+            "logo"
+            "signature"
+            "links"
+            "social";
           text-align: center;
+          justify-items: center;
+          gap: 2rem;
         }
-        .footer-logo {
-          text-align: center;
-        }
-      }
-
-      @media (min-width: 1024px) {
-        h1 {
-          font-size: 4.5rem;
+        .footer-title {
+          margin-top: 0;
         }
       }
     </style>
   </head>
   <body>
     <div class="page-wrapper">
-      <div class="container">
-        <header>
-          <h1>Tu cuerpo habló.</h1>
-          <p>
-            Ahora empieza tu regreso a ti. Aquí tienes tu resultado y el primer
-            paso para sanar.
-          </p>
-        </header>
-
-        <main>
-          <section id="test-result" class="solid-card">
-            <h2>Perfil: La Guerrera Agotada</h2>
-            <div
-              style="
-                width: 6rem;
-                height: 0.25rem;
-                background-color: var(--brand-accent-dark);
-                margin: 1.5rem auto;
-                border-radius: 9999px;
-              "
-            ></div>
-            <div
-              style="
-                margin-top: 2rem;
-                display: flex;
-                flex-direction: column;
-                gap: 2rem;
-                font-size: 1.125rem;
-              "
-            >
-              <div>
-                <h3 style="display: flex; align-items: center; gap: 0.75rem">
-                  <i
-                    class="fa-solid fa-heart-pulse"
-                    style="color: var(--brand-accent)"
-                  ></i
-                  >Diagnóstico emocional y físico
-                </h3>
-                <p
-                  style="margin-top: 0.5rem; line-height: 1.6; font-weight: 300"
-                >
-                  Tu sistema nervioso está en alerta constante. Vives para
-                  resolver y cuidar a otros, agotando tu propia energía. Esto se
-                  manifiesta en inflamación, dolor y una fatiga que no se va.
-                </p>
-              </div>
-              <div>
-                <h3 style="display: flex; align-items: center; gap: 0.75rem">
-                  <i
-                    class="fa-solid fa-dna"
-                    style="color: var(--brand-accent)"
-                  ></i
-                  >Explicación biológica
-                </h3>
-                <p
-                  style="margin-top: 0.5rem; line-height: 1.6; font-weight: 300"
-                >
-                  El cortisol elevado crónicamente afecta tu tiroides y
-                  digestión. Tu cuerpo, en "modo supervivencia", sacrifica
-                  funciones vitales de balance y reparación.
-                </p>
-              </div>
-              <blockquote>
-                <p>
-                  "Hoy elijo soltar la armadura. Merezco la misma calma y
-                  cuidado que entrego."
-                </p>
-              </blockquote>
-            </div>
-          </section>
-
-          <section id="freebie-download" class="glass-card">
-            <p style="font-size: 3.75rem">🎁</p>
-            <h2 style="margin-top: 1rem">Tu Regalo Gratuito</h2>
-            <h3 style="color: var(--brand-accent); margin-top: 0.5rem">
-              Guía de Microhábitos + Ritual de Pausa
-            </h3>
-            <p
-              style="
-                max-width: 42rem;
-                margin: 1rem auto 0;
-                line-height: 1.6;
-                font-weight: 300;
-                opacity: 0.8;
-              "
-            >
-              Un recurso para reconectar con tu energía, sin abrumarte. Un paso
-              a la vez, desde el cuerpo.
+      <header class="hero-section">
+        <div
+          class="container scroll-reveal"
+          style="transform: translateY(40px)"
+        >
+          <img
+            src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/W7yFCk0DmEmhBQ43y4Bs/media/68534989b1f8e47ec7659e62.png"
+            alt="AutoMamá Logo"
+            class="page-logo"
+          />
+          <div class="hero-content">
+            <h1>Tu cuerpo habló. Ahora empieza tu regreso a ti.</h1>
+            <p class="subtitle text-light">
+              Hemos analizado tus respuestas con atención y tu cuerpo tiene un
+              mensaje muy claro para ti. Aquí tienes tu resultado, un regalo
+              especial y un camino amoroso para empezar a sanar de verdad.
             </p>
-            <a
-              href="#"
-              class="cta-button"
-              style="
-                margin-top: 2rem;
-                background-color: var(--brand-accent);
-                color: var(--brand-text-deep);
-              "
-            >
-              Descargar mi guía
-            </a>
-          </section>
+          </div>
+        </div>
+      </header>
 
-          <section id="low-ticket-offer" class="glass-card">
-            <div style="text-align: center">
-              <i
-                class="fa-solid fa-seedling"
-                style="
-                  color: var(--brand-accent);
-                  font-size: 2.25rem;
-                  margin-bottom: 1rem;
-                "
-              ></i>
-              <h2 style="font-style: italic">¿Lista para el siguiente paso?</h2>
-              <p
-                style="
-                  margin-top: 1rem;
-                  font-size: 1.25rem;
-                  line-height: 1.6;
-                  font-weight: 300;
-                  opacity: 0.8;
-                  max-width: 48rem;
-                  margin-left: auto;
-                  margin-right: auto;
-                "
-              >
-                He creado un espacio para que comprendas qué te pasa, valides tu
-                experiencia y empieces a sentir alivio real.
-              </p>
+      <main>
+        <!-- muestra aca dinaminacamente el resultado de chatgpt con el formatio que tiene abajo-->
+        <section
+          id="test-result"
+          class="bg-light text-deep scroll-reveal"
+          style="transform: translateY(40px)"
+        >
+          <div class="container">
+            <div class="profile-card">
+              <div class="profile-header">
+                <h2>Perfil: La madre en lucha silenciosa</h2>
+              </div>
+              <div class="profile-flow">
+                <div class="flow-step">
+                  <div class="flow-icon">
+                    <i class="fa-solid fa-user-shield"></i>
+                  </div>
+                  <h3>Arquetipo emocional</h3>
+                  <p>
+                    Eres una mujer fuerte, funcional y comprometida. Pero esa
+                    fuerza ha venido con un precio alto. Sostienes a todos y
+                    todo, incluso cuando no puedes más. Tu cuerpo está en una
+                    lucha silenciosa diaria, intentando mantenerte en pie a
+                    pesar del agotamiento interno.
+                  </p>
+                </div>
+                <div class="flow-step">
+                  <div class="flow-icon"><i class="fa-solid fa-dna"></i></div>
+                  <h3>Explicación biológica</h3>
+                  <p>
+                    Tu sistema nervioso simpático está encendido crónicamente.
+                    Esto hace que tus glándulas suprarrenales produzcan cortisol
+                    sin pausa. Al mantener este estado, tu cuerpo entra en modo
+                    de supervivencia, suspendiendo funciones vitales y
+                    debilitando tu sistema inmune.
+                  </p>
+                </div>
+                <div class="flow-step">
+                  <div class="flow-icon">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                  </div>
+                  <h3>Consecuencias si no haces nada</h3>
+                  <ul class="consequences-list">
+                    <li>Fatiga suprarrenal</li>
+                    <li>Insomnio persistente</li>
+                    <li>Enfermedades autoinmunes</li>
+                    <li>Depresión fisiológica</li>
+                  </ul>
+                </div>
+                <div class="danja-note-wrapper">
+                  <p>
+                    "Yo también pensé que podía con todo… hasta que no pude más.
+                    Y mi cuerpo colapsó. Aprendí que sanar no es dejar de ser
+                    fuerte, es aprender a sostenerte tú primero."
+                  </p>
+                  <div
+                    class="name"
+                    style="
+                      font-family: var(--font-signature);
+                      font-size: 2.5rem;
+                      color: var(--brand-accent-dark);
+                      margin-top: 1rem;
+                    "
+                  >
+                    Danja
+                  </div>
+                </div>
+                <div class="first-step">
+                  <h3>
+                    <i class="fa-solid fa-hand-holding-heart"></i>Afirmación y
+                    Primer Paso
+                  </h3>
+                  <p>
+                    “Hoy me elijo a mí. Hago una pausa y respiro 5 minutos con
+                    los ojos cerrados.”
+                  </p>
+                </div>
+              </div>
             </div>
+          </div>
+        </section>
 
-            <div
-              style="
-                width: 100%;
-                height: 1px;
-                background-color: rgba(255, 255, 255, 0.1);
-                margin: 3rem 0;
-              "
-            ></div>
-
-            <div style="text-align: center">
-              <p style="font-size: 3.75rem">🔥</p>
+        <section
+          id="freebie-download"
+          class="bg-dark text-light scroll-reveal"
+          style="transform: translateY(40px)"
+        >
+          <div class="container">
+            <div class="glass-card">
+              <p style="font-size: 4rem; line-height: 1">🎁</p>
+              <h2>Tu regalo está listo</h2>
               <h3
                 style="
-                  font-family: var(--font-serif);
-                  font-size: 2.25rem;
-                  font-weight: 700;
-                  margin-top: 1rem;
-                "
-              >
-                Mini Curso + Aceite de Rescate
-              </h3>
-              <p
-                style="
-                  font-family: var(--font-serif);
-                  font-size: 1.875rem;
-                  font-style: italic;
                   color: var(--brand-accent);
                   margin-top: 0.5rem;
+                  font-family: var(--font-serif);
+                  font-style: italic;
                 "
               >
-                “Lo que tu cuerpo quiere decirte”
+                Guía de Microhábitos + Ritual de Pausa Consciente
+              </h3>
+              <p style="max-width: 42rem; margin: 1.5rem auto 2.5rem">
+                Este recurso te ayudará a empezar a reconectar con tu energía,
+                sin abrumarte. Un paso a la vez, desde el cuerpo y el corazón.
               </p>
-            </div>
-
-            <div
-              class="grid-container"
-              style="
-                display: grid;
-                gap: 3rem;
-                margin-top: 3rem;
-                align-items: center;
-              "
-            >
-              <div
-                style="
-                  font-size: 1.125rem;
-                  display: flex;
-                  flex-direction: column;
-                  gap: 1rem;
-                "
-              >
-                <div style="display: flex; align-items: flex-start; gap: 1rem">
-                  <i
-                    class="fa-solid fa-circle-check"
-                    style="color: var(--brand-accent); margin-top: 0.3em"
-                  ></i
-                  ><span
-                    >Curso de introducción al mundo autoinmune y
-                    emocional.</span
-                  >
-                </div>
-                <div style="display: flex; align-items: flex-start; gap: 1rem">
-                  <i
-                    class="fa-solid fa-circle-check"
-                    style="color: var(--brand-accent); margin-top: 0.3em"
-                  ></i
-                  ><span>Aprende a desactivar lo que detona tus síntomas.</span>
-                </div>
-                <div style="display: flex; align-items: flex-start; gap: 1rem">
-                  <i
-                    class="fa-solid fa-circle-check"
-                    style="color: var(--brand-accent); margin-top: 0.3em"
-                  ></i
-                  ><span>Acceso a una comunidad que entiende tu historia.</span>
-                </div>
-                <div style="display: flex; align-items: flex-start; gap: 1rem">
-                  <i
-                    class="fa-solid fa-circle-check"
-                    style="color: var(--brand-accent); margin-top: 0.3em"
-                  ></i
-                  ><span
-                    ><strong
-                      >Incluye 1 aceite esencial de rescate (envío
-                      incluido).</strong
-                    ></span
-                  >
-                </div>
-              </div>
-              <div
-                style="
-                  text-align: center;
-                  background-color: rgba(0, 0, 0, 0.1);
-                  padding: 2rem;
-                  border-radius: 1rem;
-                  border: 1px solid rgba(255, 255, 255, 0.1);
-                "
-              >
-                <p
-                  style="
-                    font-size: 3.75rem;
-                    font-weight: 700;
-                    color: var(--brand-text-light);
-                  "
-                >
-                  Todo por
-                  <span style="color: var(--brand-accent)"
-                    >$40<sup style="font-size: 1.875rem">USD</sup></span
-                  >
-                </p>
-                <p
-                  style="
-                    font-size: 1.25rem;
-                    opacity: 0.7;
-                    text-decoration: line-through;
-                    margin-top: 0.5rem;
-                  "
-                >
-                  (valor real: $110+)
-                </p>
-              </div>
-            </div>
-
-            <div style="margin-top: 3rem">
-              <h4
-                style="
-                  font-weight: 700;
-                  font-size: 1.25rem;
-                  margin-bottom: 1.5rem;
-                  text-align: center;
-                "
-              >
-                📦 Elige tu aceite según tu síntoma principal:
-              </h4>
-              <div class="oil-options" style="display: grid; gap: 1rem">
-                <div
-                  style="
-                    text-align: center;
-                    padding: 1rem;
-                    background-color: rgba(255, 255, 255, 0.05);
-                    border: 1px solid rgba(255, 255, 255, 0.1);
-                    border-radius: 0.5rem;
-                    transition: all 0.3s;
-                  "
-                >
-                  <strong>Menta</strong><br /><span
-                    style="font-size: 0.875rem; font-weight: 300; opacity: 0.8"
-                    >Dolor e inflamación</span
-                  >
-                </div>
-                <div
-                  style="
-                    text-align: center;
-                    padding: 1rem;
-                    background-color: rgba(255, 255, 255, 0.05);
-                    border: 1px solid rgba(255, 255, 255, 0.1);
-                    border-radius: 0.5rem;
-                    transition: all 0.3s;
-                  "
-                >
-                  <strong>Bergamota</strong><br /><span
-                    style="font-size: 0.875rem; font-weight: 300; opacity: 0.8"
-                    >Ansiedad e insomnio</span
-                  >
-                </div>
-                <div
-                  style="
-                    text-align: center;
-                    padding: 1rem;
-                    background-color: rgba(255, 255, 255, 0.05);
-                    border: 1px solid rgba(255, 255, 255, 0.1);
-                    border-radius: 0.5rem;
-                    transition: all 0.3s;
-                  "
-                >
-                  <strong>Geranio</strong><br /><span
-                    style="font-size: 0.875rem; font-weight: 300; opacity: 0.8"
-                    >Balance hormonal</span
-                  >
-                </div>
-                <div
-                  style="
-                    text-align: center;
-                    padding: 1rem;
-                    background-color: rgba(255, 255, 255, 0.05);
-                    border: 1px solid rgba(255, 255, 255, 0.1);
-                    border-radius: 0.5rem;
-                    transition: all 0.3s;
-                  "
-                >
-                  <strong>Citrus Bliss</strong><br /><span
-                    style="font-size: 0.875rem; font-weight: 300; opacity: 0.8"
-                    >Tristeza y fatiga</span
-                  >
-                </div>
-              </div>
-            </div>
-
-            <div style="text-align: center; margin-top: 3rem">
-              <a
-                href="#"
-                class="cta-button"
-                style="background-color: var(--brand-accent-dark); color: white"
-              >
-                Quiero empezar mi proceso
+              <a href="#" class="cta-button">
+                Descargar mi guía gratuita
+                <span class="icon"><i class="fa-solid fa-download"></i></span>
               </a>
             </div>
-          </section>
+          </div>
+        </section>
 
-          <section
-            id="testimonials"
-            class="glass-card"
-            style="position: relative; max-width: 48rem"
-          >
-            <i
-              class="fa-solid fa-quote-left"
-              style="
-                font-size: 4.5rem;
-                color: rgba(255, 255, 255, 0.05);
-                position: absolute;
-                top: 1rem;
-                left: 1.5rem;
-                z-index: -1;
-              "
-            ></i>
-            <p
-              style="
-                font-size: 1.5rem;
-                font-style: italic;
-                line-height: 1.6;
-                opacity: 0.9;
-              "
-            >
-              “Nunca sentí que alguien me entendiera de verdad. El aceite me dio
-              paz y el curso me dio claridad.”
-            </p>
-            <p
-              style="
-                margin-top: 1.5rem;
-                font-family: var(--font-serif);
-                font-size: 1.25rem;
-                font-weight: 600;
-              "
-            >
-              — Laura, mamá con Hashimoto
-            </p>
-            <i
-              class="fa-solid fa-quote-right"
-              style="
-                font-size: 4.5rem;
-                color: rgba(255, 255, 255, 0.05);
-                position: absolute;
-                bottom: 1rem;
-                right: 1.5rem;
-                z-index: -1;
-              "
-            ></i>
-          </section>
-        </main>
-
-        <footer class="emotional-signature" style="text-align: center">
+        <section
+          class="transition-section bg-light text-deep scroll-reveal"
+          style="transform: translateY(40px)"
+        >
           <div class="container">
+            <h2>¿Y si este fuera solo el comienzo?</h2>
+            <p class="text-deep">
+              Muchas mujeres como tú han vivido con síntomas invisibles, sin
+              respuestas claras ni contención real. Por eso creé un espacio más
+              profundo, para comprender lo que te está pasando, encontrar alivio
+              real y recuperar tu energía. Te invito a conocer el siguiente paso
+              de este camino de vuelta a ti.
+            </p>
+          </div>
+        </section>
+
+        <section
+          class="cta-final-section bg-dark text-light scroll-reveal"
+          style="transform: translateY(40px)"
+        >
+          <div class="container">
+            <i
+              class="fa-solid fa-seedling"
+              style="
+                color: var(--brand-accent);
+                font-size: 3rem;
+                margin-bottom: 1rem;
+              "
+            ></i>
+            <h2>✨ Hay un espacio esperándote.</h2>
+            <p>Con más claridad, más guía, más contención.</p>
+            <a href="sales-page/" class="cta-button">
+              Conoce el curso + el aceite que tu cuerpo necesita
+              <span class="icon"><i class="fa-solid fa-arrow-right"></i></span>
+            </a>
+          </div>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <div class="container footer-content">
+          <img
+            src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/W7yFCk0DmEmhBQ43y4Bs/media/68534989b1f8e47ec7659e62.png"
+            alt="AutoMamá Logo"
+            class="footer-logo"
+          />
+          <div class="footer-signature">
             <p
               style="
                 font-family: var(--font-serif);
                 font-style: italic;
-                font-size: 1.875rem;
-                color: var(--brand-accent);
+                font-size: 1.5rem;
+                color: var(--brand-text-light);
+                opacity: 0.9;
+                margin: 0;
               "
             >
               Con amor y presencia,
@@ -744,94 +633,57 @@
             <p
               style="
                 font-family: var(--font-serif);
-                font-size: 2.25rem;
+                font-size: 1.8rem;
                 font-weight: 700;
-                margin-top: 0.5rem;
+                color: #fff;
+                margin: 0.25rem 0 0.5rem;
               "
             >
               Danja – AutoMama
             </p>
             <p
               style="
-                margin-top: 0.75rem;
-                font-size: 1.125rem;
-                font-weight: 300;
+                font-size: 0.9rem;
                 opacity: 0.8;
+                margin: 0;
+                line-height: 1.5;
               "
             >
-              Guía holística para mamás listas para sentirse vivas de nuevo.
+              Guía holística para mamás que están listas para sentirse vivas de
+              nuevo.
             </p>
           </div>
-        </footer>
-      </div>
-      <div class="site-footer">
-        <div class="footer-container">
-          <div class="footer-logo">
-            <span class="logo-text"
-              ><i class="fa-solid fa-circle-nodes"></i>AutoMamá</span
-            >
-            <p class="logo-subtext">CUIDADOS, APOYO, COMUNIDAD</p>
-          </div>
-          <div class="footer-contact">
-            <h3>Contáctanos</h3>
-            <ul>
-              <li><i class="fa-solid fa-envelope"></i> hola@automama.com</li>
-              <li><i class="fa-solid fa-phone"></i> +52 998 766 789</li>
-              <li><i class="fa-solid fa-location-dot"></i> EEUU.</li>
-            </ul>
+          <div class="footer-links">
+            <a href="#">Privacidad</a>
+            <a href="#">Envíos</a>
+            <a href="#">Contacto</a>
           </div>
           <div class="footer-social">
-            <a href="#" aria-label="Facebook"
-              ><i class="fa-brands fa-facebook-f"></i
-            ></a>
-            <a href="#" aria-label="WhatsApp"
-              ><i class="fa-brands fa-whatsapp"></i
-            ></a>
             <a href="#" aria-label="Instagram"
               ><i class="fa-brands fa-instagram"></i
             ></a>
           </div>
         </div>
-      </div>
+      </footer>
     </div>
 
     <script>
-      // Script para manejar la disposición en columnas para pantallas más grandes
-      function handleResize() {
-        const offerSection = document.getElementById("low-ticket-offer");
-        if (!offerSection) return;
+      document.addEventListener("DOMContentLoaded", function () {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.1 }
+        );
 
-        const gridContainer = offerSection.querySelector(".grid-container");
-        const oilOptions = offerSection.querySelector(".oil-options");
-
-        if (!gridContainer || !oilOptions) return;
-
-        if (window.innerWidth >= 768) {
-          gridContainer.style.gridTemplateColumns = "repeat(2, minmax(0, 1fr))";
-          oilOptions.style.gridTemplateColumns = "repeat(4, minmax(0, 1fr))";
-        } else if (window.innerWidth >= 640) {
-          oilOptions.style.gridTemplateColumns = "repeat(2, minmax(0, 1fr))";
-          gridContainer.style.gridTemplateColumns = "1fr";
-        } else {
-          gridContainer.style.gridTemplateColumns = "1fr";
-          oilOptions.style.gridTemplateColumns = "1fr";
-        }
-      }
-
-      document.addEventListener("DOMContentLoaded", () => {
-        const lowTicketOffer = document.getElementById("low-ticket-offer");
-        if (
-          lowTicketOffer &&
-          lowTicketOffer.children[3] &&
-          lowTicketOffer.children[4] &&
-          lowTicketOffer.children[4].children[1]
-        ) {
-          // Renombrar clases para el script
-          lowTicketOffer.children[3].classList.add("grid-container");
-          lowTicketOffer.children[4].children[1].classList.add("oil-options");
-          handleResize();
-          window.addEventListener("resize", handleResize);
-        }
+        document
+          .querySelectorAll(".scroll-reveal")
+          .forEach((el) => observer.observe(el));
       });
     </script>
   </body>
