@@ -25,6 +25,9 @@
         --font-primary: "Poppins", sans-serif;
         --font-serif: "Playfair Display", serif;
         --font-signature: "Kristi", cursive;
+        --brand-footer-green: #3e563e;
+        --loading-bar-bg: #f0f0f0;
+        --loading-bar-fill: var(--brand-accent);
       }
 
       *,
@@ -34,7 +37,6 @@
         margin: 0;
         padding: 0;
       }
-
       html,
       body {
         margin: 0 !important;
@@ -54,25 +56,11 @@
         font-family: var(--font-primary);
         color: var(--brand-text-light);
         background-color: var(--brand-bg);
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
       }
-
       .container {
         max-width: 900px;
         margin: 0 auto;
         padding: 0 1.5rem;
-      }
-
-      @keyframes fadeInUp {
-        from {
-          opacity: 0;
-          transform: translateY(40px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
       }
       .scroll-reveal {
         opacity: 0;
@@ -121,14 +109,7 @@
         background-color: var(--brand-bg);
         color: var(--brand-text-light);
       }
-      .text-deep {
-        color: var(--brand-text-deep);
-      }
-      .text-light {
-        color: var(--brand-text-light);
-      }
 
-      /* --- HERO --- */
       .hero-section {
         min-height: 80vh;
         display: flex;
@@ -156,7 +137,6 @@
         margin-top: 1.5rem;
       }
 
-      /* --- BOTONES --- */
       .cta-button {
         background: linear-gradient(
           145deg,
@@ -167,41 +147,17 @@
         font-weight: 700;
         font-size: 1.1rem;
         text-transform: uppercase;
-        letter-spacing: 0.05em;
         padding: 1.25rem 3rem;
         border-radius: 999px;
         text-decoration: none;
         border: none;
         cursor: pointer;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.75rem;
-        box-shadow: 0 8px 20px rgba(225, 183, 195, 0.5);
-        transition: all 0.3s ease;
-      }
-      .cta-button .icon {
-        transition: transform 0.3s ease;
       }
       .cta-button:hover {
         transform: translateY(-5px) scale(1.05);
-        box-shadow: 0 15px 30px -5px rgba(200, 154, 171, 0.7);
-      }
-      .cta-button:hover .icon {
-        transform: translateX(5px);
       }
 
-      /* --- ESTILO GLASS CARD --- */
-      .glass-card {
-        background-color: rgba(255, 255, 255, 0.05);
-        backdrop-filter: blur(15px);
-        -webkit-backdrop-filter: blur(15px);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 1.5rem;
-        padding: 3rem;
-      }
-
-      /* --- SECCIÓN DE RESULTADO --- */
+      /* << CAMBIO: Se eliminó display:flex para restaurar el formato del resultado */
       .profile-card {
         background: #fff;
         color: var(--brand-text-deep);
@@ -209,23 +165,53 @@
         padding: clamp(2rem, 5vw, 4rem);
         text-align: left;
         box-shadow: 0 30px 60px -15px rgba(40, 20, 45, 0.3);
+        min-height: 200px;
+      }
+
+      /* << CAMBIO: Placeholder ahora centra su propio contenido */
+      .loading-placeholder {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        min-height: 200px;
+      }
+      .loading-placeholder p {
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-size: 1.2rem;
+        color: var(--brand-text-deep);
+        opacity: 0.8;
+        margin-bottom: 1.25rem;
+        width: 100%;
+        text-align: center;
+      }
+      .loading-bar-container {
+        width: 80%;
+        max-width: 400px;
+        background-color: #e9e2f1;
+        border-radius: 20px;
+        height: 12px;
+        overflow: hidden;
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      .loading-bar-fill {
+        background: linear-gradient(
+          90deg,
+          var(--brand-accent-dark),
+          var(--brand-accent)
+        );
+        height: 100%;
+        width: 0%;
+        border-radius: 20px;
+        transition: width 0.4s ease-out;
       }
 
       .profile-header {
         text-align: center;
         margin-bottom: 3rem;
       }
-      .profile-header h2 {
-        color: var(--brand-text-deep);
-      }
-      .profile-header p {
-        font-size: 1.1rem;
-        color: var(--brand-text-deep);
-        opacity: 0.7;
-        max-width: 40rem;
-        margin: 1rem auto 0;
-      }
-
       .profile-flow {
         position: relative;
         padding-left: 2.5rem;
@@ -254,68 +240,6 @@
         font-size: 1rem;
         border: 4px solid #fff;
       }
-      .flow-step h3 {
-        font-size: 1.1rem;
-        color: var(--brand-text-deep);
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        margin-bottom: 0.75rem;
-      }
-      .flow-step p,
-      .flow-step li {
-        font-size: 1rem;
-        line-height: 1.8;
-        color: var(--brand-text-deep);
-        opacity: 0.8;
-        font-weight: 400;
-      }
-
-      .consequences-list {
-        list-style: none;
-        padding: 0;
-        margin-top: 1rem;
-        display: flex;
-        flex-direction: column;
-        gap: 0.75rem;
-      }
-      .consequences-list li {
-        background-color: rgba(212, 175, 185, 0.1);
-        padding: 1rem;
-        border-radius: 0.75rem;
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-      }
-      .consequences-list i {
-        color: #c53030;
-        font-size: 1.2rem;
-      }
-
-      .danja-note-wrapper {
-        margin: 2rem 0;
-        padding: 2.5rem;
-        text-align: center;
-      }
-      .danja-note-wrapper p {
-        font-family: var(--font-serif);
-        font-style: italic;
-        font-weight: 400;
-        font-size: 1.1rem;
-        line-height: 1.8;
-        color: var(--brand-text-deep);
-        margin: 0;
-        max-width: 35rem;
-        margin-left: auto;
-        margin-right: auto;
-      }
-      .danja-note-wrapper .name {
-        font-family: var(--font-signature);
-        font-size: 2.5rem;
-        color: var(--brand-accent-dark);
-        margin-top: 1rem;
-      }
-
       .first-step {
         margin-top: 2rem;
         background: linear-gradient(
@@ -327,23 +251,16 @@
         padding: 2.5rem;
         text-align: center;
         color: var(--brand-text-deep);
-        box-shadow: 0 10px 25px -5px rgba(200, 154, 171, 0.5);
-      }
-      .first-step h3 {
-        color: var(--brand-text-deep);
-        justify-content: center;
-      }
-      .first-step p {
-        font-size: clamp(1.2rem, 4vw, 1.75rem);
-        color: var(--brand-text-deep);
-        font-weight: 600;
-        opacity: 1;
-        line-height: 1.4;
-        font-family: var(--font-serif);
-        font-style: italic;
       }
 
-      /* OTRAS SECCIONES */
+      .glass-card {
+        background-color: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 1.5rem;
+        padding: 3rem;
+      }
       .transition-section h2 {
         font-style: italic;
       }
@@ -351,189 +268,126 @@
         max-width: 45rem;
         margin: 1.5rem auto 0;
       }
-
       .cta-final-section p {
         max-width: 40rem;
         margin: 1.5rem auto 2.5rem;
       }
 
-      /* --- FOOTER MEJORADO --- */
       .site-footer {
-        background-color: var(--brand-text-deep);
-        padding: 4rem 1.5rem;
+        background-color: var(--brand-footer-green);
+        padding: 3rem 1.5rem;
+        color: #fff;
       }
       .footer-content {
-        display: grid;
-        grid-template-areas:
-          "logo signature"
-          "logo links"
-          "logo social";
-        gap: 1rem 3rem;
+        display: flex;
+        justify-content: space-between;
         align-items: center;
+        flex-wrap: wrap;
+        gap: 2rem;
+      }
+      .footer-column {
+        min-width: 220px;
+      }
+      .footer-logo,
+      .footer-social {
+        flex: 1;
+      }
+      .footer-contact {
+        flex-grow: 1.5;
         text-align: left;
       }
-      .footer-logo {
-        grid-area: logo;
-        max-width: 150px;
+      .footer-logo img {
+        max-width: 180px;
       }
-      .footer-signature {
-        grid-area: signature;
-        font-family: var(--font-serif);
-        font-style: italic;
-        font-size: 1.5rem;
-        color: var(--brand-text-light);
-        opacity: 0.9;
+      .footer-contact h4 {
         margin-bottom: 1rem;
+        font-size: 1.2rem;
+        font-weight: 600;
       }
-      .footer-title {
-        grid-area: signature; /* To align with the signature text */
-        margin-top: 2.5rem; /* Pushes it down below signature */
-        font-size: 0.9rem;
-        opacity: 0.8;
+      .footer-contact ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
       }
-      .footer-links {
-        grid-area: links;
+      .footer-contact li {
+        margin-bottom: 0.75rem;
         display: flex;
-        gap: 1.5rem;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 0.75rem;
       }
-      .footer-links a {
-        color: var(--brand-text-light);
-        text-decoration: none;
-        opacity: 0.7;
-        transition: opacity 0.3s;
-      }
-      .footer-links a:hover {
-        opacity: 1;
-      }
-
       .footer-social {
-        grid-area: social;
+        display: flex;
+        justify-content: flex-end;
+        gap: 1rem;
       }
       .footer-social a {
-        color: var(--brand-text-light);
-        font-size: 1.5rem;
-        transition: color 0.3s;
+        color: var(--brand-footer-green);
+        background-color: #fff;
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.2rem;
+        text-decoration: none;
+        transition: transform 0.3s ease;
       }
       .footer-social a:hover {
-        color: var(--brand-accent);
+        transform: scale(1.1);
       }
-
       @media (max-width: 768px) {
         .footer-content {
-          grid-template-areas:
-            "logo"
-            "signature"
-            "links"
-            "social";
+          flex-direction: column;
           text-align: center;
-          justify-items: center;
-          gap: 2rem;
         }
-        .footer-title {
-          margin-top: 0;
+        .footer-contact,
+        .footer-social {
+          justify-content: center;
+        }
+        .footer-contact {
+          text-align: center;
+        }
+        .footer-contact li {
+          justify-content: center;
         }
       }
     </style>
   </head>
   <body>
     <div class="page-wrapper">
-      <header class="hero-section">
-        <div
-          class="container scroll-reveal"
-          style="transform: translateY(40px)"
-        >
+      <header class="hero-section" id="heroSection">
+        <div class="container">
           <img
             src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/W7yFCk0DmEmhBQ43y4Bs/media/68534989b1f8e47ec7659e62.png"
             alt="AutoMamá Logo"
             class="page-logo"
           />
           <div class="hero-content">
-            <h1>Tu cuerpo habló. Ahora empieza tu regreso a ti.</h1>
-            <p class="subtitle text-light">
-              Hemos analizado tus respuestas con atención y tu cuerpo tiene un
-              mensaje muy claro para ti. Aquí tienes tu resultado, un regalo
-              especial y un camino amoroso para empezar a sanar de verdad.
+            <h1 id="hero-title">
+              Tu cuerpo habló. Ahora empieza tu regreso a ti.
+            </h1>
+            <p class="subtitle text-light" id="hero-subtitle">
+              Gracias por completar el test. A continuación, estamos generando
+              tu perfil de agotamiento personalizado.
             </p>
           </div>
         </div>
       </header>
 
       <main>
-        <!-- muestra aca dinaminacamente el resultado de chatgpt con el formato que tiene-->
         <section
           id="test-result"
           class="bg-light text-deep scroll-reveal"
           style="transform: translateY(40px)"
         >
           <div class="container">
-            <div class="profile-card">
-              <div class="profile-header">
-                <h2>Perfil: La madre en lucha silenciosa</h2>
-              </div>
-              <div class="profile-flow">
-                <div class="flow-step">
-                  <div class="flow-icon">
-                    <i class="fa-solid fa-user-shield"></i>
-                  </div>
-                  <h3>Arquetipo emocional</h3>
-                  <p>
-                    Eres una mujer fuerte, funcional y comprometida. Pero esa
-                    fuerza ha venido con un precio alto. Sostienes a todos y
-                    todo, incluso cuando no puedes más. Tu cuerpo está en una
-                    lucha silenciosa diaria, intentando mantenerte en pie a
-                    pesar del agotamiento interno.
-                  </p>
-                </div>
-                <div class="flow-step">
-                  <div class="flow-icon"><i class="fa-solid fa-dna"></i></div>
-                  <h3>Explicación biológica</h3>
-                  <p>
-                    Tu sistema nervioso simpático está encendido crónicamente.
-                    Esto hace que tus glándulas suprarrenales produzcan cortisol
-                    sin pausa. Al mantener este estado, tu cuerpo entra en modo
-                    de supervivencia, suspendiendo funciones vitales y
-                    debilitando tu sistema inmune.
-                  </p>
-                </div>
-                <div class="flow-step">
-                  <div class="flow-icon">
-                    <i class="fa-solid fa-triangle-exclamation"></i>
-                  </div>
-                  <h3>Consecuencias si no haces nada</h3>
-                  <ul class="consequences-list">
-                    <li>Fatiga suprarrenal</li>
-                    <li>Insomnio persistente</li>
-                    <li>Enfermedades autoinmunes</li>
-                    <li>Depresión fisiológica</li>
-                  </ul>
-                </div>
-                <div class="danja-note-wrapper">
-                  <p>
-                    "Yo también pensé que podía con todo… hasta que no pude más.
-                    Y mi cuerpo colapsó. Aprendí que sanar no es dejar de ser
-                    fuerte, es aprender a sostenerte tú primero."
-                  </p>
-                  <div
-                    class="name"
-                    style="
-                      font-family: var(--font-signature);
-                      font-size: 2.5rem;
-                      color: var(--brand-accent-dark);
-                      margin-top: 1rem;
-                    "
-                  >
-                    Danja
-                  </div>
-                </div>
-                <div class="first-step">
-                  <h3>
-                    <i class="fa-solid fa-hand-holding-heart"></i>Afirmación y
-                    Primer Paso
-                  </h3>
-                  <p>
-                    “Hoy me elijo a mí. Hago una pausa y respiro 5 minutos con
-                    los ojos cerrados.”
-                  </p>
+            <div class="profile-card" id="profile-card-container">
+              <div class="loading-placeholder" id="loading-placeholder">
+                <p>Generando tu perfil personalizado...</p>
+                <div class="loading-bar-container">
+                  <div class="loading-bar-fill" id="loading-bar-fill"></div>
                 </div>
               </div>
             </div>
@@ -552,7 +406,6 @@
               <h3
                 style="
                   color: var(--brand-accent);
-                  margin-top: 0.5rem;
                   font-family: var(--font-serif);
                   font-style: italic;
                 "
@@ -612,53 +465,34 @@
 
       <footer class="site-footer">
         <div class="container footer-content">
-          <img
-            src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/W7yFCk0DmEmhBQ43y4Bs/media/68534989b1f8e47ec7659e62.png"
-            alt="AutoMamá Logo"
-            class="footer-logo"
-          />
-          <div class="footer-signature">
-            <p
-              style="
-                font-family: var(--font-serif);
-                font-style: italic;
-                font-size: 1.5rem;
-                color: var(--brand-text-light);
-                opacity: 0.9;
-                margin: 0;
-              "
-            >
-              Con amor y presencia,
-            </p>
-            <p
-              style="
-                font-family: var(--font-serif);
-                font-size: 1.8rem;
-                font-weight: 700;
-                color: #fff;
-                margin: 0.25rem 0 0.5rem;
-              "
-            >
-              Danja – AutoMama
-            </p>
-            <p
-              style="
-                font-size: 0.9rem;
-                opacity: 0.8;
-                margin: 0;
-                line-height: 1.5;
-              "
-            >
-              Guía holística para mamás que están listas para sentirse vivas de
-              nuevo.
-            </p>
+          <div class="footer-column footer-logo">
+            <img
+              src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/W7yFCk0DmEmhBQ43y4Bs/media/68534989b1f8e47ec7659e62.png"
+              alt="AutoMamá Logo"
+            />
           </div>
-          <div class="footer-links">
-            <a href="#">Privacidad</a>
-            <a href="#">Envíos</a>
-            <a href="#">Contacto</a>
+          <div class="footer-column footer-contact">
+            <h4>Contáctanos</h4>
+            <ul>
+              <li>
+                <i class="fa-solid fa-envelope"></i
+                ><span>hola@automama.com</span>
+              </li>
+              <li>
+                <i class="fa-solid fa-phone"></i><span>+52998766789</span>
+              </li>
+              <li>
+                <i class="fa-solid fa-location-dot"></i><span>EEUU.</span>
+              </li>
+            </ul>
           </div>
-          <div class="footer-social">
+          <div class="footer-column footer-social">
+            <a href="#" aria-label="Facebook"
+              ><i class="fa-brands fa-facebook-f"></i
+            ></a>
+            <a href="#" aria-label="Twitter"
+              ><i class="fa-brands fa-twitter"></i
+            ></a>
             <a href="#" aria-label="Instagram"
               ><i class="fa-brands fa-instagram"></i
             ></a>
@@ -669,21 +503,152 @@
 
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-        const observer = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                entry.target.classList.add("visible");
-                observer.unobserve(entry.target);
-              }
-            });
-          },
-          { threshold: 0.1 }
+        const profileCardContainer = document.getElementById(
+          "profile-card-container"
         );
+        const loadingBarFill = document.getElementById("loading-bar-fill");
 
-        document
-          .querySelectorAll(".scroll-reveal")
-          .forEach((el) => observer.observe(el));
+        let progressInterval;
+
+        /* << CAMBIO: Lógica de simulación de carga mejorada >> */
+        const startLoadingSimulation = () => {
+          let progress = 0;
+          // Si hay un intervalo anterior, lo limpiamos para evitar duplicados
+          if (progressInterval) clearInterval(progressInterval);
+
+          progressInterval = setInterval(() => {
+            progress += 1;
+            // La barra avanza lentamente hasta el 95% y se detiene
+            if (progress >= 95) {
+              clearInterval(progressInterval);
+            }
+            if (loadingBarFill) loadingBarFill.style.width = progress + "%";
+          }, 40); // El intervalo rápido hace que la animación sea fluida
+        };
+
+        const completeLoading = (callback) => {
+          clearInterval(progressInterval); // Detiene la simulación anterior
+          if (loadingBarFill) loadingBarFill.style.width = "100%";
+
+          // Espera un momento para que el usuario vea la barra al 100%
+          setTimeout(() => {
+            // Ejecuta la función para mostrar los resultados
+            callback();
+          }, 400);
+        };
+
+        const fetchAndDisplayResults = async () => {
+          startLoadingSimulation();
+
+          try {
+            const storedAnswers = sessionStorage.getItem("automamaQuizAnswers");
+            if (!storedAnswers) {
+              throw new Error("No se encontraron las respuestas del test.");
+            }
+            const answers = JSON.parse(storedAnswers);
+
+            const webhookUrl =
+              "https://hook.us2.make.com/nnlnnlgldaeo8osrloymx6e1v491ivzs";
+
+            const response = await fetch(webhookUrl, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(answers),
+            });
+
+            if (!response.ok) {
+              throw new Error(`Error del servidor`);
+            }
+
+            const resultData = await response.json();
+
+            // Cuando tenemos la respuesta, llamamos a la función para completar la carga
+            completeLoading(() => {
+              let consequencesHTML = "";
+              if (
+                resultData.consequencesList &&
+                Array.isArray(resultData.consequencesList)
+              ) {
+                consequencesHTML = resultData.consequencesList
+                  .map(
+                    (item) =>
+                      `<li><i class="fa-solid fa-triangle-exclamation"></i> <span>${item}</span></li>`
+                  )
+                  .join("");
+              }
+
+              const resultHTML = `
+                <div class="profile-header"><h2>${
+                  resultData.profileTitle || ""
+                }</h2></div>
+                <div class="profile-flow">
+                  <div class="flow-step">
+                    <div class="flow-icon"><i class="fa-solid fa-user-shield"></i></div><h3>Arquetipo emocional</h3><p>${
+                      resultData.archetypeText || ""
+                    }</p>
+                  </div>
+                  <div class="flow-step">
+                    <div class="flow-icon"><i class="fa-solid fa-dna"></i></div><h3>Explicación biológica</h3><p>${
+                      resultData.biologyText || ""
+                    }</p>
+                  </div>
+                  <div class="flow-step">
+                    <div class="flow-icon"><i class="fa-solid fa-triangle-exclamation"></i></div><h3>Consecuencias si no haces nada</h3><ul class="consequences-list">${consequencesHTML}</ul>
+                  </div>
+                  <div class="danja-note-wrapper">
+                    <p>"${
+                      resultData.danjaNote || ""
+                    }"</p><div class="name">Danja</div>
+                  </div>
+                  <div class="first-step">
+                    <h3><i class="fa-solid fa-hand-holding-heart"></i>Afirmación y Primer Paso</h3><p>“${
+                      resultData.affirmationText || ""
+                    }”</p>
+                  </div>
+                </div>`;
+
+              // Animación de desvanecimiento para una transición suave
+              profileCardContainer.style.transition = "opacity 0.5s ease-out";
+              profileCardContainer.style.opacity = 0;
+              setTimeout(() => {
+                profileCardContainer.innerHTML = resultHTML;
+                profileCardContainer.style.opacity = 1;
+              }, 500);
+            });
+          } catch (error) {
+            console.error("Error al procesar los resultados:", error);
+            clearInterval(progressInterval); // Detener la barra en caso de error
+            profileCardContainer.innerHTML = `
+              <div class="loading-placeholder">
+                <i class="fa-solid fa-circle-exclamation" style="font-size: 2.5rem; color: #c53030; margin-bottom: 1rem;"></i>
+                <h3 style="color: var(--brand-text-deep);">¡Ups! Ocurrió un error</h3>
+                <p style="font-size: 1rem; opacity: 0.7;">No pudimos generar tus resultados. Por favor, intenta hacer el test nuevamente.</p>
+              </div>`;
+          } finally {
+            sessionStorage.removeItem("automamaQuizAnswers");
+          }
+        };
+
+        function initializeScrollAnimations() {
+          const observer = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  entry.target.classList.add("visible");
+                  observer.unobserve(entry.target);
+                }
+              });
+            },
+            { threshold: 0.1 }
+          );
+
+          document
+            .querySelectorAll(".scroll-reveal")
+            .forEach((el) => observer.observe(el));
+        }
+
+        fetchAndDisplayResults();
+        initializeScrollAnimations();
       });
     </script>
   </body>

@@ -4,19 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Test de Agotamiento Autoinmune</title>
-
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
-
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     />
-
     <style>
       :root {
         --color-primary-purple: #7e6c9b;
@@ -40,25 +37,30 @@
         display: flex;
         justify-content: left;
         align-items: flex-start;
-        padding: 15px 0px;
+        padding: 0;
         box-sizing: border-box;
+        margin: 10px 0 10px 0;
       }
       .trigger-container {
-        text-align: center;
+        text-align: left;
       }
       .main-trigger-button {
         display: inline-block;
-        padding: 10px 20px;
-        background-color: var(--color-primary-purple);
-        color: var(--color-white);
-        text-decoration: none;
-        font-weight: 500;
-        font-size: 16px;
-        border-radius: 50px;
-        transition: all 0.3s ease;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-        border: none;
+        border-radius: 8px;
+        border-width: 1px;
+        border-style: solid;
+        border-color: #8e5a9e;
+        border-bottom-width: 4px;
+        background-color: #a370ba;
+        color: white;
+        font-family: sans-serif;
+        font-size: 1.1rem;
+        font-weight: bold;
         cursor: pointer;
+        outline: none;
+        text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+        padding: 18px 35px;
+        transition: all 0.1s ease-in-out;
       }
       .main-trigger-button:hover {
         transform: translateY(-5px) scale(1.05);
@@ -103,21 +105,21 @@
       }
       .test-header {
         background-color: var(--color-primary-purple);
-        padding: 30px 40px;
+        padding: 20px 40px;
         text-align: center;
         flex-shrink: 0;
       }
       .test-header .logo {
-        max-width: 180px;
+        max-width: 160px;
         height: auto;
       }
       .test-body {
-        padding: 40px 50px;
+        padding: 30px 40px;
         overflow-y: auto;
+        flex-grow: 1;
       }
       .intro-screen,
-      .question-step,
-      .results-screen {
+      .question-step {
         animation: fadeIn 0.5s ease-in-out;
       }
       @keyframes fadeIn {
@@ -133,55 +135,23 @@
       .intro-screen {
         text-align: center;
       }
-      .intro-screen .icon {
-        font-size: 3.5em;
-        color: var(--color-primary-purple);
-        margin-bottom: 20px;
-      }
       .intro-screen h1 {
-        font-size: 2.2em;
+        font-size: 2em;
         color: var(--color-text-dark);
         font-weight: 700;
       }
       .intro-screen p {
-        font-size: 1.1em;
-        line-height: 1.8;
-        margin-bottom: 25px;
-      }
-      .intro-details {
-        display: flex;
-        justify-content: center;
-        gap: 15px;
-        margin: 30px 0;
-        flex-wrap: wrap;
-      }
-      .intro-details span {
-        background-color: var(--color-white);
-        padding: 10px 20px;
-        border-radius: 20px;
-        font-size: 0.9em;
-        font-weight: 600;
-        color: var(--color-primary-purple);
-        border: 1px solid #e5e0f0;
+        font-size: 1.05em;
+        line-height: 1.7;
+        margin-bottom: 20px;
       }
       .start-button {
         display: inline-block;
-        padding: 18px 45px;
+        padding: 15px 40px;
         background: var(--color-primary-purple);
         color: var(--color-white);
-        text-align: center;
-        text-decoration: none;
-        font-weight: 700;
-        font-size: 1.1em;
-        border-radius: 50px;
-        transition: all 0.3s ease;
-        box-shadow: 0 8px 25px rgba(126, 108, 155, 0.4);
         border: none;
         cursor: pointer;
-        margin-top: 20px;
-      }
-      .start-button:hover {
-        transform: translateY(-5px) scale(1.05);
       }
       .quiz-screen {
         display: none;
@@ -218,15 +188,17 @@
         transition: width 0.4s ease-out;
       }
       .question-title {
-        font-size: 1.8em;
+        font-size: 1.6em;
         font-weight: 700;
         color: #333;
         margin-bottom: 8px;
+        text-align: center;
       }
       .question-subtitle {
         font-size: 1em;
         color: #777;
-        margin-bottom: 30px;
+        margin-bottom: 25px;
+        text-align: center;
       }
       .options-list {
         list-style: none;
@@ -234,19 +206,24 @@
         margin: 0;
       }
       .options-list li {
-        margin-bottom: 15px;
+        margin-bottom: 12px;
+        display: flex;
+        justify-content: center;
       }
       .options-list label {
         display: flex;
         align-items: center;
-        padding: 18px 20px;
+        justify-content: center; /* Centra el texto dentro del botón */
+        padding: 15px 25px;
         background-color: var(--color-white);
         border-radius: 12px;
         border: 2px solid #e5e0f0;
         cursor: pointer;
         transition: all 0.2s ease-out;
-        font-size: 1.05em;
+        font-size: 1em;
         color: var(--color-text-dark);
+        width: 100%;
+        max-width: 550px; /* << CAMBIO AQUÍ: Ancho máximo del botón */
       }
       .options-list label:hover {
         border-color: #c5b8d9;
@@ -263,59 +240,23 @@
         color: var(--color-primary-purple);
         font-weight: 600;
       }
-      .custom-checkbox {
-        width: 24px;
-        height: 24px;
-        border: 2px solid #ccc;
-        border-radius: 6px;
-        margin-right: 15px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: all 0.2s;
-        flex-shrink: 0;
-      }
-      .options-list label.selected .custom-checkbox {
-        background-color: var(--color-primary-purple);
-        border-color: var(--color-primary-purple);
-        animation: pop 0.3s ease;
-      }
-      @keyframes pop {
-        0% {
-          transform: scale(0.8);
-        }
-        100% {
-          transform: scale(1);
-        }
-      }
-      .custom-checkbox i {
-        color: var(--color-white);
-        font-size: 14px;
-        opacity: 0;
-        transition: opacity 0.2s;
-      }
-      .options-list label.selected .custom-checkbox i {
-        opacity: 1;
-      }
-      .options-list input[type="radio"] + span.custom-checkbox {
-        border-radius: 50%;
-      }
       .navigation-buttons {
         display: flex;
         justify-content: space-between;
-        margin-top: 40px;
-        padding-top: 20px;
+        margin-top: 30px;
+        padding: 20px 40px;
         border-top: 1px solid #eee;
+        background-color: var(--color-light-card);
         flex-shrink: 0;
       }
       .nav-button {
-        padding: 12px 30px;
+        padding: 10px 25px;
         border: 2px solid var(--color-primary-purple);
         background: transparent;
         color: var(--color-primary-purple);
         border-radius: 50px;
         font-weight: 600;
-        font-size: 1em;
+        font-size: 0.95em;
         cursor: pointer;
         transition: all 0.3s ease;
       }
@@ -333,51 +274,6 @@
         background-color: transparent !important;
         color: #aaa !important;
         border-color: #ddd !important;
-        box-shadow: none;
-        transform: none;
-      }
-      .message-box-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
-        display: none;
-        justify-content: center;
-        align-items: center;
-        z-index: 2000;
-      }
-      .message-box {
-        background: var(--color-white);
-        padding: 30px;
-        border-radius: 16px;
-        box-shadow: var(--shadow-heavy);
-        text-align: center;
-        width: 90%;
-        max-width: 400px;
-        color: var(--color-text-dark);
-        transform: scale(0.9);
-        opacity: 0;
-        transition: transform 0.3s ease, opacity 0.3s ease;
-      }
-      .message-box-overlay.active .message-box {
-        transform: scale(1);
-        opacity: 1;
-      }
-      .message-box p {
-        margin: 0 0 20px 0;
-        font-size: 1.1em;
-      }
-      .message-box button {
-        padding: 10px 25px;
-        border: none;
-        background: var(--color-primary-purple);
-        color: var(--color-white);
-        border-radius: 50px;
-        cursor: pointer;
-        font-size: 1em;
-        font-weight: 600;
       }
     </style>
   </head>
@@ -397,7 +293,6 @@
             src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/W7yFCk0DmEmhBQ43y4Bs/media/68534989b1f8e47ec7659e62.png"
             alt="Automama Logo"
             class="logo"
-            onerror="this.style.display='none'"
           />
         </header>
         <div class="test-body">
@@ -405,27 +300,13 @@
             <div class="icon">✨</div>
             <h1>¿Qué tipo de agotamiento autoinmune tienes?</h1>
             <p>
-              ¿Te sientes constantemente cansada, confundida y como si tu cuerpo
-              estuviera en tu contra? Este test está diseñado para ayudarte a
-              comprender qué tipo de agotamiento autoinmune estás
-              experimentando, qué mensaje profundo te está enviando tu cuerpo y
-              qué puedes hacer hoy mismo para comenzar a sanar desde adentro.
+              Este test está diseñado para ayudarte a comprender qué tipo de
+              agotamiento estás experimentando...
             </p>
-            <div class="intro-details">
-              <span><i class="fa-solid fa-clock"></i> 3-5 minutos</span>
-              <span
-                ><i class="fa-solid fa-gift"></i> Tu perfil de agotamiento</span
-              >
-              <span
-                ><i class="fa-solid fa-lightbulb"></i> Qué te dice tu
-                cuerpo</span
-              >
-            </div>
             <button class="start-button">
               Comenzar <i class="fa-solid fa-arrow-right"></i>
             </button>
           </div>
-
           <div class="quiz-screen">
             <div class="progress-indicator">
               <div class="step-counter" id="stepCounter"></div>
@@ -446,10 +327,8 @@
                       ><input
                         type="checkbox"
                         name="q1"
-                        value="Fatiga intensa aunque duermo"
-                      /><span class="custom-checkbox"
-                        ><i class="fa-solid fa-check"></i></span
-                      ><span>Fatiga intensa aunque duermo</span></label
+                        value="Fatiga intensa"
+                      /><span>Fatiga intensa aunque duermo</span></label
                     >
                   </li>
                   <li>
@@ -457,10 +336,8 @@
                       ><input
                         type="checkbox"
                         name="q1"
-                        value="Dolor muscular o articular"
-                      /><span class="custom-checkbox"
-                        ><i class="fa-solid fa-check"></i></span
-                      ><span>Dolor muscular o articular</span></label
+                        value="Dolor muscular"
+                      /><span>Dolor muscular o articular</span></label
                     >
                   </li>
                   <li>
@@ -468,10 +345,8 @@
                       ><input
                         type="checkbox"
                         name="q1"
-                        value="Hinchazón, gases o digestión lenta"
-                      /><span class="custom-checkbox"
-                        ><i class="fa-solid fa-check"></i></span
-                      ><span>Hinchazón, gases o digestión lenta</span></label
+                        value="digestión lenta"
+                      /><span>Hinchazón, gases o digestión lenta</span></label
                     >
                   </li>
                   <li>
@@ -479,10 +354,8 @@
                       ><input
                         type="checkbox"
                         name="q1"
-                        value="Menstruación irregular / cambios hormonales"
-                      /><span class="custom-checkbox"
-                        ><i class="fa-solid fa-check"></i></span
-                      ><span
+                        value="Menstruación irregular"
+                      /><span
                         >Menstruación irregular / cambios hormonales</span
                       ></label
                     >
@@ -492,17 +365,14 @@
                       ><input
                         type="checkbox"
                         name="q1"
-                        value="Dificultad para concentrarme o pensar claro"
-                      /><span class="custom-checkbox"
-                        ><i class="fa-solid fa-check"></i></span
-                      ><span
+                        value="dificultad para concentrarse"
+                      /><span
                         >Dificultad para concentrarme o pensar claro</span
                       ></label
                     >
                   </li>
                 </ul>
               </div>
-
               <div class="question-step" data-question="2">
                 <h2 class="question-title">Emociones Predominantes</h2>
                 <p class="question-subtitle">
@@ -511,14 +381,29 @@
                 <ul class="options-list">
                   <li>
                     <label
-                      ><input
-                        type="checkbox"
-                        name="q2"
-                        value="Ansiedad o sensación de alerta constante"
-                      /><span class="custom-checkbox"
-                        ><i class="fa-solid fa-check"></i></span
-                      ><span
+                      ><input type="checkbox" name="q2" value="ansiedad" /><span
                         >Ansiedad o sensación de alerta constante</span
+                      ></label
+                    >
+                  </li>
+                  <li>
+                    <label
+                      ><input type="checkbox" name="q2" value="Tristeza" /><span
+                        >Tristeza o ganas de aislarme</span
+                      ></label
+                    >
+                  </li>
+                  <li>
+                    <label
+                      ><input type="checkbox" name="q2" value="Rabia" /><span
+                        >Irritación o rabia contenida</span
+                      ></label
+                    >
+                  </li>
+                  <li>
+                    <label
+                      ><input type="checkbox" name="q2" value="Culpa" /><span
+                        >Culpa por no poder con todo</span
                       ></label
                     >
                   </li>
@@ -527,48 +412,12 @@
                       ><input
                         type="checkbox"
                         name="q2"
-                        value="Tristeza o ganas de aislarme"
-                      /><span class="custom-checkbox"
-                        ><i class="fa-solid fa-check"></i></span
-                      ><span>Tristeza o ganas de aislarme</span></label
-                    >
-                  </li>
-                  <li>
-                    <label
-                      ><input
-                        type="checkbox"
-                        name="q2"
-                        value="Irritación o rabia contenida"
-                      /><span class="custom-checkbox"
-                        ><i class="fa-solid fa-check"></i></span
-                      ><span>Irritación o rabia contenida</span></label
-                    >
-                  </li>
-                  <li>
-                    <label
-                      ><input
-                        type="checkbox"
-                        name="q2"
-                        value="Culpa por no poder con todo"
-                      /><span class="custom-checkbox"
-                        ><i class="fa-solid fa-check"></i></span
-                      ><span>Culpa por no poder con todo</span></label
-                    >
-                  </li>
-                  <li>
-                    <label
-                      ><input
-                        type="checkbox"
-                        name="q2"
-                        value="Desconexión o vacío interno"
-                      /><span class="custom-checkbox"
-                        ><i class="fa-solid fa-check"></i></span
-                      ><span>Desconexión o vacío interno</span></label
+                        value="Desconexión"
+                      /><span>Desconexión o vacío interno</span></label
                     >
                   </li>
                 </ul>
               </div>
-
               <div class="question-step" data-question="3">
                 <h2 class="question-title">Experiencia como Madre</h2>
                 <p class="question-subtitle">
@@ -581,10 +430,8 @@
                       ><input
                         type="radio"
                         name="q3"
-                        value="Me sobre exijo y me dejo al final"
-                      /><span class="custom-checkbox"
-                        ><i class="fa-solid fa-check"></i></span
-                      ><span>Me sobre exijo y me dejo al final</span></label
+                        value="Me sobre exijo"
+                      /><span>Me sobre exijo y me dejo al final</span></label
                     >
                   </li>
                   <li>
@@ -592,10 +439,8 @@
                       ><input
                         type="radio"
                         name="q3"
-                        value="Me siento sola o incomprendida"
-                      /><span class="custom-checkbox"
-                        ><i class="fa-solid fa-check"></i></span
-                      ><span>Me siento sola o incomprendida</span></label
+                        value="Me siento sola / incomprendida"
+                      /><span>Me siento sola o incomprendida</span></label
                     >
                   </li>
                   <li>
@@ -603,10 +448,8 @@
                       ><input
                         type="radio"
                         name="q3"
-                        value="No me cuido sin sentir culpa"
-                      /><span class="custom-checkbox"
-                        ><i class="fa-solid fa-check"></i></span
-                      ><span>No me cuido sin sentir culpa</span></label
+                        value="No me cuido sin culpa"
+                      /><span>No me cuido sin sentir culpa</span></label
                     >
                   </li>
                   <li>
@@ -615,25 +458,18 @@
                         type="radio"
                         name="q3"
                         value="No me reconozco como mujer"
-                      /><span class="custom-checkbox"
-                        ><i class="fa-solid fa-check"></i></span
-                      ><span>No me reconozco como mujer</span></label
+                      /><span>No me reconozco como mujer</span></label
                     >
                   </li>
                   <li>
                     <label
-                      ><input
-                        type="radio"
-                        name="q3"
-                        value="No aplica / No soy mamá"
-                      /><span class="custom-checkbox"
-                        ><i class="fa-solid fa-check"></i></span
-                      ><span>No aplica / No soy mamá</span></label
+                      ><input type="radio" name="q3" value="No aplica" /><span
+                        >No aplica / No soy mamá</span
+                      ></label
                     >
                   </li>
                 </ul>
               </div>
-
               <div class="question-step" data-question="4">
                 <h2 class="question-title">Mensaje del Cuerpo</h2>
                 <p class="question-subtitle">
@@ -645,10 +481,8 @@
                       ><input
                         type="radio"
                         name="q4"
-                        value="Que necesito parar, pero no sé cómo"
-                      /><span class="custom-checkbox"
-                        ><i class="fa-solid fa-check"></i></span
-                      ><span>Que necesito parar, pero no sé cómo</span></label
+                        value="Necesito parar"
+                      /><span>Que necesito parar, pero no sé cómo</span></label
                     >
                   </li>
                   <li>
@@ -656,10 +490,8 @@
                       ><input
                         type="radio"
                         name="q4"
-                        value="Que estoy reprimiendo mucho emocionalmente"
-                      /><span class="custom-checkbox"
-                        ><i class="fa-solid fa-check"></i></span
-                      ><span
+                        value="Estoy reprimiendo mucho emocionalmente"
+                      /><span
                         >Que estoy reprimiendo mucho emocionalmente</span
                       ></label
                     >
@@ -669,10 +501,8 @@
                       ><input
                         type="radio"
                         name="q4"
-                        value="Que ya no puedo sostener esta forma de vida"
-                      /><span class="custom-checkbox"
-                        ><i class="fa-solid fa-check"></i></span
-                      ><span
+                        value="No puedo sostener esta forma de vida"
+                      /><span
                         >Que ya no puedo sostener esta forma de vida</span
                       ></label
                     >
@@ -682,10 +512,8 @@
                       ><input
                         type="radio"
                         name="q4"
-                        value="Que debo volver a mí"
-                      /><span class="custom-checkbox"
-                        ><i class="fa-solid fa-check"></i></span
-                      ><span>Que debo volver a mí</span></label
+                        value="Debo volver a mí"
+                      /><span>Que debo volver a mí</span></label
                     >
                   </li>
                   <li>
@@ -693,15 +521,12 @@
                       ><input
                         type="radio"
                         name="q4"
-                        value="No lo sé, pero necesito entenderlo"
-                      /><span class="custom-checkbox"
-                        ><i class="fa-solid fa-check"></i></span
-                      ><span>No lo sé, pero necesito entenderlo</span></label
+                        value="no sé pero necesito entenderlo"
+                      /><span>No lo sé, pero necesito entenderlo</span></label
                     >
                   </li>
                 </ul>
               </div>
-
               <div class="question-step" data-question="5">
                 <h2 class="question-title">Tu Descanso</h2>
                 <p class="question-subtitle">
@@ -713,10 +538,8 @@
                       ><input
                         type="radio"
                         name="q5"
-                        value="Me despierto agotada aunque duerma"
-                      /><span class="custom-checkbox"
-                        ><i class="fa-solid fa-check"></i></span
-                      ><span>Me despierto agotada aunque duerma</span></label
+                        value="Despierto agotada"
+                      /><span>Me despierto agotada aunque duerma</span></label
                     >
                   </li>
                   <li>
@@ -724,10 +547,8 @@
                       ><input
                         type="radio"
                         name="q5"
-                        value="Me cuesta conciliar el sueño o me despierto varias veces"
-                      /><span class="custom-checkbox"
-                        ><i class="fa-solid fa-check"></i></span
-                      ><span
+                        value="Me cuesta conciliar el sueño"
+                      /><span
                         >Me cuesta conciliar el sueño o me despierto varias
                         veces</span
                       ></label
@@ -738,21 +559,13 @@
                       ><input
                         type="radio"
                         name="q5"
-                        value="Duermo bien pero sigo sin energía"
-                      /><span class="custom-checkbox"
-                        ><i class="fa-solid fa-check"></i></span
-                      ><span>Duermo bien pero sigo sin energía</span></label
+                        value="Descanso pero sigo sin energía"
+                      /><span>Duermo bien pero sigo sin energía</span></label
                     >
                   </li>
                   <li>
                     <label
-                      ><input
-                        type="radio"
-                        name="q5"
-                        value="Duermo poco porque no logro desconectarme"
-                      /><span class="custom-checkbox"
-                        ><i class="fa-solid fa-check"></i></span
-                      ><span
+                      ><input type="radio" name="q5" value="Duermo poco" /><span
                         >Duermo poco porque no logro desconectarme</span
                       ></label
                     >
@@ -762,15 +575,12 @@
                       ><input
                         type="radio"
                         name="q5"
-                        value="Descanso bien y me siento recuperada"
-                      /><span class="custom-checkbox"
-                        ><i class="fa-solid fa-check"></i></span
-                      ><span>Descanso bien y me siento recuperada</span></label
+                        value="Descanso bien"
+                      /><span>Descanso bien y me siento recuperada</span></label
                     >
                   </li>
                 </ul>
               </div>
-
               <div class="question-step" data-question="6">
                 <h2 class="question-title">Impacto Diario</h2>
                 <p class="question-subtitle">
@@ -782,10 +592,8 @@
                       ><input
                         type="radio"
                         name="q6"
-                        value="Me cuesta funcionar y mantener mis responsabilidades"
-                      /><span class="custom-checkbox"
-                        ><i class="fa-solid fa-check"></i></span
-                      ><span
+                        value="Me cuesta funcionar"
+                      /><span
                         >Me cuesta funcionar y mantener mis
                         responsabilidades</span
                       ></label
@@ -797,9 +605,7 @@
                         type="radio"
                         name="q6"
                         value="Puedo con todo, pero a costa de mí misma"
-                      /><span class="custom-checkbox"
-                        ><i class="fa-solid fa-check"></i></span
-                      ><span
+                      /><span
                         >Puedo con todo, pero a costa de mí misma</span
                       ></label
                     >
@@ -809,10 +615,8 @@
                       ><input
                         type="radio"
                         name="q6"
-                        value="Tengo días buenos, pero no son constantes"
-                      /><span class="custom-checkbox"
-                        ><i class="fa-solid fa-check"></i></span
-                      ><span
+                        value="Días buenos no constantes"
+                      /><span
                         >Tengo días buenos, pero no son constantes</span
                       ></label
                     >
@@ -822,10 +626,8 @@
                       ><input
                         type="radio"
                         name="q6"
-                        value="Estoy acostumbrada, pero ya no quiero seguir así"
-                      /><span class="custom-checkbox"
-                        ><i class="fa-solid fa-check"></i></span
-                      ><span
+                        value="Estoy acostumbrada pero ya no quiero seguir así"
+                      /><span
                         >Estoy acostumbrada, pero ya no quiero seguir así</span
                       ></label
                     >
@@ -835,17 +637,14 @@
                       ><input
                         type="radio"
                         name="q6"
-                        value="Casi no afectan mi rutina, pero me preocupan"
-                      /><span class="custom-checkbox"
-                        ><i class="fa-solid fa-check"></i></span
-                      ><span
+                        value="No afectan mucho"
+                      /><span
                         >Casi no afectan mi rutina, pero me preocupan</span
                       ></label
                     >
                   </li>
                 </ul>
               </div>
-
               <div class="question-step" data-question="7">
                 <h2 class="question-title">Autocuidado</h2>
                 <p class="question-subtitle">
@@ -858,9 +657,7 @@
                         type="radio"
                         name="q7"
                         value="No tengo tiempo ni energía para cuidarme"
-                      /><span class="custom-checkbox"
-                        ><i class="fa-solid fa-check"></i></span
-                      ><span
+                      /><span
                         >No tengo tiempo ni energía para cuidarme</span
                       ></label
                     >
@@ -870,10 +667,8 @@
                       ><input
                         type="radio"
                         name="q7"
-                        value="Solo me cuido cuando ya no puedo más"
-                      /><span class="custom-checkbox"
-                        ><i class="fa-solid fa-check"></i></span
-                      ><span>Solo me cuido cuando ya no puedo más</span></label
+                        value="Me cuido cuando ya no puedo más"
+                      /><span>Solo me cuido cuando ya no puedo más</span></label
                     >
                   </li>
                   <li>
@@ -881,10 +676,8 @@
                       ><input
                         type="radio"
                         name="q7"
-                        value="Intento cuidarme, pero no soy constante"
-                      /><span class="custom-checkbox"
-                        ><i class="fa-solid fa-check"></i></span
-                      ><span
+                        value="Intento cuidarme pero no soy constante"
+                      /><span
                         >Intento cuidarme, pero no soy constante</span
                       ></label
                     >
@@ -894,10 +687,8 @@
                       ><input
                         type="radio"
                         name="q7"
-                        value="Tengo rutinas básicas que me sostienen"
-                      /><span class="custom-checkbox"
-                        ><i class="fa-solid fa-check"></i></span
-                      ><span
+                        value="Tengo rutinas básicas"
+                      /><span
                         >Tengo rutinas básicas que me sostienen</span
                       ></label
                     >
@@ -907,15 +698,14 @@
                       ><input
                         type="radio"
                         name="q7"
-                        value="Me priorizo diariamente y me funciona"
-                      /><span class="custom-checkbox"
-                        ><i class="fa-solid fa-check"></i></span
-                      ><span>Me priorizo diariamente y me funciona</span></label
+                        value="Me priorizo diariamente"
+                      /><span
+                        >Me priorizo diariamente y me funciona</span
+                      ></label
                     >
                   </li>
                 </ul>
               </div>
-
               <div class="question-step" data-question="8">
                 <h2 class="question-title">Disponibilidad al Cambio</h2>
                 <p class="question-subtitle">
@@ -927,10 +717,8 @@
                       ><input
                         type="radio"
                         name="q8"
-                        value="Estoy lista. Solo necesito una guía clara"
-                      /><span class="custom-checkbox"
-                        ><i class="fa-solid fa-check"></i></span
-                      ><span
+                        value="Estoy lista. Solo necesito guía clara"
+                      /><span
                         >Estoy lista. Solo necesito una guía clara</span
                       ></label
                     >
@@ -940,10 +728,8 @@
                       ><input
                         type="radio"
                         name="q8"
-                        value="Siento miedo, pero quiero hacerlo"
-                      /><span class="custom-checkbox"
-                        ><i class="fa-solid fa-check"></i></span
-                      ><span>Siento miedo, pero quiero hacerlo</span></label
+                        value="Siento miedo"
+                      /><span>Siento miedo, pero quiero hacerlo</span></label
                     >
                   </li>
                   <li>
@@ -951,10 +737,8 @@
                       ><input
                         type="radio"
                         name="q8"
-                        value="No sé por dónde empezar, pero sé que debo hacerlo"
-                      /><span class="custom-checkbox"
-                        ><i class="fa-solid fa-check"></i></span
-                      ><span
+                        value="No sé por dónde empezar pero sé que debo hacerlo"
+                      /><span
                         >No sé por dónde empezar, pero sé que debo hacerlo</span
                       ></label
                     >
@@ -965,9 +749,7 @@
                         type="radio"
                         name="q8"
                         value="Tengo dudas, pero algo debe cambiar"
-                      /><span class="custom-checkbox"
-                        ><i class="fa-solid fa-check"></i></span
-                      ><span>Tengo dudas, pero algo debe cambiar</span></label
+                      /><span>Tengo dudas, pero algo debe cambiar</span></label
                     >
                   </li>
                   <li>
@@ -976,9 +758,7 @@
                         type="radio"
                         name="q8"
                         value="No estoy segura de poder hacerlo ahora"
-                      /><span class="custom-checkbox"
-                        ><i class="fa-solid fa-check"></i></span
-                      ><span
+                      /><span
                         >No estoy segura de poder hacerlo ahora</span
                       ></label
                     >
@@ -986,19 +766,12 @@
                 </ul>
               </div>
             </form>
-            <div class="navigation-buttons">
-              <button class="nav-button prev-btn" disabled>Anterior</button>
-              <button class="nav-button next-btn" disabled>Siguiente</button>
-            </div>
           </div>
         </div>
-      </div>
-    </div>
-
-    <div class="message-box-overlay" id="messageBoxOverlay">
-      <div class="message-box">
-        <p id="messageBoxText"></p>
-        <button id="messageBoxClose">Entendido</button>
+        <div class="navigation-buttons">
+          <button class="nav-button prev-btn" disabled>Anterior</button>
+          <button class="nav-button next-btn" disabled>Siguiente</button>
+        </div>
       </div>
     </div>
 
@@ -1014,33 +787,9 @@
         const questionSteps = document.querySelectorAll(".question-step");
         const progressBar = document.getElementById("progressBar");
         const stepCounter = document.getElementById("stepCounter");
-        const messageBoxOverlay = document.getElementById("messageBoxOverlay");
-        const messageBoxText = document.getElementById("messageBoxText");
-        const messageBoxClose = document.getElementById("messageBoxClose");
 
         let currentStep = 0;
         const totalSteps = questionSteps.length;
-
-        function showMessage(message) {
-          if (messageBoxText && messageBoxOverlay) {
-            messageBoxText.textContent = message;
-            messageBoxOverlay.style.display = "flex";
-            setTimeout(() => {
-              messageBoxOverlay.classList.add("active");
-            }, 10);
-          }
-        }
-
-        if (messageBoxClose) {
-          messageBoxClose.addEventListener("click", () => {
-            if (messageBoxOverlay) {
-              messageBoxOverlay.classList.remove("active");
-              setTimeout(() => {
-                messageBoxOverlay.style.display = "none";
-              }, 300);
-            }
-          });
-        }
 
         if (mainTriggerButton) {
           mainTriggerButton.addEventListener("click", () => {
@@ -1048,165 +797,119 @@
           });
         }
 
-        if (startBtn) {
-          startBtn.addEventListener("click", () => {
-            if (introScreen) introScreen.style.display = "none";
-            if (quizScreen) quizScreen.style.display = "block";
-            showStep(0);
-          });
-        }
+        popupOverlay.addEventListener("click", function (event) {
+          if (event.target === popupOverlay) {
+            popupOverlay.classList.remove("active");
+          }
+        });
 
-        if (nextBtn) {
-          nextBtn.addEventListener("click", () => {
-            if (nextBtn.disabled) return;
-            const currentQuestion = questionSteps[currentStep];
-            if (!currentQuestion) return;
+        startBtn.addEventListener("click", () => {
+          introScreen.style.display = "none";
+          quizScreen.style.display = "block";
+          showStep(0);
+        });
 
-            const isAnyChecked = Array.from(
-              currentQuestion.querySelectorAll("input")
-            ).some((input) => input.checked);
-            if (!isAnyChecked) {
-              showMessage("Por favor, selecciona una opción para continuar.");
-              return;
-            }
+        nextBtn.addEventListener("click", () => {
+          if (nextBtn.disabled) return;
+          if (currentStep < totalSteps - 1) {
+            currentStep++;
+            showStep(currentStep);
+          } else {
+            nextBtn.disabled = true;
+            nextBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Enviando...`;
+            sendDataAndRedirect();
+          }
+        });
 
-            if (currentStep < totalSteps - 1) {
-              currentStep++;
-              showStep(currentStep);
-            } else {
-              nextBtn.disabled = true;
-              nextBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Enviando...`;
-              sendDataToWebhook();
-            }
-          });
-        }
-
-        if (prevBtn) {
-          prevBtn.addEventListener("click", () => {
-            if (currentStep > 0) {
-              currentStep--;
-              showStep(currentStep);
-            }
-          });
-        }
+        prevBtn.addEventListener("click", () => {
+          if (currentStep > 0) {
+            currentStep--;
+            showStep(currentStep);
+          }
+        });
 
         function showStep(stepIndex) {
           questionSteps.forEach((step, index) =>
             step.classList.toggle("active", index === stepIndex)
           );
-          if (prevBtn) prevBtn.disabled = stepIndex === 0;
-          if (nextBtn) {
-            nextBtn.textContent =
-              stepIndex === totalSteps - 1 ? "Ver mis resultados" : "Siguiente";
-          }
+          prevBtn.disabled = stepIndex === 0;
+          nextBtn.textContent =
+            stepIndex === totalSteps - 1 ? "Ver mis resultados" : "Siguiente";
           updateProgress();
           checkNextButtonState();
         }
 
         function checkNextButtonState() {
           const currentQuestion = questionSteps[currentStep];
-          if (!currentQuestion || !nextBtn) return;
-          const inputs = currentQuestion.querySelectorAll("input");
-          const isAnyChecked = Array.from(inputs).some(
-            (input) => input.checked
-          );
-          nextBtn.disabled = !isAnyChecked;
+          if (currentQuestion) {
+            const isAnswered = Array.from(
+              currentQuestion.querySelectorAll("input")
+            ).some((input) => input.checked);
+            nextBtn.disabled = !isAnswered;
+          }
         }
 
         document.querySelectorAll("#quiz-form input").forEach((input) => {
           input.addEventListener("change", (e) => {
             const label = e.target.closest("label");
             const questionStep = e.target.closest(".question-step");
-            if (!questionStep || !label) return;
+            const name = e.target.name;
 
             if (e.target.type === "radio") {
               questionStep
-                .querySelectorAll("label")
-                .forEach((lbl) => lbl.classList.remove("selected"));
+                .querySelectorAll(`input[name="${name}"]`)
+                .forEach((radioInput) => {
+                  radioInput.closest("label").classList.remove("selected");
+                });
+              label.classList.add("selected");
+
+              /* << CAMBIO AQUÍ: Se eliminó el avance automático */
+              // if(currentStep < totalSteps - 1){
+              //  setTimeout(() => nextBtn.click(), 300);
+              // }
             }
 
             if (e.target.type === "checkbox") {
-              const name = e.target.name;
               const max = name === "q1" ? 3 : 2;
-              const checkedCheckboxes = questionStep.querySelectorAll(
+              const checkedCount = questionStep.querySelectorAll(
                 `input[name="${name}"]:checked`
-              );
-              if (checkedCheckboxes.length > max) {
+              ).length;
+
+              if (checkedCount > max) {
                 e.target.checked = false;
-                showMessage(`Puedes seleccionar un máximo de ${max} opciones.`);
-                label.classList.remove("selected");
+                label.classList.remove("selected"); // Des-selecciona visualmente
+                alert(`Puedes seleccionar un máximo de ${max} opciones.`);
                 return;
               }
+              label.classList.toggle("selected", e.target.checked);
             }
 
-            label.classList.toggle("selected", e.target.checked);
             checkNextButtonState();
           });
         });
 
         function updateProgress() {
-          if (progressBar && stepCounter) {
-            const progress = ((currentStep + 1) / totalSteps) * 100;
-            progressBar.style.width = `${progress}%`;
-            stepCounter.textContent = `Paso ${
-              currentStep + 1
-            } de ${totalSteps}`;
-          }
+          progressBar.style.width = `${
+            ((currentStep + 1) / totalSteps) * 100
+          }%`;
+          stepCounter.textContent = `Paso ${currentStep + 1} de ${totalSteps}`;
         }
 
-        // ===================================================================
-        // FUNCIÓN CLAVE PARA ENVIAR DATOS Y RECIBIR RESULTADOS
-        // ===================================================================
-        async function sendDataToWebhook() {
-          // TU URL DE WEBHOOK DE MAKE.COM VA AQUÍ
-          const webhookUrl =
-            "https://hook.us2.make.com/nnlnnlgldaeo8osrloymx6e1v491ivzs";
-
+        function sendDataAndRedirect() {
           const payload = {};
           questionSteps.forEach((step, index) => {
             const qKey = `q${index + 1}`;
             const checkedInputs = step.querySelectorAll("input:checked");
-            const selectedAnswers = Array.from(checkedInputs)
-              .map((input) => {
-                // Usamos el 'value' del input que ya contiene el texto
-                return input.value.trim();
-              })
-              .filter((text) => text !== "");
-            payload[qKey] = selectedAnswers.join(" / ");
+            payload[qKey] = Array.from(checkedInputs)
+              .map((input) => input.value.trim())
+              .join(" / ");
           });
 
-          try {
-            const response = await fetch(webhookUrl, {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify(payload),
-            });
-
-            if (!response.ok) {
-              const errorText = await response.text();
-              throw new Error(
-                `Error del servidor: ${response.status}. ${errorText}`
-              );
-            }
-
-            // 1. Obtenemos el resultado JSON que nos devuelve Make.
-            const resultData = await response.json();
-
-            // 2. Guardamos este resultado en el `sessionStorage` del navegador.
-            sessionStorage.setItem("quizResult", JSON.stringify(resultData));
-
-            // 3. Redirigimos a la página de gracias.
-            window.location.href = "thanks";
-          } catch (error) {
-            console.error("Error en el proceso:", error);
-            showMessage(
-              "Hubo un problema al enviar tus respuestas. Por favor, intenta de nuevo."
-            );
-            if (nextBtn) {
-              nextBtn.disabled = false;
-              nextBtn.innerHTML = "Ver mis resultados";
-            }
-          }
+          sessionStorage.setItem(
+            "automamaQuizAnswers",
+            JSON.stringify(payload)
+          );
+          window.location.href = "thanks";
         }
       });
     </script>

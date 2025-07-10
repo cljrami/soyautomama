@@ -12,8 +12,8 @@
             "mapper": {},
             "metadata": {
                 "designer": {
-                    "x": 0,
-                    "y": 0
+                    "x": 130,
+                    "y": 14
                 },
                 "restore": {
                     "parameters": {
@@ -41,6 +41,446 @@
             }
         },
         {
+            "id": 12,
+            "module": "google-sheets:addRow",
+            "version": 2,
+            "parameters": {
+                "__IMTCONN__": 2654940
+            },
+            "mapper": {
+                "mode": "select",
+                "insertUnformatted": false,
+                "valueInputOption": "USER_ENTERED",
+                "insertDataOption": "INSERT_ROWS",
+                "from": "drive",
+                "spreadsheetId": "/1svXToVe44qV2uvK2jBrei5QkZbA3LP4x/1GMEin4q0tW7M_-iy6uQanWRjW9OV5U4qkdt2JjJE0mA",
+                "sheetId": "Hoja 1",
+                "includesHeaders": true,
+                "values": {
+                    "0": "{{1.q1}}",
+                    "1": "{{1.q2}}",
+                    "2": "{{1.q3}}",
+                    "3": "{{1.q4}}",
+                    "4": "{{1.q5}}",
+                    "5": "{{1.q6}}",
+                    "6": "{{1.q7}}",
+                    "7": "{{1.q8}}"
+                }
+            },
+            "metadata": {
+                "designer": {
+                    "x": 510,
+                    "y": 17
+                },
+                "restore": {
+                    "parameters": {
+                        "__IMTCONN__": {
+                            "label": "My Google connection (digitalmagos.marketing@gmail.com)",
+                            "data": {
+                                "scoped": "true",
+                                "connection": "google"
+                            }
+                        }
+                    },
+                    "expect": {
+                        "mode": {
+                            "label": "Search by path"
+                        },
+                        "insertUnformatted": {
+                            "mode": "chose"
+                        },
+                        "valueInputOption": {
+                            "mode": "chose",
+                            "label": "User entered"
+                        },
+                        "insertDataOption": {
+                            "mode": "chose",
+                            "label": "Insert rows"
+                        },
+                        "from": {
+                            "label": "My Drive"
+                        },
+                        "spreadsheetId": {
+                            "path": [
+                                "Automatizacion SoyAutoMama",
+                                "SoyAutoMAMA"
+                            ]
+                        },
+                        "sheetId": {
+                            "label": "Hoja 1"
+                        },
+                        "includesHeaders": {
+                            "nested": [
+                                {
+                                    "name": "values",
+                                    "label": "Values",
+                                    "type": "collection",
+                                    "spec": [
+                                        {
+                                            "name": "0",
+                                            "label": "A",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "name": "1",
+                                            "label": "B",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "name": "2",
+                                            "label": "C",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "name": "3",
+                                            "label": "D",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "name": "4",
+                                            "label": "E",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "name": "5",
+                                            "label": "F",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "name": "6",
+                                            "label": "G",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "name": "7",
+                                            "label": "H",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "name": "8",
+                                            "label": "I",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "name": "9",
+                                            "label": "J",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "name": "10",
+                                            "label": "K",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "name": "11",
+                                            "label": "L",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "name": "12",
+                                            "label": "M",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "name": "13",
+                                            "label": "N",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "name": "14",
+                                            "label": "O",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "name": "15",
+                                            "label": "P",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "name": "16",
+                                            "label": "Q",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "name": "17",
+                                            "label": "R",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "name": "18",
+                                            "label": "S",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "name": "19",
+                                            "label": "T",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "name": "20",
+                                            "label": "U",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "name": "21",
+                                            "label": "V",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "name": "22",
+                                            "label": "W",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "name": "23",
+                                            "label": "X",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "name": "24",
+                                            "label": "Y",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "name": "25",
+                                            "label": "Z",
+                                            "type": "text"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "label": "Yes"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "__IMTCONN__",
+                        "type": "account:google",
+                        "label": "Connection",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "mode",
+                        "type": "select",
+                        "label": "Search Method",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "select",
+                                "fromAll",
+                                "map"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "insertUnformatted",
+                        "type": "boolean",
+                        "label": "Unformatted",
+                        "required": true
+                    },
+                    {
+                        "name": "valueInputOption",
+                        "type": "select",
+                        "label": "Value input option",
+                        "validate": {
+                            "enum": [
+                                "USER_ENTERED",
+                                "RAW"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "insertDataOption",
+                        "type": "select",
+                        "label": "Insert data option",
+                        "validate": {
+                            "enum": [
+                                "INSERT_ROWS",
+                                "OVERWRITE"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "from",
+                        "type": "select",
+                        "label": "Drive",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "drive",
+                                "share",
+                                "team"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "spreadsheetId",
+                        "type": "file",
+                        "label": "Spreadsheet ID",
+                        "required": true
+                    },
+                    {
+                        "name": "sheetId",
+                        "type": "select",
+                        "label": "Sheet Name",
+                        "required": true
+                    },
+                    {
+                        "name": "includesHeaders",
+                        "type": "select",
+                        "label": "Table contains headers",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                true,
+                                false
+                            ]
+                        }
+                    },
+                    {
+                        "name": "values",
+                        "type": "collection",
+                        "label": "Values",
+                        "spec": [
+                            {
+                                "name": "0",
+                                "type": "text",
+                                "label": "A"
+                            },
+                            {
+                                "name": "1",
+                                "type": "text",
+                                "label": "B"
+                            },
+                            {
+                                "name": "2",
+                                "type": "text",
+                                "label": "C"
+                            },
+                            {
+                                "name": "3",
+                                "type": "text",
+                                "label": "D"
+                            },
+                            {
+                                "name": "4",
+                                "type": "text",
+                                "label": "E"
+                            },
+                            {
+                                "name": "5",
+                                "type": "text",
+                                "label": "F"
+                            },
+                            {
+                                "name": "6",
+                                "type": "text",
+                                "label": "G"
+                            },
+                            {
+                                "name": "7",
+                                "type": "text",
+                                "label": "H"
+                            },
+                            {
+                                "name": "8",
+                                "type": "text",
+                                "label": "I"
+                            },
+                            {
+                                "name": "9",
+                                "type": "text",
+                                "label": "J"
+                            },
+                            {
+                                "name": "10",
+                                "type": "text",
+                                "label": "K"
+                            },
+                            {
+                                "name": "11",
+                                "type": "text",
+                                "label": "L"
+                            },
+                            {
+                                "name": "12",
+                                "type": "text",
+                                "label": "M"
+                            },
+                            {
+                                "name": "13",
+                                "type": "text",
+                                "label": "N"
+                            },
+                            {
+                                "name": "14",
+                                "type": "text",
+                                "label": "O"
+                            },
+                            {
+                                "name": "15",
+                                "type": "text",
+                                "label": "P"
+                            },
+                            {
+                                "name": "16",
+                                "type": "text",
+                                "label": "Q"
+                            },
+                            {
+                                "name": "17",
+                                "type": "text",
+                                "label": "R"
+                            },
+                            {
+                                "name": "18",
+                                "type": "text",
+                                "label": "S"
+                            },
+                            {
+                                "name": "19",
+                                "type": "text",
+                                "label": "T"
+                            },
+                            {
+                                "name": "20",
+                                "type": "text",
+                                "label": "U"
+                            },
+                            {
+                                "name": "21",
+                                "type": "text",
+                                "label": "V"
+                            },
+                            {
+                                "name": "22",
+                                "type": "text",
+                                "label": "W"
+                            },
+                            {
+                                "name": "23",
+                                "type": "text",
+                                "label": "X"
+                            },
+                            {
+                                "name": "24",
+                                "type": "text",
+                                "label": "Y"
+                            },
+                            {
+                                "name": "25",
+                                "type": "text",
+                                "label": "Z"
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
             "id": 2,
             "module": "openai-gpt-3:CreateCompletion",
             "version": 1,
@@ -54,10 +494,10 @@
                 "messages": [
                     {
                         "role": "system",
-                        "content": "### Respuestas de la Usuaria\nRespuestas de la Usuaria: {{1.q1}}{{1.q2}}{{1.q3}}{{1.q4}}{{1.q5}}{{1.q6}}{{1.q7}}{{1.q8}}\n\nAnaliza las respuestas. Basado en las reglas, determina el perfil ganador. Tu única y exclusiva salida debe ser el objeto JSON solicitado, sin absolutamente ningún otro texto, introducción, o conclusión.\n\n\nEres un coach experto en bienestar y un copywriter con un tono femenino y empático. Tu tarea es analizar las respuestas de un test, determinar el perfil de agotamiento según unas reglas específicas y generar un JSON estructurado con los datos del perfil ganador.\r\n\r\n### Reglas para Determinar el Perfil Ganador\r\nCada respuesta tiene una asignación de 1 punto a un perfil. Suma los puntos por perfil y selecciona el perfil con mayor puntuación. En caso de empate, prioriza el estado emocional más urgente:\r\n1. Emocionalmente Inflamada\r\n2. Sobreviviendo en Silencio\r\n3. Desconectada\r\n4. Lucha Silenciosa\r\n\r\n#### Perfiles y Respuestas Asociadas\r\n1. **Lucha Silenciosa**:\r\n   - Fatiga intensa, dificultad para concentrarse\r\n   - Culpa, ansiedad\r\n   - Me sobre exijo / No me cuido sin culpa\r\n   - Duermo poco / no descanso\r\n   - \"Puedo con todo, pero a costa de mí misma\"\r\n   - \"Me cuido cuando ya no puedo más\"\r\n   - Tiene dudas pero algo debe cambiar\r\n\r\n2. **Desconectada**:\r\n   - Confusión mental, digestión lenta\r\n   - Desconexión, tristeza\r\n   - \"No me reconozco como mujer\"\r\n   - \"Debo volver a mí\" o \"no sé pero necesito entenderlo\"\r\n   - Descanso pero sigo sin energía\r\n   - \"Intento cuidarme pero no soy constante\"\r\n   - \"No sé por dónde empezar pero sé que debo hacerlo\"\r\n\r\n3. **Emocionalmente Inflamada**:\r\n   - Dolor muscular, inflamación\r\n   - Rabia, ansiedad\r\n   - \"Estoy reprimiendo mucho emocionalmente\"\r\n   - \"Me cuesta conciliar el sueño\"\r\n   - \"Me cuesta funcionar\"\r\n   - \"Estoy lista. Solo necesito guía clara\"\r\n\r\n4. **Sobreviviendo en Silencio**:\r\n   - Menstruación irregular, digestión lenta\r\n   - Tristeza, vacío\r\n   - \"Me siento sola / incomprendida\"\r\n   - \"No puedo sostener esta forma de vida\"\r\n   - \"Estoy acostumbrada pero ya no quiero seguir así\"\r\n   - \"No tengo tiempo ni energía para cuidarme\"\r\n   - \"No estoy segura de poder hacerlo ahora\"\r\n\r\n### Estructura del JSON de Salida\r\nEl JSON debe tener la siguiente estructura:\r\n{\r\n  \"profileTitle\": \"Título del perfil\",\r\n  \"archetypeIcon\": \"Ícono del arquetipo (Font Awesome)\",\r\n  \"archetypeText\": \"Descripción del arquetipo emocional\",\r\n  \"biologyIcon\": \"Ícono de la explicación biológica (Font Awesome)\",\r\n  \"biologyText\": \"Explicación biológica\",\r\n  \"consequencesIcon\": \"Ícono de las consecuencias (Font Awesome)\",\r\n  \"consequencesList\": [\"Consecuencia 1\", \"Consecuencia 2\", ...],\r\n  \"danjaNote\": \"Mensaje personalizado de Danja\",\r\n  \"affirmationIcon\": \"Ícono de la afirmación (Font Awesome)\",\r\n  \"affirmationText\": \"Primer paso sugerido\"\r\n}\r\n\r\n\r\n"
+                        "content": "### ROL Y OBJETIVO\r\nEres un asistente de coaching experto en analizar respuestas de un test para determinar un perfil de agotamiento. Tu objetivo es seguir las reglas de puntuación para encontrar el perfil ganador, y luego usar los datos asociados a ese perfil para construir un objeto JSON. Tu respuesta DEBE ser únicamente el objeto JSON, sin ningún texto adicional.\r\n\r\n### RESPUESTAS DE LA USUARIA\r\n- q1: {{1.q1}}\r\n- q2: {{1.q2}}\r\n- q3: {{1.q3}}\r\n- q4: {{1.q4}}\r\n- q5: {{1.q5}}\r\n- q6: {{1.q6}}\r\n- q7: {{1.q7}}\r\n- q8: {{1.q8}}\r\n\r\n### REGLAS DE PUNTUACIÓN\r\nAnaliza las respuestas de la usuaria. Para cada respuesta, asigna 1 punto al perfil correspondiente si la respuesta coincide con alguna de las frases clave. Suma los puntos de cada perfil. El perfil con más puntos es el ganador.\r\n\r\n1.  **Lucha Silenciosa**:\r\n    - Frases Clave: \"Fatiga intensa\", \"dificultad para concentrarse\", \"Culpa\", \"ansiedad\", \"Me sobre exijo\", \"No me cuido sin culpa\", \"Duermo poco\", \"Puedo con todo, pero a costa de mí misma\", \"Me cuido cuando ya no puedo más\", \"Tengo dudas, pero algo debe cambiar\".\r\n\r\n2.  **Desconectada**:\r\n    - Frases Clave: \"Confusión mental\", \"digestión lenta\", \"Desconexión\", \"tristeza\", \"No me reconozco como mujer\", \"Debo volver a mí\", \"no sé pero necesito entenderlo\", \"Descanso pero sigo sin energía\", \"Intento cuidarme pero no soy constante\", \"No sé por dónde empezar pero sé que debo hacerlo\".\r\n\r\n3.  **Emocionalmente Inflamada**:\r\n    - Frases Clave: \"Dolor muscular\", \"inflamación\", \"Rabia\", \"ansiedad\", \"Estoy reprimiendo mucho emocionalmente\", \"Me cuesta conciliar el sueño\", \"Me cuesta funcionar\", \"Estoy lista. Solo necesito guía clara\".\r\n\r\n4.  **Sobreviviendo en Silencio**:\r\n    - Frases Clave: \"Menstruación irregular\", \"digestión lenta\", \"Tristeza\", \"vacío\", \"Me siento sola / incomprendida\", \"No puedo sostener esta forma de vida\", \"Estoy acostumbrada pero ya no quiero seguir así\", \"No tengo tiempo ni energía para cuidarme\", \"No estoy segura de poder hacerlo ahora\".\r\n\r\n### REGLA DE DESEMPATE\r\nEn caso de empate en la puntuación, el ganador se decide por la siguiente prioridad (el número más bajo gana):\r\n1. Emocionalmente Inflamada\r\n2. Sobreviviendo en Silencio\r\n3. Desconectada\r\n4. Lucha Silenciosa\r\n\r\n### DATOS PARA CADA PERFIL\r\nUna vez que determines el perfil ganador, usa ESTE texto exacto para construir el JSON.\r\n\r\n# Perfil 1: Lucha Silenciosa\r\n- profileTitle: \"Perfil: La Lucha Silenciosa\"\r\n- archetypeIcon: \"fa-solid fa-user-shield\"\r\n- archetypeText: \"Eres una mujer fuerte y comprometida, pero esa fuerza ha venido con un precio alto. Sostienes a todos, incluso cuando no puedes más. Tu cuerpo está en una lucha diaria, intentando mantenerte en pie a pesar del agotamiento.\"\r\n- biologyIcon: \"fa-solid fa-brain\"\r\n- biologyText: \"Tu sistema nervioso está crónicamente en modo 'lucha o huida', produciendo cortisol sin pausa. Esto debilita tu sistema inmune y te mantiene en un estado de alerta constante que agota tus reservas de energía.\"\r\n- consequencesIcon: \"fa-solid fa-triangle-exclamation\"\r\n- consequencesList: [\"Fatiga suprarrenal\", \"Insomnio persistente\", \"Ansiedad crónica\", \"Dificultad para concentrarse\"]\r\n- danjaNote: \"Yo también pensé que podía con todo, hasta que mi cuerpo colapsó. Sanar no es dejar de ser fuerte, es aprender a sostenerte a ti primero.\"\r\n- affirmationIcon: \"fa-solid fa-hand-holding-heart\"\r\n- affirmationText: \"Hoy reconozco mi esfuerzo y me doy permiso para descansar sin culpa.\"\r\n\r\n# Perfil 2: Desconectada\r\n- profileTitle: \"Perfil: La Mujer Desconectada\"\r\n- archetypeIcon: \"fa-solid fa-ghost\"\r\n- archetypeText: \"Te sientes como una espectadora de tu propia vida, con una neblina mental que no te deja ver con claridad. Hay una parte de ti que anhela volver a casa, a tu propio cuerpo, pero no sabes cómo encontrar el camino de regreso.\"\r\n- biologyIcon: \"fa-solid fa-comment-slash\"\r\n- biologyText: \"El estrés crónico ha afectado la comunicación entre tu intestino y tu cerebro (eje intestino-cerebro). Esto provoca confusión mental, digestión lenta y una sensación de no estar realmente presente en tu cuerpo.\"\r\n- consequencesIcon: \"fa-solid fa-triangle-exclamation\"\r\n- consequencesList: [\"Problemas digestivos crónicos\", \"Niebla mental persistente\", \"Apatía o tristeza\", \"Desconexión de tu intuición\"]\r\n- danjaNote: \"Perderse a una misma es aterrador. El primer paso para encontrarte es volver a habitar tu cuerpo, escucharlo y confiar en su sabiduría innata, incluso si ahora parece un susurro.\"\r\n- affirmationIcon: \"fa-solid fa-leaf\"\r\n- affirmationText: \"Hoy pongo una mano en mi corazón, respiro profundo y pregunto a mi cuerpo: ¿qué necesitas de mí en este momento?\"\r\n\r\n# Perfil 3: Emocionalmente Inflamada\r\n- profileTitle: \"Perfil: Emocionalmente Inflamada\"\r\n- archetypeIcon: \"fa-solid fa-fire\"\r\n- archetypeText: \"Tu cuerpo está guardando emociones que no has podido procesar, como la rabia o la frustración. Esta energía contenida se manifiesta como inflamación física, creando dolor, rigidez y una sensación de estar constantemente 'en llamas' por dentro.\"\r\n- biologyIcon: \"fa-solid fa-temperature-full\"\r\n- biologyText: \"Las emociones no expresadas activan una respuesta inflamatoria en tu cuerpo. El sistema inmune se confunde y empieza a atacar tejidos sanos, causando dolor muscular, articular y una sensación general de malestar, como si tuvieras una fiebre constante.\"\r\n- consequencesIcon: \"fa-solid fa-triangle-exclamation\"\r\n- consequencesList: [\"Dolores crónicos (fibromialgia, etc.)\", \"Rigidez matutina\", \"Explosiones de ira o llanto\", \"Problemas de piel (eccema, psoriasis)\"]\r\n- danjaNote: \"Tu cuerpo no es tu enemigo, es tu mensajero. El dolor es una invitación a soltar lo que ya no puedes cargar. Permitirte sentir es el primer paso para desinflamar tu vida.\"\r\n- affirmationIcon: \"fa-solid fa-water\"\r\n- affirmationText: \"Hoy permito que mis emociones fluyan. Reconozco mi rabia y mi tristeza, y les doy espacio para ser vistas sin juicio.\"\r\n\r\n# Perfil 4: Sobreviviendo en Silencio\r\n- profileTitle: \"Perfil: Sobreviviendo en Silencio\"\r\n- archetypeIcon: \"fa-solid fa-moon\"\r\n- archetypeText: \"Has normalizado sentirte agotada y vacía, como si fuera el precio a pagar por tu vida. Operas en modo de 'ahorro de energía' y te has acostumbrado tanto al silencio de tus propias necesidades que ya casi no las escuchas.\"\r\n- biologyIcon: \"fa-solid fa-battery-quarter\"\r\n- biologyText: \"Tu sistema hormonal está desregulado por el estrés sostenido. Esto afecta directamente a tu tiroides y a tus hormonas sexuales, causando ciclos irregulares, falta de libido y un metabolismo lento. Tu cuerpo está intentando conservar la poca energía que le queda.\"\r\n- consequencesIcon: \"fa-solid fa-triangle-exclamation\"\r\n- consequencesList: [\"Desbalances hormonales (SOP, etc.)\", \"Aumento de peso inexplicable\", \"Baja libido\", \"Sentimiento de soledad profunda\"]\r\n- danjaNote: \"Estar acostumbrada a sobrevivir no significa que merezcas vivir así. Mereces vitalidad, placer y alegría. El cambio asusta, pero seguir como estás tiene un costo mucho más alto.\"\r\n- affirmationIcon: \"fa-solid fa-seedling\"\r\n- affirmationText: \"Hoy hago una cosa, por más pequeña que sea, solo para mí. Me doy permiso para existir más allá de mis obligaciones.\"\r\n\r\n### INSTRUCCIONES DE SALIDA\r\nGenera el objeto JSON para el perfil ganador. Tu única salida debe ser el objeto JSON. No incluyas explicaciones ni la palabra \"json\" antes del objeto."
                     }
                 ],
-                "max_tokens": "2048",
+                "max_tokens": "4096",
                 "temperature": "1",
                 "n_completions": "1",
                 "response_format": "json_object",
@@ -65,8 +505,8 @@
             },
             "metadata": {
                 "designer": {
-                    "x": 310,
-                    "y": 2
+                    "x": 810,
+                    "y": 17
                 },
                 "restore": {
                     "expect": {
@@ -822,7 +1262,7 @@
                 "headers": [
                     {
                         "key": "Content-Type",
-                        "value": "text/html; charset=utf-8"
+                        "value": "application/json"
                     },
                     {
                         "key": "Access-Control-Allow-Origin",
@@ -832,8 +1272,8 @@
             },
             "metadata": {
                 "designer": {
-                    "x": 704,
-                    "y": -11
+                    "x": 1406,
+                    "y": 16
                 },
                 "restore": {
                     "expect": {
