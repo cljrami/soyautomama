@@ -152,6 +152,7 @@
         color: var(--color-white);
         border: none;
         cursor: pointer;
+        border-radius: 50px;
       }
       .quiz-screen {
         display: none;
@@ -213,7 +214,7 @@
       .options-list label {
         display: flex;
         align-items: center;
-        justify-content: center; /* Centra el texto dentro del botón */
+        justify-content: center;
         padding: 15px 25px;
         background-color: var(--color-white);
         border-radius: 12px;
@@ -223,7 +224,7 @@
         font-size: 1em;
         color: var(--color-text-dark);
         width: 100%;
-        max-width: 550px; /* << CAMBIO AQUÍ: Ancho máximo del botón */
+        max-width: 550px;
       }
       .options-list label:hover {
         border-color: #c5b8d9;
@@ -275,6 +276,27 @@
         color: #aaa !important;
         border-color: #ddd !important;
       }
+      /* --- INICIO: Estilos solo para los nuevos campos --- */
+      .form-group {
+        margin-bottom: 1rem;
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .form-group input {
+        width: 100%;
+        padding: 15px 20px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-family: var(--font-main);
+      }
+      .form-group input:focus {
+        outline: none;
+        border-color: var(--color-primary-purple);
+        box-shadow: 0 0 0 3px rgba(126, 108, 155, 0.3);
+      }
+      /* --- FIN: Estilos para los nuevos campos --- */
     </style>
   </head>
   <body>
@@ -765,6 +787,30 @@
                   </li>
                 </ul>
               </div>
+
+              <div class="question-step" data-step="final">
+                <h2 class="question-title">¡Ya casi!</h2>
+                <p class="question-subtitle">
+                  Para generar tu resultado personalizado, por favor déjanos tus
+                  datos.
+                </p>
+                <div class="form-group">
+                  <input
+                    type="text"
+                    id="userName"
+                    placeholder="Tu nombre"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <input
+                    type="email"
+                    id="userEmail"
+                    placeholder="Tu mejor correo electrónico"
+                    required
+                  />
+                </div>
+              </div>
             </form>
           </div>
         </div>
@@ -784,24 +830,21 @@
         const quizScreen = document.querySelector(".quiz-screen");
         const prevBtn = document.querySelector(".prev-btn");
         const nextBtn = document.querySelector(".next-btn");
-        const questionSteps = document.querySelectorAll(".question-step");
+
+        /* << INICIO CAMBIO: Seleccionamos todos los pasos, incluyendo el final >> */
+        const allSteps = document.querySelectorAll(".test-body .question-step");
         const progressBar = document.getElementById("progressBar");
         const stepCounter = document.getElementById("stepCounter");
 
         let currentStep = 0;
-        const totalSteps = questionSteps.length;
+        const totalSteps = allSteps.length;
+        /* << FIN CAMBIO >> */
 
         if (mainTriggerButton) {
           mainTriggerButton.addEventListener("click", () => {
             if (popupOverlay) popupOverlay.classList.add("active");
           });
         }
-
-        popupOverlay.addEventListener("click", function (event) {
-          if (event.target === popupOverlay) {
-            popupOverlay.classList.remove("active");
-          }
-        });
 
         startBtn.addEventListener("click", () => {
           introScreen.style.display = "none";
@@ -829,7 +872,7 @@
         });
 
         function showStep(stepIndex) {
-          questionSteps.forEach((step, index) =>
+          allSteps.forEach((step, index) =>
             step.classList.toggle("active", index === stepIndex)
           );
           prevBtn.disabled = stepIndex === 0;
@@ -839,53 +882,65 @@
           checkNextButtonState();
         }
 
-        function checkNextButtonState() {
-          const currentQuestion = questionSteps[currentStep];
-          if (currentQuestion) {
-            const isAnswered = Array.from(
-              currentQuestion.querySelectorAll("input")
-            ).some((input) => input.checked);
-            nextBtn.disabled = !isAnswered;
-          }
+        /* << INICIO CAMBIO: Nueva función para validar email y lógica de validación actualizada >> */
+        function validateEmail(email) {
+          const re =
+            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+          return re.test(String(email).toLowerCase());
         }
+
+        function checkNextButtonState() {
+          const currentQuestion = allSteps[currentStep];
+          if (!currentQuestion) return;
+
+          let isAnswered = true;
+          if (currentQuestion.hasAttribute("data-question")) {
+            isAnswered =
+              Array.from(currentQuestion.querySelectorAll("input:checked"))
+                .length > 0;
+          } else if (currentQuestion.hasAttribute("data-step")) {
+            const name = document.getElementById("userName").value;
+            const email = document.getElementById("userEmail").value;
+            isAnswered = name.trim() !== "" && validateEmail(email);
+          }
+          nextBtn.disabled = !isAnswered;
+        }
+        /* << FIN CAMBIO >> */
 
         document.querySelectorAll("#quiz-form input").forEach((input) => {
           input.addEventListener("change", (e) => {
             const label = e.target.closest("label");
-            const questionStep = e.target.closest(".question-step");
-            const name = e.target.name;
-
-            if (e.target.type === "radio") {
-              questionStep
-                .querySelectorAll(`input[name="${name}"]`)
-                .forEach((radioInput) => {
-                  radioInput.closest("label").classList.remove("selected");
-                });
-              label.classList.add("selected");
-
-              /* << CAMBIO AQUÍ: Se eliminó el avance automático */
-              // if(currentStep < totalSteps - 1){
-              //  setTimeout(() => nextBtn.click(), 300);
-              // }
-            }
-
-            if (e.target.type === "checkbox") {
-              const max = name === "q1" ? 3 : 2;
-              const checkedCount = questionStep.querySelectorAll(
-                `input[name="${name}"]:checked`
-              ).length;
-
-              if (checkedCount > max) {
-                e.target.checked = false;
-                label.classList.remove("selected"); // Des-selecciona visualmente
-                alert(`Puedes seleccionar un máximo de ${max} opciones.`);
-                return;
+            if (label) {
+              if (e.target.type === "radio") {
+                document
+                  .querySelectorAll(`input[name="${e.target.name}"]`)
+                  .forEach((radio) => {
+                    radio.closest("label").classList.remove("selected");
+                  });
+                label.classList.add("selected");
               }
-              label.classList.toggle("selected", e.target.checked);
+              if (e.target.type === "checkbox") {
+                const max = e.target.name === "q1" ? 3 : 2;
+                const checkedCount = e.target
+                  .closest(".options-list")
+                  .querySelectorAll(
+                    `input[name="${e.target.name}"]:checked`
+                  ).length;
+                if (checkedCount > max) {
+                  e.target.checked = false;
+                  alert(`Puedes seleccionar un máximo de ${max} opciones.`);
+                  return;
+                }
+                label.classList.toggle("selected", e.target.checked);
+              }
             }
-
             checkNextButtonState();
           });
+          /* << INICIO CAMBIO: Se añaden listeners para los campos de texto >> */
+          if (input.id === "userName" || input.id === "userEmail") {
+            input.addEventListener("input", checkNextButtonState);
+          }
+          /* << FIN CAMBIO >> */
         });
 
         function updateProgress() {
@@ -897,13 +952,22 @@
 
         function sendDataAndRedirect() {
           const payload = {};
-          questionSteps.forEach((step, index) => {
+          const questionStepsOnly = document.querySelectorAll(
+            ".question-step[data-question]"
+          );
+
+          questionStepsOnly.forEach((step, index) => {
             const qKey = `q${index + 1}`;
             const checkedInputs = step.querySelectorAll("input:checked");
             payload[qKey] = Array.from(checkedInputs)
               .map((input) => input.value.trim())
               .join(" / ");
           });
+
+          /* << INICIO CAMBIO: Se añaden nombre y email al payload >> */
+          payload.name = document.getElementById("userName").value;
+          payload.email = document.getElementById("userEmail").value;
+          /* << FIN CAMBIO >> */
 
           sessionStorage.setItem(
             "automamaQuizAnswers",

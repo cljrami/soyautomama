@@ -26,8 +26,6 @@
         --font-serif: "Playfair Display", serif;
         --font-signature: "Kristi", cursive;
         --brand-footer-green: #3e563e;
-        --loading-bar-bg: #f0f0f0;
-        --loading-bar-fill: var(--brand-accent);
       }
 
       *,
@@ -62,6 +60,7 @@
         margin: 0 auto;
         padding: 0 1.5rem;
       }
+
       .scroll-reveal {
         opacity: 0;
         transition: opacity 0.8s ease-out, transform 0.8s ease-out;
@@ -147,17 +146,23 @@
         font-weight: 700;
         font-size: 1.1rem;
         text-transform: uppercase;
+        letter-spacing: 0.05em;
         padding: 1.25rem 3rem;
         border-radius: 999px;
         text-decoration: none;
         border: none;
         cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.75rem;
+        box-shadow: 0 8px 20px rgba(225, 183, 195, 0.5);
+        transition: all 0.3s ease;
       }
       .cta-button:hover {
         transform: translateY(-5px) scale(1.05);
       }
 
-      /* << CAMBIO: Se eliminó display:flex para restaurar el formato del resultado */
       .profile-card {
         background: #fff;
         color: var(--brand-text-deep);
@@ -168,7 +173,6 @@
         min-height: 200px;
       }
 
-      /* << CAMBIO: Placeholder ahora centra su propio contenido */
       .loading-placeholder {
         display: flex;
         flex-direction: column;
@@ -207,10 +211,12 @@
         border-radius: 20px;
         transition: width 0.4s ease-out;
       }
-
       .profile-header {
         text-align: center;
         margin-bottom: 3rem;
+      }
+      .profile-header h2 {
+        color: var(--brand-text-deep);
       }
       .profile-flow {
         position: relative;
@@ -240,6 +246,49 @@
         font-size: 1rem;
         border: 4px solid #fff;
       }
+      .flow-step h3 {
+        font-size: 1.1rem;
+        color: var(--brand-text-deep);
+      }
+      .flow-step p,
+      .flow-step li {
+        font-size: 1rem;
+        line-height: 1.8;
+        color: var(--brand-text-deep);
+        opacity: 0.8;
+      }
+      .consequences-list {
+        list-style: none;
+        padding: 0;
+        margin-top: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+      .consequences-list li {
+        background-color: rgba(212, 175, 185, 0.1);
+        padding: 1rem 1.5rem;
+        border-radius: 0.75rem;
+        text-align: left;
+      }
+      .danja-note-wrapper {
+        margin: 3rem 0 2rem;
+        padding: 2.5rem;
+        text-align: center;
+      }
+      .danja-note-wrapper p {
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-size: 1.2rem;
+        margin: 0 auto;
+        max-width: 35rem;
+      }
+      .danja-note-wrapper .name {
+        font-family: var(--font-signature);
+        font-size: 2.8rem;
+        color: var(--brand-accent-dark);
+        margin-top: 1rem;
+      }
       .first-step {
         margin-top: 2rem;
         background: linear-gradient(
@@ -252,11 +301,15 @@
         text-align: center;
         color: var(--brand-text-deep);
       }
+      .first-step p {
+        font-size: clamp(1.2rem, 4vw, 1.75rem);
+        font-family: var(--font-serif);
+        font-style: italic;
+      }
 
       .glass-card {
         background-color: rgba(255, 255, 255, 0.05);
         backdrop-filter: blur(15px);
-        -webkit-backdrop-filter: blur(15px);
         border: 1px solid rgba(255, 255, 255, 0.1);
         border-radius: 1.5rem;
         padding: 3rem;
@@ -332,24 +385,16 @@
         align-items: center;
         font-size: 1.2rem;
         text-decoration: none;
-        transition: transform 0.3s ease;
-      }
-      .footer-social a:hover {
-        transform: scale(1.1);
       }
       @media (max-width: 768px) {
-        .footer-content {
+        .footer-content,
+        .footer-contact,
+        .footer-social {
           flex-direction: column;
           text-align: center;
         }
-        .footer-contact,
+        .footer-contact li,
         .footer-social {
-          justify-content: center;
-        }
-        .footer-contact {
-          text-align: center;
-        }
-        .footer-contact li {
           justify-content: center;
         }
       }
@@ -365,23 +410,16 @@
             class="page-logo"
           />
           <div class="hero-content">
-            <h1 id="hero-title">
-              Tu cuerpo habló. Ahora empieza tu regreso a ti.
-            </h1>
-            <p class="subtitle text-light" id="hero-subtitle">
+            <h1>Tu cuerpo habló. Ahora empieza tu regreso a ti.</h1>
+            <p class="subtitle text-light">
               Gracias por completar el test. A continuación, estamos generando
               tu perfil de agotamiento personalizado.
             </p>
           </div>
         </div>
       </header>
-
       <main>
-        <section
-          id="test-result"
-          class="bg-light text-deep scroll-reveal"
-          style="transform: translateY(40px)"
-        >
+        <section id="test-result" class="bg-light text-deep">
           <div class="container">
             <div class="profile-card" id="profile-card-container">
               <div class="loading-placeholder" id="loading-placeholder">
@@ -393,12 +431,7 @@
             </div>
           </div>
         </section>
-
-        <section
-          id="freebie-download"
-          class="bg-dark text-light scroll-reveal"
-          style="transform: translateY(40px)"
-        >
+        <section id="freebie-download" class="bg-dark text-light">
           <div class="container">
             <div class="glass-card">
               <p style="font-size: 4rem; line-height: 1">🎁</p>
@@ -416,18 +449,14 @@
                 Este recurso te ayudará a empezar a reconectar con tu energía,
                 sin abrumarte. Un paso a la vez, desde el cuerpo y el corazón.
               </p>
-              <a href="#" class="cta-button">
-                Descargar mi guía gratuita
-                <span class="icon"><i class="fa-solid fa-download"></i></span>
-              </a>
+              <a href="#" class="cta-button"
+                >Descargar mi guía gratuita
+                <span class="icon"><i class="fa-solid fa-download"></i></span
+              ></a>
             </div>
           </div>
         </section>
-
-        <section
-          class="transition-section bg-light text-deep scroll-reveal"
-          style="transform: translateY(40px)"
-        >
+        <section class="transition-section bg-light text-deep">
           <div class="container">
             <h2>¿Y si este fuera solo el comienzo?</h2>
             <p class="text-deep">
@@ -439,11 +468,7 @@
             </p>
           </div>
         </section>
-
-        <section
-          class="cta-final-section bg-dark text-light scroll-reveal"
-          style="transform: translateY(40px)"
-        >
+        <section class="cta-final-section bg-dark text-light">
           <div class="container">
             <i
               class="fa-solid fa-seedling"
@@ -455,14 +480,13 @@
             ></i>
             <h2>✨ Hay un espacio esperándote.</h2>
             <p>Con más claridad, más guía, más contención.</p>
-            <a href="sales-page/" class="cta-button">
-              Conoce el curso + el aceite que tu cuerpo necesita
-              <span class="icon"><i class="fa-solid fa-arrow-right"></i></span>
-            </a>
+            <a href="sales-page" class="cta-button"
+              >Conoce el curso + el aceite que tu cuerpo necesita
+              <span class="icon"><i class="fa-solid fa-arrow-right"></i></span
+            ></a>
           </div>
         </section>
       </main>
-
       <footer class="site-footer">
         <div class="container footer-content">
           <div class="footer-column footer-logo">
@@ -500,7 +524,6 @@
         </div>
       </footer>
     </div>
-
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         const profileCardContainer = document.getElementById(
@@ -510,59 +533,46 @@
 
         let progressInterval;
 
-        /* << CAMBIO: Lógica de simulación de carga mejorada >> */
         const startLoadingSimulation = () => {
           let progress = 0;
-          // Si hay un intervalo anterior, lo limpiamos para evitar duplicados
           if (progressInterval) clearInterval(progressInterval);
-
           progressInterval = setInterval(() => {
             progress += 1;
-            // La barra avanza lentamente hasta el 95% y se detiene
             if (progress >= 95) {
               clearInterval(progressInterval);
             }
             if (loadingBarFill) loadingBarFill.style.width = progress + "%";
-          }, 40); // El intervalo rápido hace que la animación sea fluida
+          }, 40);
         };
 
         const completeLoading = (callback) => {
-          clearInterval(progressInterval); // Detiene la simulación anterior
+          clearInterval(progressInterval);
           if (loadingBarFill) loadingBarFill.style.width = "100%";
-
-          // Espera un momento para que el usuario vea la barra al 100%
           setTimeout(() => {
-            // Ejecuta la función para mostrar los resultados
             callback();
           }, 400);
         };
 
         const fetchAndDisplayResults = async () => {
           startLoadingSimulation();
-
           try {
             const storedAnswers = sessionStorage.getItem("automamaQuizAnswers");
             if (!storedAnswers) {
-              throw new Error("No se encontraron las respuestas del test.");
+              throw new Error("No se encontraron respuestas.");
             }
             const answers = JSON.parse(storedAnswers);
-
             const webhookUrl =
               "https://hook.us2.make.com/nnlnnlgldaeo8osrloymx6e1v491ivzs";
-
             const response = await fetch(webhookUrl, {
               method: "POST",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify(answers),
             });
-
             if (!response.ok) {
               throw new Error(`Error del servidor`);
             }
-
             const resultData = await response.json();
 
-            // Cuando tenemos la respuesta, llamamos a la función para completar la carga
             completeLoading(() => {
               let consequencesHTML = "";
               if (
@@ -570,10 +580,7 @@
                 Array.isArray(resultData.consequencesList)
               ) {
                 consequencesHTML = resultData.consequencesList
-                  .map(
-                    (item) =>
-                      `<li><i class="fa-solid fa-triangle-exclamation"></i> <span>${item}</span></li>`
-                  )
+                  .map((item) => `<li>${item}</li>`)
                   .join("");
               }
 
@@ -607,7 +614,6 @@
                   </div>
                 </div>`;
 
-              // Animación de desvanecimiento para una transición suave
               profileCardContainer.style.transition = "opacity 0.5s ease-out";
               profileCardContainer.style.opacity = 0;
               setTimeout(() => {
@@ -617,7 +623,7 @@
             });
           } catch (error) {
             console.error("Error al procesar los resultados:", error);
-            clearInterval(progressInterval); // Detener la barra en caso de error
+            clearInterval(progressInterval);
             profileCardContainer.innerHTML = `
               <div class="loading-placeholder">
                 <i class="fa-solid fa-circle-exclamation" style="font-size: 2.5rem; color: #c53030; margin-bottom: 1rem;"></i>
@@ -641,7 +647,6 @@
             },
             { threshold: 0.1 }
           );
-
           document
             .querySelectorAll(".scroll-reveal")
             .forEach((el) => observer.observe(el));

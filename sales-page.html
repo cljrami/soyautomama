@@ -6,7 +6,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,700&family=Kristi&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,700;1,400&family=Kristi&display=swap"
       rel="stylesheet"
     />
     <link
@@ -25,6 +25,7 @@
         --font-primary: "Poppins", sans-serif;
         --font-serif: "Playfair Display", serif;
         --font-signature: "Kristi", cursive;
+        --brand-footer-green: #3e563e;
       }
 
       *,
@@ -34,7 +35,6 @@
         margin: 0;
         padding: 0;
       }
-
       html,
       body {
         margin: 0 !important;
@@ -52,28 +52,15 @@
         overflow-x: hidden;
         z-index: 999999;
         font-family: var(--font-primary);
-        color: var(--brand-text-light);
-        background-color: var(--brand-bg);
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
+        color: var(--brand-text-deep);
+        background-color: var(--brand-bg-light);
       }
-
       .container {
         max-width: 900px;
         margin: 0 auto;
         padding: 0 1.5rem;
       }
 
-      @keyframes fadeInUp {
-        from {
-          opacity: 0;
-          transform: translateY(40px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
       .scroll-reveal {
         opacity: 0;
         transition: opacity 0.8s ease-out, transform 0.8s ease-out;
@@ -84,17 +71,18 @@
       }
 
       h1,
-      h2 {
+      h2,
+      h4 {
         font-family: var(--font-serif);
       }
       h1 {
         font-size: clamp(2.5rem, 6vw, 3.5rem);
         line-height: 1.2;
-        color: #fff;
       }
       h2 {
         font-size: clamp(2rem, 5vw, 2.75rem);
         line-height: 1.2;
+        margin-bottom: 1.5rem;
       }
       h3 {
         font-size: 1.1rem;
@@ -102,11 +90,16 @@
         text-transform: uppercase;
         letter-spacing: 0.08em;
       }
+      h4 {
+        font-size: 1.3rem;
+        margin-bottom: 0.5rem;
+      }
       p {
-        font-size: 1.05rem;
+        font-size: 1.1rem;
         line-height: 1.8;
-        font-weight: 400;
-        opacity: 0.9;
+        max-width: 65ch;
+        margin-left: auto;
+        margin-right: auto;
       }
 
       main > section {
@@ -121,59 +114,13 @@
         background-color: var(--brand-bg);
         color: var(--brand-text-light);
       }
-      .text-deep {
-        color: var(--brand-text-deep);
-      }
       .text-light {
-        color: var(--brand-text-light);
+        color: var(--brand-text-light) !important;
+      }
+      .text-deep {
+        color: var(--brand-text-deep) !important;
       }
 
-      /* --- HERO MEJORADO --- */
-      .hero-section {
-        min-height: 95vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        text-align: center;
-        background-image: radial-gradient(
-          circle at 50% 0%,
-          rgba(232, 195, 207, 0.15) 0%,
-          transparent 70%
-        );
-        padding-top: 2rem;
-      }
-      .page-logo {
-        max-width: 200px;
-        margin-bottom: 2rem;
-      }
-      .hero-content {
-        max-width: 45rem;
-        margin: 0 auto;
-      }
-      .hero-content .subtitle {
-        font-size: 1.2rem;
-        margin-top: 1.5rem;
-      }
-      .hero-bullets {
-        list-style: none;
-        padding: 0;
-        margin: 2rem 0;
-        display: inline-flex;
-        flex-direction: column;
-        text-align: left;
-        gap: 0.75rem;
-      }
-      .hero-bullets li {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        opacity: 0.9;
-      }
-      .hero-bullets i {
-        color: var(--brand-accent);
-      }
-
-      /* --- BOTONES --- */
       .cta-button {
         background: linear-gradient(
           145deg,
@@ -196,73 +143,113 @@
         gap: 0.75rem;
         box-shadow: 0 8px 20px rgba(225, 183, 195, 0.5);
         transition: all 0.3s ease;
-      }
-      .cta-button .icon {
-        transition: transform 0.3s ease;
+        width: 100%;
       }
       .cta-button:hover {
         transform: translateY(-5px) scale(1.05);
-        box-shadow: 0 15px 30px -5px rgba(200, 154, 171, 0.7);
       }
-      .cta-button:hover .icon {
-        transform: translateX(5px);
-      }
-
-      /* --- ESTILO GLASS CARD --- */
-      .glass-card {
-        background-color: rgba(255, 255, 255, 0.05);
-        backdrop-filter: blur(15px);
-        -webkit-backdrop-filter: blur(15px);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 1.5rem;
-        padding: 3rem;
+      .cta-button-secondary {
+        display: inline-block;
+        width: auto;
+        background: transparent;
+        border: 2px solid var(--brand-accent);
+        color: var(--brand-accent) !important;
+        padding: 0.8rem 2rem;
       }
 
-      /* --- SECCIONES DE CONTENIDO --- */
+      .hero-section {
+        min-height: 90vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background-color: var(--brand-bg);
+      }
+      .hero-section h1,
+      .hero-section p {
+        color: var(--brand-text-light);
+      }
+      .hero-content .subtitle {
+        font-size: 1.2rem;
+        margin: 1.5rem auto 2rem;
+        opacity: 0.9;
+      }
+
+      .video-section .intro-text {
+        margin-bottom: 2rem;
+      }
+      .video-placeholder {
+        max-width: 700px;
+        margin: 0 auto 2rem;
+        aspect-ratio: 16/9;
+        background: #000;
+        border-radius: 1rem;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 4rem;
+        color: #fff;
+        cursor: pointer;
+      }
+
       .validation-section h2 {
         font-style: italic;
         max-width: 40rem;
-        margin: 0 auto 1.5rem;
-        color: var(--brand-text-light);
+        margin-left: auto;
+        margin-right: auto;
       }
       .validation-section p {
-        max-width: 45rem;
-        margin: 0 auto;
-        color: var(--brand-text-light);
+        opacity: 0.8;
       }
-
-      .includes-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 2rem;
-        margin-top: 3rem;
-        text-align: left;
-      }
-      .include-item {
-        background: #fff;
-        padding: 2rem;
-        border-radius: 1rem;
-        box-shadow: 0 15px 30px -10px rgba(64, 45, 69, 0.1);
-      }
-      .include-item .icon {
-        font-size: 2rem;
+      .validation-section .highlight {
+        font-weight: 600;
         color: var(--brand-accent-dark);
-        margin-bottom: 1rem;
-      }
-      .include-item h4 {
-        font-family: var(--font-serif);
-        font-size: 1.3rem;
-        margin-bottom: 0.5rem;
       }
 
-      .oil-choice-section h3 {
-        margin: 2rem 0 1rem;
+      .includes-wrapper {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 3rem;
+        text-align: left;
+        align-items: center;
+      }
+      @media (min-width: 768px) {
+        .includes-wrapper {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+      .includes-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+      }
+      .includes-list li {
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+        font-size: 1.1rem;
+        line-height: 1.6;
+      }
+      .includes-list i {
+        color: var(--brand-accent-dark);
+        margin-top: 5px;
+      }
+      .includes-image img {
+        max-width: 100%;
+        border-radius: 1rem;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+      }
+      .oil-choice-section {
+        margin-top: 5rem;
       }
       .oil-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
         gap: 1.5rem;
-        margin-top: 3rem;
+        margin-top: 2rem;
       }
       .oil-card {
         background: #fff;
@@ -270,7 +257,8 @@
         border-radius: 1rem;
         cursor: pointer;
         transition: all 0.3s ease;
-        border: 2px solid transparent;
+        border: 3px solid transparent;
+        text-align: center;
       }
       .oil-card:hover,
       .oil-card.selected {
@@ -278,134 +266,8 @@
         box-shadow: 0 20px 40px -15px rgba(64, 45, 69, 0.2);
         border-color: var(--brand-accent-dark);
       }
-      .oil-card h4 {
-        font-family: var(--font-serif);
-        font-size: 1.3rem;
-      }
-      .oil-card p {
-        font-size: 0.95rem;
-      }
-
-      .why-section .feature-list {
-        list-style: none;
-        padding: 0;
-        text-align: left;
-        max-width: 45rem;
-        margin: 3rem auto;
-        display: flex;
-        flex-direction: column;
-        gap: 1.5rem;
-      }
-      .why-section .feature-list li {
-        display: flex;
-        align-items: flex-start;
-        gap: 1rem;
-      }
-      .why-section .feature-list i {
-        font-size: 1.2rem;
-        color: var(--brand-accent);
-        margin-top: 5px;
-      }
-      .why-section .closing-statement {
-        font-family: var(--font-serif);
-        font-style: italic;
-        font-size: 1.5rem;
-        margin-top: 3rem;
-        max-width: 45rem;
-        margin-left: auto;
-        margin-right: auto;
-      }
-
-      .testimonials-grid {
-        display: grid;
-        gap: 2rem;
-        margin-top: 3rem;
-        grid-template-columns: 1fr;
-      }
-      .testimonial-card p {
-        font-size: 1.2rem;
-        font-style: italic;
-        line-height: 1.6;
-        margin-bottom: 1rem;
-        color: var(--brand-text-light);
-      }
-      .testimonial-card span {
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        color: var(--brand-text-light);
-      }
-
-      .final-cta-section {
-        background: var(--brand-bg-light);
-        padding: 4rem 1.5rem;
-        border-radius: 2rem;
-        max-width: 50rem;
-      }
-      .final-cta-section .price {
-        font-family: var(--font-serif);
-        font-size: 4rem;
-        margin: 1.5rem 0;
-      }
-      .final-cta-section .value-prop {
-        margin-bottom: 2.5rem;
-      }
-
-      /* --- NUEVA SECCIÓN DE GARANTÍA/PACTO --- */
-      .pact-section {
-        background: var(--brand-text-deep);
-      }
-      .pact-card {
-        max-width: 50rem;
-        text-align: center;
-      }
-      .pact-card h2 {
-        font-family: var(--font-serif);
-        color: var(--brand-text-light);
-        margin-bottom: 1rem;
-      }
-      .pact-card .subtitle {
-        color: var(--brand-text-light);
-        opacity: 0.8;
-        margin-bottom: 3rem;
-      }
-      .promises-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 2rem;
-        margin-bottom: 3rem;
-      }
-      .promise-item {
-        text-align: center;
-      }
-      .promise-item .icon {
-        font-size: 2.5rem;
-        color: var(--brand-accent);
-        margin-bottom: 1rem;
-      }
-      .promise-item h4 {
-        color: var(--brand-text-light);
-        font-weight: 600;
-        font-size: 1.2rem;
-      }
-      .policy-box {
-        background: rgba(0, 0, 0, 0.2);
-        padding: 1.5rem;
-        border-radius: 1rem;
-        border-top: 2px solid var(--brand-accent-dark);
-      }
-      .policy-box p {
-        font-size: 0.95rem;
-        opacity: 0.8;
-        max-width: 40rem;
-        margin: 0 auto;
-      }
-      .policy-box p strong {
-        color: var(--brand-accent);
-      }
 
       .signature-section {
-        background: var(--brand-bg-light);
         text-align: center;
       }
       .signature-card {
@@ -424,8 +286,8 @@
       .signature-card .quote {
         font-family: var(--font-serif);
         font-style: italic;
-        font-size: 1.8rem;
-        margin-bottom: 1rem;
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
       }
       .signature-card .name {
         font-family: var(--font-signature);
@@ -433,49 +295,214 @@
         color: var(--brand-accent-dark);
         line-height: 1;
       }
-      .signature-card .title {
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
+
+      /* --- INICIO: NUEVOS ESTILOS PARA OFERTA Y FAQ --- */
+      .offer-section .container {
+        max-width: 1000px;
+      }
+      .offer-section .section-subtitle {
+        max-width: 60ch;
+        margin: 0 auto 3rem;
+      }
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 4rem;
+      }
+      .feature-item {
+        background: #fff;
+        padding: 2rem;
+        border-radius: 1rem;
+        text-align: left;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+      }
+      .feature-item i {
+        font-size: 2rem;
+        color: var(--brand-accent-dark);
+        margin-bottom: 1rem;
+      }
+      .feature-item h4 {
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+      }
+      .feature-item p {
+        font-size: 1rem;
+        line-height: 1.6;
+      }
+
+      .pricing-box {
+        background: #fff;
+        border-radius: 1.5rem;
+        padding: 2.5rem;
+        box-shadow: 0 20px 50px -20px rgba(64, 45, 69, 0.3);
+        max-width: 600px;
+        margin: 0 auto;
+        border-top: 5px solid var(--brand-accent-dark);
+      }
+      .pricing-box h3 {
+        font-size: 1.5rem;
+        font-family: var(--font-serif);
+      }
+      .pricing-box .price-tag {
+        font-size: clamp(4rem, 12vw, 5.5rem);
+        font-weight: 700;
+        color: var(--brand-text-deep);
+        line-height: 1;
+        margin: 1rem 0 0.5rem;
+      }
+      .pricing-box .old-price {
+        font-size: 1.5rem;
+        text-decoration: line-through;
+        opacity: 0.5;
+        margin-bottom: 2rem;
+      }
+      .pricing-box .cta-button {
+        max-width: 400px;
+        margin: 0 auto;
+      }
+      .payment-icons {
+        margin: 1.5rem 0;
+      }
+      .payment-icons i {
+        font-size: 1.8rem;
+        margin: 0 0.3rem;
+        opacity: 0.6;
+      }
+      .pricing-box .disclaimer {
         font-size: 0.9rem;
-        margin-top: 0.5rem;
+        opacity: 0.7;
+      }
+
+      .faq-section {
+        background: var(--brand-bg);
+      }
+      .faq-grid {
+        max-width: 50rem;
+        margin: 3rem auto 0;
+        text-align: left;
+      }
+      .faq-item {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .faq-item:last-child {
+        border-bottom: none;
+      }
+      .faq-question {
+        width: 100%;
+        background: none;
+        border: none;
+        text-align: left;
+        padding: 1.5rem 0;
+        font-family: var(--font-primary);
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: #fff;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .faq-question .icon {
+        font-size: 1.5rem;
+        transition: transform 0.3s ease;
+        font-style: normal;
+        font-weight: 300;
+      }
+      .faq-answer {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease-out;
+      }
+      .faq-answer p {
+        padding: 0 1rem 1.5rem 0;
+        color: #fff;
+        opacity: 0.8;
+        margin: 0;
+      }
+      .faq-item.active .faq-question .icon {
+        transform: rotate(45deg);
+      }
+      /* --- FIN DE NUEVOS ESTILOS --- */
+
+      .closing-section .name {
+        font-family: var(--font-signature);
+        font-size: 3.5rem;
+        color: var(--brand-accent-dark);
+        line-height: 1;
       }
 
       .site-footer {
-        background: var(--brand-text-deep);
-        padding: 3rem 1rem;
-        text-align: center;
+        background-color: var(--brand-footer-green);
+        padding: 3rem 1.5rem;
+        color: #fff;
       }
-      .footer-links {
-        margin-bottom: 1.5rem;
+      .footer-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 2rem;
       }
-      .footer-links a {
-        color: var(--brand-text-light);
-        opacity: 0.7;
-        text-decoration: none;
-        margin: 0 0.75rem;
-        transition: opacity 0.3s;
+      .footer-column {
+        min-width: 220px;
       }
-      .footer-links a:hover {
-        opacity: 1;
+      .footer-logo,
+      .footer-social {
+        flex: 1;
+      }
+      .footer-contact {
+        flex-grow: 1.5;
+        text-align: left;
+      }
+      .footer-logo img {
+        max-width: 180px;
+      }
+      .footer-contact h4 {
+        margin-bottom: 1rem;
+        font-size: 1.2rem;
+        font-weight: 600;
+      }
+      .footer-contact ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      .footer-contact li {
+        margin-bottom: 0.75rem;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 0.75rem;
+      }
+      .footer-social {
+        display: flex;
+        justify-content: flex-end;
+        gap: 1rem;
       }
       .footer-social a {
-        color: var(--brand-text-light);
-        font-size: 1.5rem;
-        margin: 0 0.75rem;
-        transition: color 0.3s;
+        color: var(--brand-footer-green);
+        background-color: #fff;
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.2rem;
+        text-decoration: none;
+        transition: transform 0.3s ease;
       }
-      .footer-social a:hover {
-        color: var(--brand-accent);
-      }
-      .footer-closing {
-        margin-top: 1.5rem;
-        opacity: 0.6;
-      }
-
-      @media (min-width: 768px) {
-        .testimonials-grid {
-          grid-template-columns: repeat(3, 1fr);
+      @media (max-width: 768px) {
+        .footer-content,
+        .footer-contact,
+        .footer-social {
+          flex-direction: column;
+          text-align: center;
+        }
+        .footer-contact li,
+        .footer-social {
+          justify-content: center;
         }
       }
     </style>
@@ -487,331 +514,364 @@
           class="container scroll-reveal"
           style="transform: translateY(40px)"
         >
-          <img
-            src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/W7yFCk0DmEmhBQ43y4Bs/media/68534989b1f8e47ec7659e62.png"
-            alt="AutoMamá Logo"
-            class="page-logo"
-          />
           <div class="hero-content">
-            <h1>
-              ¿Sientes que tu cuerpo te está fallando… pero nadie te da
-              respuestas claras?
+            <h1 class="text-light">
+              Tu cuerpo está hablando. Este es el momento de escucharlo.
             </h1>
             <p class="subtitle text-light">
-              Es hora de entender lo que tu cuerpo realmente está diciendo. Este
-              mini curso te da claridad, alivio y una herramienta natural para
-              empezar a sanar desde hoy.
+              Si llegaste hasta aquí, es porque sabes que algo no está bien. Y
+              también sabes que mereces sentirte viva de nuevo. Este espacio fue
+              creado para ti: mamá, mujer, humana. Que ha sostenido tanto, y
+              ahora necesita sostenerse a sí misma.
             </p>
-            <ul class="hero-bullets">
-              <li><i class="fa-solid fa-check"></i> Mini curso + audio guía</li>
-              <li><i class="fa-solid fa-check"></i> Comunidad contenedora</li>
-              <li>
-                <i class="fa-solid fa-check"></i> 1 aceite esencial de rescate
-                personalizado
-              </li>
-              <li><i class="fa-solid fa-check"></i> Solo $40 USD</li>
-            </ul>
-            <a href="#final-cta" class="cta-button"
-              >Sí, quiero empezar mi proceso</a
+            <a href="#offer" class="cta-button cta-button-secondary"
+              >Ver lo que incluye el programa</a
             >
           </div>
         </div>
       </header>
 
       <main>
-        <section
-          class="validation-section bg-dark scroll-reveal"
-          style="transform: translateY(40px)"
-        >
-          <div class="container glass-card">
-            <h2 class="text-light">
-              “Hay algo mal… pero nadie me sabe decir qué.”
+        <section class="video-section bg-light">
+          <div
+            class="container scroll-reveal"
+            style="transform: translateY(40px)"
+          >
+            <h2>
+              Mini Curso + Aceite de Rescate: Lo que tu cuerpo intenta decirte
             </h2>
-            <p class="text-light">
-              Si esto suena como algo que has pensado, este curso es para ti.
-              Tus síntomas no son casualidad. Tampoco están “solo en tu cabeza”.
-              Tu cuerpo está intentando protegerte. Solo que nadie te ha
-              enseñado a escucharlo.
+            <p class="intro-text">
+              Mira este breve video y descubre por qué tantas mujeres están
+              encontrando respuestas y alivio real con este curso. Danja te
+              cuenta su historia… y cómo puede ayudarte a transformar la tuya.
             </p>
-            <p class="text-light" style="margin-top: 1.5rem; font-weight: 600">
-              Este curso no es un diagnóstico. Es una guía real para que por fin
-              entiendas qué está pasando por dentro—y qué puedes hacer HOY para
-              empezar a mejorar.
-            </p>
-          </div>
-        </section>
-
-        <section
-          class="includes-section bg-light scroll-reveal"
-          style="transform: translateY(40px)"
-        >
-          <div class="container">
-            <h2 class="text-deep">¿Qué recibirás?</h2>
-            <div class="includes-grid">
-              <div
-                class="include-item scroll-reveal"
-                style="transform: translateY(40px)"
-              >
-                <div class="icon"><i class="fa-solid fa-video"></i></div>
-                <h4 class="text-deep">Mini curso en video y audio</h4>
-                <p class="text-deep">
-                  Explicación clara, sin tecnicismos, de cómo funciona tu
-                  sistema inmune, nervioso y hormonal bajo estrés o trauma.
-                </p>
-              </div>
-              <div
-                class="include-item scroll-reveal"
-                style="transform: translateY(40px); transition-delay: 0.1s"
-              >
-                <div class="icon">
-                  <i class="fa-solid fa-map-location-dot"></i>
-                </div>
-                <h4 class="text-deep">Guía PDF + Mapa de detonantes</h4>
-                <p class="text-deep">
-                  Descubre cómo tus hábitos, emociones y entorno están activando
-                  tus síntomas.
-                </p>
-              </div>
-              <div
-                class="include-item scroll-reveal"
-                style="transform: translateY(40px); transition-delay: 0.2s"
-              >
-                <div class="icon"><i class="fa-solid fa-people-group"></i></div>
-                <h4 class="text-deep">Acceso a comunidad privada</h4>
-                <p class="text-deep">
-                  Donde no tienes que explicar ni justificar lo que sientes.
-                  Aquí te entienden.
-                </p>
-              </div>
-              <div
-                class="include-item scroll-reveal"
-                style="transform: translateY(40px); transition-delay: 0.3s"
-              >
-                <div class="icon"><i class="fa-solid fa-droplet"></i></div>
-                <h4 class="text-deep">1 aceite esencial de rescate</h4>
-                <p class="text-deep">
-                  Para tu síntoma más urgente. Envío incluido dentro de México.
-                </p>
-              </div>
+            <div class="video-placeholder">
+              <i class="fa-solid fa-play"></i>
             </div>
-          </div>
-        </section>
-
-        <section
-          class="oil-choice-section bg-dark text-light scroll-reveal"
-          style="transform: translateY(40px)"
-        >
-          <div class="container">
-            <h2>Elige tu Aceite</h2>
-            <p>
-              ¿Qué síntoma te impide funcionar con normalidad?<br />Elige el
-              aceite que mejor responda a lo que más necesitas aliviar ahora
-              mismo:
-            </p>
-            <div class="oil-grid">
-              <div class="oil-card text-deep" onclick="selectOil(this)">
-                <h4>Menta</h4>
-                <p class="text-deep">Para dolor, inflamación y migraña</p>
-              </div>
-              <div class="oil-card text-deep" onclick="selectOil(this)">
-                <h4>Bergamota</h4>
-                <p class="text-deep">
-                  Para ansiedad, insomnio y mente acelerada
-                </p>
-              </div>
-              <div class="oil-card text-deep" onclick="selectOil(this)">
-                <h4>Geranio</h4>
-                <p class="text-deep">
-                  Para desequilibrio hormonal y sensibilidad emocional
-                </p>
-              </div>
-              <div class="oil-card text-deep" onclick="selectOil(this)">
-                <h4>Citrus Bliss</h4>
-                <p class="text-deep">Para tristeza, apatía o fatiga extrema</p>
-              </div>
-            </div>
-            <h3 class="text-light" style="margin-top: 2rem">
-              🧘‍♀️ Cada aceite viene con una guía práctica de uso emocional y
-              físico.
-            </h3>
-          </div>
-        </section>
-
-        <section
-          class="why-section bg-light text-deep scroll-reveal"
-          style="transform: translateY(40px)"
-        >
-          <div class="container">
-            <h2>¿Por qué este curso importa?</h2>
-            <p class="text-deep">
-              Porque lo que hoy vives como fatiga, confusión o dolor... Puede
-              ser el inicio de algo peor, o el inicio de tu sanación.
-            </p>
-            <ul class="feature-list">
-              <li>
-                <i class="fa-solid fa-bolt-lightning"></i>
-                <div>
-                  Qué ocurre en tu cuerpo cuando vives en modo “alerta
-                  constante”
-                </div>
-              </li>
-              <li>
-                <i class="fa-solid fa-person-praying"></i>
-                <div>
-                  Cómo influyen el trauma, la culpa, el estrés o la
-                  sobreexigencia
-                </div>
-              </li>
-              <li>
-                <i class="fa-solid fa-recycle"></i>
-                <div>
-                  Cómo cortar el ciclo de inflamación + desregulación con
-                  hábitos simples
-                </div>
-              </li>
-              <li>
-                <i class="fa-solid fa-plug-circle-check"></i>
-                <div>
-                  Cómo empezar a recuperar energía, enfoque y conexión contigo
-                </div>
-              </li>
-            </ul>
-            <p class="closing-statement text-deep">
-              Este no es un curso “de autoayuda”. Es una introducción honesta a
-              tu cuerpo, tu biología y tus emociones. Y el primer paso para
-              dejar de sentirte invisible.
-            </p>
-          </div>
-        </section>
-
-        <section
-          class="testimonials-section bg-dark text-light scroll-reveal"
-          style="transform: translateY(40px)"
-        >
-          <div class="container">
-            <h2>Testimonios</h2>
-            <div class="testimonials-grid">
-              <div class="testimonial-card">
-                <p>
-                  “Por $40, entendí más de mi salud que en 3 años de médicos.”
-                </p>
-                <span>— Mariela</span>
-              </div>
-              <div class="testimonial-card">
-                <p>
-                  “El aceite me calmó desde el primer día. Pero el curso me
-                  transformó.”
-                </p>
-                <span>— Daniela</span>
-              </div>
-              <div class="testimonial-card">
-                <p>
-                  “Danja lo explica con tanta claridad que por fin entendí por
-                  qué estaba tan mal.”
-                </p>
-                <span>— Lucía</span>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section
-          id="final-cta"
-          class="bg-light text-deep scroll-reveal"
-          style="transform: translateY(40px)"
-        >
-          <div class="container final-cta-section">
-            <h2>✨ Todo por solo $40 USD</h2>
-            <p class="text-deep value-prop">
-              📦 Curso, comunidad, guía + aceite de rescate enviado a tu casa*
-            </p>
-            <a href="#" class="cta-button"
-              >Sí, quiero mi curso + mi aceite de rescate</a
+            <a
+              href="#offer"
+              class="cta-button"
+              style="margin-top: 2rem; width: auto; display: inline-flex"
+              >Sí, quiero mi curso y mi aceite de rescate</a
             >
-            <p class="text-deep" style="margin-top: 1.5rem; opacity: 0.7">
-              💡 Valor real: más de $110 USD. Hoy, solo $40 para empezar a
-              sanar.
+          </div>
+        </section>
+
+        <section class="validation-section bg-dark text-light">
+          <div
+            class="container scroll-reveal"
+            style="transform: translateY(40px)"
+          >
+            <h2 class="text-light">
+              Fatiga que no se quita. Dolores que nadie entiende. Cambios
+              emocionales que te hacen dudar de ti misma.
+            </h2>
+            <p>
+              Muchas veces, eso se llama “ser mamá”. Pero tú sabes que es más
+              que eso. Es tu cuerpo hablando más fuerte cada día.
+            </p>
+            <p style="margin-top: 1.5rem" class="text-light">
+              <strong class="highlight"
+                >¿Y si no estás rota?<br />¿Y si estás inflamada, agotada y
+                desregulada... pero aún puedes sanar?</strong
+              >
+            </p>
+            <p style="margin-top: 1.5rem">
+              Este curso te da claridad para entender lo que te pasa de verdad.
+              Y un primer rescate que tu cuerpo va a agradecer.
             </p>
           </div>
         </section>
 
-        <section
-          class="pact-section bg-dark text-light scroll-reveal"
-          style="transform: translateY(40px)"
-        >
-          <div class="container pact-card">
-            <h2>Nuestro Pacto Contigo</h2>
-            <p class="subtitle">
-              Este curso no promete curas mágicas. Pero sí te ofrece algo que
-              muchas veces no encuentras en consultas:
-            </p>
-            <div class="promises-grid">
-              <div class="promise-item">
-                <div class="icon"><i class="fa-solid fa-lightbulb"></i></div>
-                <h4>Claridad</h4>
+        <section class="includes-section bg-light" id="includes">
+          <div
+            class="container scroll-reveal"
+            style="transform: translateY(40px)"
+          >
+            <h2>
+              “Lo que tu cuerpo intenta decirte”<br />Mini Curso + Aceite de
+              Rescate
+            </h2>
+            <div class="includes-wrapper">
+              <div class="includes-text">
+                <h4>¿QUÉ RECIBES AL INSCRIBIRTE?</h4>
+                <ul class="includes-list">
+                  <li>
+                    <i class="fa-solid fa-circle-check"></i>Curso digital
+                    grabado (autoguiado, disponible de inmediato)
+                  </li>
+                  <li>
+                    <i class="fa-solid fa-circle-check"></i>Explicación clara de
+                    la conexión cuerpo-emoción-sistema inmune
+                  </li>
+                  <li>
+                    <i class="fa-solid fa-circle-check"></i>Guía para
+                    identificar tus detonantes físicos y emocionales
+                  </li>
+                  <li>
+                    <i class="fa-solid fa-circle-check"></i>Técnicas simples
+                    para empezar a desinflamar tu sistema
+                  </li>
+                  <li>
+                    <i class="fa-solid fa-circle-check"></i>Ritual de reconexión
+                    + Microhábitos diarios
+                  </li>
+                  <li>
+                    <i class="fa-solid fa-circle-check"></i>Comunidad privada de
+                    mujeres que entienden tu historia
+                  </li>
+                  <li>
+                    <i class="fa-solid fa-circle-check"></i>1 Aceite esencial de
+                    rescate según tu síntoma más urgente
+                  </li>
+                </ul>
               </div>
-              <div class="promise-item">
-                <div class="icon">
-                  <i class="fa-solid fa-hand-holding-heart"></i>
-                </div>
-                <h4>Validación</h4>
-              </div>
-              <div class="promise-item">
-                <div class="icon"><i class="fa-solid fa-feather-alt"></i></div>
-                <h4>Alivio</h4>
-              </div>
-              <div class="promise-item">
-                <div class="icon"><i class="fa-solid fa-shoe-prints"></i></div>
-                <h4>Un primer paso</h4>
+              <div class="includes-image">
+                <img
+                  src="https://images.unsplash.com/photo-1598232491921-355821251322?q=80&w=1887&auto=format&fit=crop"
+                  alt="Materiales del curso y aceites esenciales"
+                />
               </div>
             </div>
-            <div class="policy-box">
-              <p>
-                Debido al envío del aceite, no ofrecemos reembolsos, pero sí
-                <strong>acompañamiento</strong>. Si algo no resuena contigo,
-                puedes escribirnos y te orientamos.
+            <div class="oil-choice-section">
+              <h3>📌 Tú eliges tu aceite según lo que más te bloquea ahora:</h3>
+              <div class="oil-grid">
+                <div class="oil-card text-deep" onclick="selectOil(this)">
+                  <h4>Menta</h4>
+                  <p class="text-deep">
+                    Para dolor físico, migraña, inflamación intestinal
+                  </p>
+                </div>
+                <div class="oil-card text-deep" onclick="selectOil(this)">
+                  <h4>Bergamota</h4>
+                  <p class="text-deep">
+                    Para ansiedad, insomnio, estrés mental
+                  </p>
+                </div>
+                <div class="oil-card text-deep" onclick="selectOil(this)">
+                  <h4>Geranio</h4>
+                  <p class="text-deep">
+                    Para desbalance hormonal, menstruación irregular
+                  </p>
+                </div>
+                <div class="oil-card text-deep" onclick="selectOil(this)">
+                  <h4>Citrus Bliss</h4>
+                  <p class="text-deep">
+                    Para fatiga extrema, tristeza, desmotivación
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="signature-section bg-dark text-light">
+          <div
+            class="container scroll-reveal signature-card"
+            style="transform: translateY(40px)"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=1961&auto=format&fit=crop"
+              alt="Foto de Danja"
+            />
+            <p class="quote text-light">
+              Soy Danja, terapeuta holística, mamá y fundadora de AutoMama.
+              Durante años viví agotada, con síntomas que nadie entendía y una
+              sensación constante de estar sola en esto. Hasta que empecé a
+              escuchar lo que mi cuerpo me quería decir. Desde entonces, he
+              acompañado a decenas de mujeres a recuperar su energía y a
+              reconectar con su salud desde el cuerpo y el alma. Este curso es
+              lo que a mí me hubiera salvado al principio.
+            </p>
+          </div>
+        </section>
+
+        <section class="offer-section bg-light" id="offer">
+          <div
+            class="container scroll-reveal"
+            style="transform: translateY(40px)"
+          >
+            <h2 class="text-deep">Tu Inversión en Claridad y Alivio</h2>
+            <p class="section-subtitle text-deep">
+              Esto es todo lo que te llevas hoy al unirte al programa.
+            </p>
+            <div class="features-grid">
+              <div class="feature-item">
+                <i class="fa-solid fa-video"></i>
+                <h4>Curso Digital Grabado</h4>
+                <p>
+                  Acceso inmediato y de por vida para que avances a tu ritmo.
+                </p>
+              </div>
+              <div class="feature-item">
+                <i class="fa-solid fa-file-pdf"></i>
+                <h4>Guía PDF + Mapa de Detonantes</h4>
+                <p>Para entender tu cuerpo y lo que activa tus síntomas.</p>
+              </div>
+              <div class="feature-item">
+                <i class="fa-solid fa-people-group"></i>
+                <h4>Comunidad Privada</h4>
+                <p>
+                  Un espacio seguro y de contención para compartir tu historia.
+                </p>
+              </div>
+              <div class="feature-item">
+                <i class="fa-solid fa-droplet"></i>
+                <h4>Aceite Esencial de Rescate</h4>
+                <p>
+                  Personalizado a tu necesidad más urgente y enviado a tu casa.
+                </p>
+              </div>
+            </div>
+
+            <div class="pricing-box">
+              <h3>Acceso Inmediato a Todo Esto:</h3>
+              <p class="old-price">$110 USD</p>
+              <p class="price-tag">
+                $40<span style="font-size: 1.5rem; font-weight: 600"> USD</span>
+              </p>
+              <a href="#" class="cta-button">Sí, quiero empezar mi proceso</a>
+              <div class="payment-icons">
+                <i class="fa-brands fa-cc-visa"></i>
+                <i class="fa-brands fa-cc-mastercard"></i>
+                <i class="fa-brands fa-cc-amex"></i>
+                <i class="fa-brands fa-cc-paypal"></i>
+              </div>
+              <p class="disclaimer">
+                Oferta por tiempo limitado. Los aceites son entregados por
+                grupo.
               </p>
             </div>
           </div>
         </section>
 
-        <section
-          class="signature-section bg-light text-deep scroll-reveal"
-          style="transform: translateY(40px)"
-        >
-          <div class="container signature-card">
-            <img
-              src="https://placehold.co/150x150/e8c3cf/332138?text=Danja"
-              alt="Foto de Danja"
-            />
-            <p class="quote">
-              “Tu cuerpo no está roto. Solo quiere hablar contigo. Y este curso
-              es tu primer espacio seguro para escucharlo.”
-            </p>
-            <div class="name">Danja</div>
-            <div class="title">
-              Fundadora de AutoMama<br />Mentora en salud autoinmune femenina y
-              mamá en recuperación
+        <section class="faq-section">
+          <div
+            class="container scroll-reveal"
+            style="transform: translateY(40px)"
+          >
+            <h2 class="text-light">Preguntas Frecuentes</h2>
+            <div class="faq-grid">
+              <div class="faq-item">
+                <button class="faq-question">
+                  <span>¿Tengo que saber de aceites esenciales?</span>
+                  <span class="icon">+</span>
+                </button>
+                <div class="faq-answer">
+                  <p>
+                    No. El curso te enseña cómo usar el tuyo con total
+                    seguridad, aunque no sepas nada aún.
+                  </p>
+                </div>
+              </div>
+              <div class="faq-item">
+                <button class="faq-question">
+                  <span>¿Qué pasa si ya tengo aceites?</span>
+                  <span class="icon">+</span>
+                </button>
+                <div class="faq-answer">
+                  <p>
+                    Este curso no solo es un uso puntual: es una comprensión
+                    profunda. Aprenderás cómo usarlos para tu caso específico.
+                  </p>
+                </div>
+              </div>
+              <div class="faq-item">
+                <button class="faq-question">
+                  <span>¿El curso es grabado o en vivo?</span>
+                  <span class="icon">+</span>
+                </button>
+                <div class="faq-answer">
+                  <p>
+                    Es grabado y autoguiado. Puedes hacerlo a tu ritmo, cuando
+                    tengas tiempo y energía.
+                  </p>
+                </div>
+              </div>
+              <div class="faq-item">
+                <button class="faq-question">
+                  <span>¿Cuándo recibiré mi aceite?</span>
+                  <span class="icon">+</span>
+                </button>
+                <div class="faq-answer">
+                  <p>
+                    En cuanto confirmes tu dirección. El envío tarda de 5 a 10
+                    días hábiles, dependiendo tu país.
+                  </p>
+                </div>
+              </div>
             </div>
+          </div>
+        </section>
+
+        <section class="closing-section bg-light text-deep">
+          <div
+            class="container scroll-reveal"
+            style="transform: translateY(40px)"
+          >
+            <p
+              class="text-deep"
+              style="
+                font-family: var(--font-serif);
+                font-style: italic;
+                font-size: 1.8rem;
+                line-height: 1.5;
+              "
+            >
+              Gracias por darte este primer paso.<br />Tu cuerpo no está roto.
+              Solo está pidiendo otra forma de vivir.<br />Estoy aquí si decides
+              caminar más profundo.
+            </p>
+            <p
+              class="name"
+              style="
+                font-family: var(--font-signature);
+                font-size: 3.5rem;
+                color: var(--brand-accent-dark);
+                line-height: 1;
+                margin-top: 1.5rem;
+              "
+            >
+              Con amor y presencia,<br />— Danja
+            </p>
           </div>
         </section>
       </main>
 
       <footer class="site-footer">
-        <div class="container">
-          <div class="footer-links">
-            <a href="#">Privacidad</a>
-            <a href="#">Envíos</a>
-            <a href="#">Contacto</a>
+        <div class="container footer-content">
+          <div class="footer-column footer-logo">
+            <img
+              src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/W7yFCk0DmEmhBQ43y4Bs/media/68534989b1f8e47ec7659e62.png"
+              alt="AutoMamá Logo"
+            />
           </div>
-          <div class="footer-social">
+          <div class="footer-column footer-contact">
+            <h4>Contáctanos</h4>
+            <ul>
+              <li>
+                <i class="fa-solid fa-envelope"></i
+                ><span>hola@automama.com</span>
+              </li>
+              <li>
+                <i class="fa-solid fa-phone"></i><span>+52998766789</span>
+              </li>
+              <li>
+                <i class="fa-solid fa-location-dot"></i><span>EEUU.</span>
+              </li>
+            </ul>
+          </div>
+          <div class="footer-column footer-social">
+            <a href="#" aria-label="Facebook"
+              ><i class="fa-brands fa-facebook-f"></i
+            ></a>
+            <a href="#" aria-label="Twitter"
+              ><i class="fa-brands fa-twitter"></i
+            ></a>
             <a href="#" aria-label="Instagram"
               ><i class="fa-brands fa-instagram"></i
             ></a>
           </div>
-          <p class="footer-closing">
-            AutoMama – Escuchar tu cuerpo es el inicio de tu sanación.
-          </p>
         </div>
       </footer>
     </div>
@@ -827,12 +887,40 @@
               }
             });
           },
-          { threshold: 0.1 }
+          { threshold: 0.15 }
         );
 
         document
           .querySelectorAll(".scroll-reveal")
           .forEach((el) => observer.observe(el));
+
+        const faqItems = document.querySelectorAll(".faq-item");
+        faqItems.forEach((item) => {
+          const questionButton = item.querySelector(".faq-question");
+          questionButton.addEventListener("click", () => {
+            const answerPanel = item.querySelector(".faq-answer");
+            const wasActive = item.classList.contains("active");
+
+            // Cierra todos los demás para que solo uno esté abierto a la vez
+            faqItems.forEach((i) => {
+              if (i !== item) {
+                i.classList.remove("active");
+                i.querySelector(".faq-answer").style.maxHeight = null;
+                i.querySelector(".icon").textContent = "+";
+              }
+            });
+
+            item.classList.toggle("active");
+            const icon = questionButton.querySelector(".icon");
+            if (item.classList.contains("active")) {
+              answerPanel.style.maxHeight = answerPanel.scrollHeight + "px";
+              icon.textContent = "×";
+            } else {
+              answerPanel.style.maxHeight = null;
+              icon.textContent = "+";
+            }
+          });
+        });
       });
 
       function selectOil(selectedCard) {
