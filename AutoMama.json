@@ -12,8 +12,8 @@
             "mapper": {},
             "metadata": {
                 "designer": {
-                    "x": -41,
-                    "y": 710
+                    "x": -795,
+                    "y": 1230
                 },
                 "restore": {
                     "parameters": {
@@ -69,8 +69,8 @@
             },
             "metadata": {
                 "designer": {
-                    "x": 337,
-                    "y": 708
+                    "x": -303,
+                    "y": 1233
                 },
                 "restore": {
                     "expect": {
@@ -489,7 +489,7 @@
                 "variables": [
                     {
                         "name": "scoreInflamada",
-                        "value": "{{sum(if(contains(lower(1.q1); \"menstruación irregular\"); 1; 0); if(contains(lower(1.q1); \"digestión lenta\"); 1; 0); if(contains(lower(1.q2); \"tristeza\"); 1; 0); if(contains(lower(1.q2); \"vacío\"); 1; 0); if(contains(lower(1.q3); \"me siento sola\"); 1; 0); if(contains(lower(1.q4); \"no puedo sostener esta forma de vida\"); 1; 0); if(contains(lower(1.q6); \"estoy acostumbrada\"); 1; 0); if(contains(lower(1.q7); \"no tengo tiempo ni energía\"); 1; 0); if(contains(lower(1.q8); \"no estoy segura\"); 1; 0))}}"
+                        "value": "{{sum(if(contains(lower(1.q1); \"dolor muscular\"); 1; 0); if(contains(lower(1.q1); \"inflamación\"); 1; 0); if(contains(lower(1.q2); \"rabia\"); 1; 0); if(contains(lower(1.q2); \"ansiedad\"); 1; 0); if(contains(lower(1.q4); \"estoy reprimiendo mucho emocionalmente\"); 1; 0); if(contains(lower(1.q5); \"me cuesta conciliar el sueño\"); 1; 0); if(contains(lower(1.q6); \"me cuesta funcionar\"); 1; 0); if(contains(lower(1.q8); \"estoy lista\"); 1; 0))}}"
                     },
                     {
                         "name": "scoreSobreviviente",
@@ -512,21 +512,14 @@
             },
             "metadata": {
                 "designer": {
-                    "x": 589,
-                    "y": 712
+                    "x": 62,
+                    "y": 1265
                 },
                 "restore": {
                     "expect": {
                         "variables": {
                             "items": [
-                                {
-                                    "name": {
-                                        "collapsed": true
-                                    },
-                                    "value": {
-                                        "collapsed": true
-                                    }
-                                },
+                                null,
                                 null,
                                 null,
                                 null,
@@ -600,451 +593,48 @@
             }
         },
         {
-            "id": 41,
-            "module": "util:SetVariable2",
-            "version": 1,
-            "parameters": {},
-            "mapper": {
-                "name": "perfilGanador",
-                "scope": "roundtrip",
-                "value": "if({{39.scoreInflamada}} >= max({{39.scoreLucha}}; {{39.scoreDesconectada}}; {{39.scoreInflamada}}; {{39.scoreSobreviviente}}); \"Inflamada\"; if({{39.scoreSobreviviente}} >= max({{39.scoreLucha}}; {{39.scoreDesconectada}}; {{39.scoreSobreviviente}}); \"Sobreviviente\"; if({{39.scoreDesconectada}} >= max({{39.scoreLucha}}; {{39.scoreDesconectada}}); \"Desconectada\"; \"Lucha\")))"
-            },
-            "metadata": {
-                "designer": {
-                    "x": 844,
-                    "y": 701
-                },
-                "restore": {
-                    "expect": {
-                        "scope": {
-                            "label": "One cycle"
-                        }
-                    }
-                },
-                "expect": [
-                    {
-                        "name": "name",
-                        "type": "text",
-                        "label": "Variable name",
-                        "required": true
-                    },
-                    {
-                        "name": "scope",
-                        "type": "select",
-                        "label": "Variable lifetime",
-                        "required": true,
-                        "validate": {
-                            "enum": [
-                                "roundtrip",
-                                "execution"
-                            ]
-                        }
-                    },
-                    {
-                        "name": "value",
-                        "type": "any",
-                        "label": "Variable value"
-                    }
-                ],
-                "interface": [
-                    {
-                        "name": "perfilGanador",
-                        "label": "perfilGanador",
-                        "type": "any"
-                    }
-                ]
-            }
-        },
-        {
-            "id": 42,
-            "module": "util:Switcher",
-            "version": 1,
-            "parameters": {},
-            "mapper": {
-                "input": "perfilGanador",
-                "useRegExpMatch": false,
-                "casesTable": [
-                    {
-                        "pattern": "Inflamada",
-                        "output": ""
-                    },
-                    {
-                        "pattern": "Sobreviviente",
-                        "output": ""
-                    },
-                    {
-                        "pattern": "Desconectada",
-                        "output": ""
-                    }
-                ],
-                "elseOutput": "Lucha"
-            },
-            "metadata": {
-                "designer": {
-                    "x": 1032,
-                    "y": 701
-                },
-                "restore": {
-                    "expect": {
-                        "casesTable": {
-                            "mode": "chose",
-                            "items": [
-                                null,
-                                null,
-                                null
-                            ]
-                        }
-                    }
-                },
-                "expect": [
-                    {
-                        "name": "input",
-                        "type": "text",
-                        "label": "Input"
-                    },
-                    {
-                        "name": "useRegExpMatch",
-                        "type": "boolean",
-                        "label": "Use regular expressions to match",
-                        "required": true
-                    },
-                    {
-                        "name": "casesTable",
-                        "type": "array",
-                        "label": "Cases",
-                        "required": true,
-                        "spec": [
-                            {
-                                "name": "pattern",
-                                "label": "Pattern",
-                                "type": "text"
-                            },
-                            {
-                                "name": "output",
-                                "label": "Output",
-                                "type": "any"
-                            }
-                        ]
-                    },
-                    {
-                        "name": "elseOutput",
-                        "type": "any",
-                        "label": "Else"
-                    }
-                ]
-            }
-        },
-        {
-            "id": 28,
+            "id": 44,
             "module": "builtin:BasicRouter",
             "version": 1,
+            "parameters": {
+                "else": 3
+            },
             "mapper": null,
             "metadata": {
                 "designer": {
-                    "x": 1258,
-                    "y": 671
+                    "x": 362,
+                    "y": 1265
                 }
             },
             "routes": [
                 {
                     "flow": [
                         {
-                            "id": 26,
-                            "module": "json:CreateJSON",
-                            "version": 1,
-                            "parameters": {
-                                "type": 142183,
-                                "space": ""
-                            },
-                            "mapper": {
-                                "profileTitle": "Perfil: La emocionalmente inflamada",
-                                "archetypeText": "Tu cuerpo está inflamado, y no solo por lo que comes. Emociones como rabia contenida, tristeza silenciada o frustración acumulada están activando procesos inflamatorios profundos. Estás inflamándote emocional y físicamente a la vez.",
-                                "biologyText": "Cuando se reprimen emociones, el cuerpo libera citoquinas proinflamatorias, afectando articulaciones, piel, intestino y sistema hormonal. El hígado se sobrecarga al metabolizar emociones densas, lo que también altera el metabolismo general y la inmunidad.",
-                                "consequencesList": [
-                                    "Dolor muscular, brotes de piel",
-                                    "Insomnio persistente",
-                                    "Migrañas frecuentes",
-                                    "Problemas digestivos y hormonales"
-                                ],
-                                "danjaNote": "Yo también aprendí a reprimir para sobrevivir. Hasta que mi cuerpo me gritó. No estás mal por sentir. Sanar es también permitirte liberar. Estoy aquí para acompañarte a hacerlo de forma segura y amorosa.",
-                                "affirmationText": "Coloca una canción que te conmueva, y deja que tu cuerpo se exprese. Llora, baila o tiembla. El cuerpo sabe cómo soltar."
-                            },
-                            "metadata": {
-                                "designer": {
-                                    "x": 1675,
-                                    "y": 386
-                                },
-                                "restore": {
-                                    "parameters": {
-                                        "type": {
-                                            "label": "Perfil Resultado Automama."
-                                        },
-                                        "space": {
-                                            "label": "Empty"
-                                        }
-                                    },
-                                    "expect": {
-                                        "consequencesList": {
-                                            "mode": "chose",
-                                            "items": [
-                                                null,
-                                                null,
-                                                null,
-                                                null
-                                            ]
-                                        }
-                                    }
-                                },
-                                "parameters": [
-                                    {
-                                        "name": "type",
-                                        "type": "udt",
-                                        "label": "Data structure",
-                                        "required": true
-                                    },
-                                    {
-                                        "name": "space",
-                                        "type": "select",
-                                        "label": "Indentation",
-                                        "validate": {
-                                            "enum": [
-                                                "tab",
-                                                "2",
-                                                "4"
-                                            ]
-                                        }
-                                    }
-                                ],
-                                "expect": [
-                                    {
-                                        "name": "profileTitle",
-                                        "type": "text",
-                                        "label": null
-                                    },
-                                    {
-                                        "name": "archetypeText",
-                                        "type": "text",
-                                        "label": null
-                                    },
-                                    {
-                                        "name": "biologyText",
-                                        "type": "text",
-                                        "label": null
-                                    },
-                                    {
-                                        "name": "consequencesList",
-                                        "type": "array",
-                                        "label": null,
-                                        "spec": {
-                                            "type": "text",
-                                            "name": "value"
-                                        }
-                                    },
-                                    {
-                                        "name": "danjaNote",
-                                        "type": "text",
-                                        "label": null
-                                    },
-                                    {
-                                        "name": "affirmationText",
-                                        "type": "text",
-                                        "label": null
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "id": 3,
+                            "id": 45,
                             "module": "gateway:WebhookRespond",
                             "version": 1,
                             "parameters": {},
+                            "filter": {
+                                "name": "Perfil: La emocionalmente inflamada",
+                                "conditions": [
+                                    [
+                                        {
+                                            "a": "{{39.scoreInflamada}}",
+                                            "o": "number:greaterorequal",
+                                            "b": "{{max(39.scoreLucha; 39.scoreDesconectada; 39.scoreInflamada; 39.scoreSobreviviente)}}"
+                                        }
+                                    ]
+                                ]
+                            },
                             "mapper": {
                                 "status": "200",
-                                "body": "{\n  \"profileTitle\": \"Perfil: La emocionalmente inflamada\",\n  \"archetypeText\": \"Tu cuerpo está inflamado, y no solo por lo que comes. Emociones como rabia contenida, tristeza silenciada o frustración acumulada están activando procesos inflamatorios profundos. Estás inflamándote emocional y físicamente a la vez.\",\n  \"biologyText\": \"Cuando se reprimen emociones, el cuerpo libera citoquinas proinflamatorias, afectando articulaciones, piel, intestino y sistema hormonal. El hígado se sobrecarga al metabolizar emociones densas, lo que también altera el metabolismo general y la inmunidad.\",\n  \"consequencesList\": [\n    \"Dolor muscular, brotes de piel\",\n    \"Ciclos menstruales alterados\",\n    \"Migrañas frecuentes\",\n    \"Problemas digestivos y hormonales\",\n    \"Ansiedad y agotamiento mental prolongado\"\n  ],\n  \"danjaNote\": \"Yo también aprendí a reprimir para sobrevivir. Hasta que mi cuerpo me gritó. No estás mal por sentir. Sanar es también permitirte liberar. Estoy aquí para acompañarte a hacerlo de forma segura y amorosa.\",\n  \"affirmationText\": \"Coloca una canción que te conmueva, y deja que tu cuerpo se exprese. Llora, baila o tiembla. El cuerpo sabe cómo soltar.\"\n}",
+                                "body": "{\r\n  \"profileTitle\": \"Perfil: La emocionalmente inflamada\",\r\n  \"archetypeText\": \"Tu cuerpo está inflamado, y no solo por lo que comes. Emociones como rabia contenida, tristeza silenciada o frustración acumulada están activando procesos inflamatorios profundos. Estás inflamándote emocional y físicamente a la vez.\",\r\n  \"biologyText\": \"Cuando se reprimen emociones, el cuerpo libera citoquinas proinflamatorias, afectando articulaciones, piel, intestino y sistema hormonal. El hígado se sobrecarga al metabolizar emociones densas, lo que también altera el metabolismo general y la inmunidad.\",\r\n  \"consequencesList\": [\r\n    \"Dolor muscular, brotes de piel\",\r\n    \"Ciclos menstruales alterados\",\r\n    \"Migrañas frecuentes\",\r\n    \"Problemas digestivos y hormonales\",\r\n    \"Ansiedad y agotamiento mental prolongado\"\r\n  ],\r\n  \"danjaNote\": \"Yo también aprendí a reprimir para sobrevivir. Hasta que mi cuerpo me gritó. No estás mal por sentir. Sanar es también permitirte liberar. Estoy aquí para acompañarte a hacerlo de forma segura y amorosa.\",\r\n  \"affirmationText\": \"Coloca una canción que te conmueva, y deja que tu cuerpo se exprese. Llora, baila o tiembla. El cuerpo sabe cómo soltar.\"\r\n}",
                                 "headers": []
                             },
                             "metadata": {
                                 "designer": {
-                                    "x": 2020,
-                                    "y": 322
-                                },
-                                "restore": {
-                                    "expect": {
-                                        "headers": {
-                                            "mode": "chose"
-                                        }
-                                    }
-                                },
-                                "expect": [
-                                    {
-                                        "name": "status",
-                                        "type": "uinteger",
-                                        "label": "Status",
-                                        "validate": {
-                                            "min": 100
-                                        },
-                                        "required": true
-                                    },
-                                    {
-                                        "name": "body",
-                                        "type": "any",
-                                        "label": "Body"
-                                    },
-                                    {
-                                        "name": "headers",
-                                        "type": "array",
-                                        "label": "Custom headers",
-                                        "validate": {
-                                            "maxItems": 16
-                                        },
-                                        "spec": [
-                                            {
-                                                "name": "key",
-                                                "label": "Key",
-                                                "type": "text",
-                                                "required": true,
-                                                "validate": {
-                                                    "max": 256
-                                                }
-                                            },
-                                            {
-                                                "name": "value",
-                                                "label": "Value",
-                                                "type": "text",
-                                                "required": true,
-                                                "validate": {
-                                                    "max": 4096
-                                                }
-                                            }
-                                        ]
-                                    }
-                                ],
-                                "advanced": true
-                            }
-                        }
-                    ]
-                },
-                {
-                    "flow": [
-                        {
-                            "id": 27,
-                            "module": "json:CreateJSON",
-                            "version": 1,
-                            "parameters": {
-                                "type": 142183,
-                                "space": ""
-                            },
-                            "mapper": {
-                                "profileTitle": "Perfil: La que sobrevive en silencio",
-                                "archetypeText": "Has sostenido tanto por tanto tiempo que ahora estás apagada. No hay energía, ni ganas, ni entusiasmo. Solo rutina, cansancio y la sensación de que simplemente estás sobreviviendo. Tu cuerpo está en estado de congelamiento.",
-                                "biologyText": "Cuando el sistema nervioso entra en congelamiento (modo dorsal vagal), reduce la actividad de glándulas productoras de serotonina, dopamina y oxitocina. Esto genera un estado de desconexión fisiológica, disminuye la respuesta inmune y favorece estados inflamatorios, hormonales y emocionales complejos.",
-                                "consequencesList": [
-                                    "Depresión de base fisiológica",
-                                    "Hipotiroidismo",
-                                    "Falta total de motivación (anhedonia)",
-                                    "Aislamiento emocional"
-                                ],
-                                "danjaNote": "Yo también estuve ahí. Sin ganas, sin energía, sin sentirme yo. Pero aprendí que incluso desde ese lugar hay un primer paso posible. No estás rota. Tu cuerpo solo se está protegiendo. Estoy aquí si quieres dar ese paso conmigo.",
-                                "affirmationText": "Toca tu corazón con las manos. Repite en voz baja: 'Estoy aquí. Y merezco más que sobrevivir.' Haz esto cada mañana, al despertar."
-                            },
-                            "metadata": {
-                                "designer": {
-                                    "x": 1722,
-                                    "y": 598
-                                },
-                                "restore": {
-                                    "parameters": {
-                                        "type": {
-                                            "label": "Perfil Resultado Automama."
-                                        },
-                                        "space": {
-                                            "label": "Empty"
-                                        }
-                                    },
-                                    "expect": {
-                                        "consequencesList": {
-                                            "mode": "chose",
-                                            "items": [
-                                                null,
-                                                null,
-                                                null,
-                                                null
-                                            ]
-                                        }
-                                    }
-                                },
-                                "parameters": [
-                                    {
-                                        "name": "type",
-                                        "type": "udt",
-                                        "label": "Data structure",
-                                        "required": true
-                                    },
-                                    {
-                                        "name": "space",
-                                        "type": "select",
-                                        "label": "Indentation",
-                                        "validate": {
-                                            "enum": [
-                                                "tab",
-                                                "2",
-                                                "4"
-                                            ]
-                                        }
-                                    }
-                                ],
-                                "expect": [
-                                    {
-                                        "name": "profileTitle",
-                                        "type": "text",
-                                        "label": null
-                                    },
-                                    {
-                                        "name": "archetypeText",
-                                        "type": "text",
-                                        "label": null
-                                    },
-                                    {
-                                        "name": "biologyText",
-                                        "type": "text",
-                                        "label": null
-                                    },
-                                    {
-                                        "name": "consequencesList",
-                                        "type": "array",
-                                        "label": null,
-                                        "spec": {
-                                            "type": "text",
-                                            "name": "value"
-                                        }
-                                    },
-                                    {
-                                        "name": "danjaNote",
-                                        "type": "text",
-                                        "label": null
-                                    },
-                                    {
-                                        "name": "affirmationText",
-                                        "type": "text",
-                                        "label": null
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "id": 33,
-                            "module": "gateway:WebhookRespond",
-                            "version": 1,
-                            "parameters": {},
-                            "mapper": {
-                                "status": "200",
-                                "body": "{\r\n  \"profileTitle\": \"Perfil: La que sobrevive en silencio\",\r\n  \"archetypeText\": \"Has sostenido tanto por tanto tiempo que ahora estás apagada. No hay energía, ni ganas, ni entusiasmo. Solo rutina, cansancio y la sensación de que simplemente estás sobreviviendo. Tu cuerpo está en estado de congelamiento.\",\r\n  \"biologyText\": \"Cuando el sistema nervioso entra en congelamiento (modo dorsal vagal), reduce la actividad de glándulas productoras de serotonina, dopamina y oxitocina. Esto genera un estado de desconexión fisiológica, disminuye la respuesta inmune y favorece estados inflamatorios, hormonales y emocionales complejos.\",\r\n  \"consequencesList\": [\r\n    \"Depresión de base fisiológica\",\r\n    \"Hipotiroidismo\",\r\n    \"Falta total de motivación (anhedonia)\",\r\n    \"Aislamiento emocional\"\r\n  ],\r\n  \"danjaNote\": \"Yo también estuve ahí. Sin ganas, sin energía, sin sentirme yo. Pero aprendí que incluso desde ese lugar hay un primer paso posible. No estás rota. Tu cuerpo solo se está protegiendo. Estoy aquí si quieres dar ese paso conmigo.\",\r\n  \"affirmationText\": \"Toca tu corazón con las manos. Repite en voz baja: 'Estoy aquí. Y merezco más que sobrevivir.' Haz esto cada mañana, al despertar.\"\r\n}",
-                                "headers": []
-                            },
-                            "metadata": {
-                                "designer": {
-                                    "x": 2041,
-                                    "y": 570
+                                    "x": 662,
+                                    "y": 665
                                 },
                                 "restore": {
                                     "expect": {
@@ -1104,115 +694,106 @@
                 {
                     "flow": [
                         {
-                            "id": 29,
-                            "module": "json:CreateJSON",
-                            "version": 1,
-                            "parameters": {
-                                "type": 142183,
-                                "space": ""
-                            },
-                            "mapper": {
-                                "profileTitle": "Perfil: La desconectada de sí misma",
-                                "archetypeText": "Sientes que estás en piloto automático. Cumples con tus tareas, pero por dentro te sientes apagada, desconectada, como si hubieras perdido la brújula interna que te decía quién eres. Tu cuerpo no tiene energía, ni motivación.",
-                                "biologyText": "Tu sistema nervioso parasimpático —el encargado de regular descanso, digestión y regeneración— no se está activando correctamente. Esto interrumpe la producción de serotonina en el intestino, desregulando tu estado de ánimo, concentración y placer. Tu cuerpo prioriza solo lo urgente: sobrevivir, no vivir con claridad ni alegría.",
-                                "consequencesList": [
-                                    "Insensibilidad emocional",
-                                    "Ansiedad y apatía combinadas",
-                                    "Problemas digestivos persistentes",
-                                    "Sentimiento profundo de vacío personal"
-                                ],
-                                "danjaNote": "Yo también pensé que podía con todo… hasta que no pude más. Y mi cuerpo colapsó. Aprendí que sanar no es dejar de ser fuerte, es aprender a sostenerte tú primero. Estoy aquí para caminar contigo ese nuevo camino, con herramientas reales, sin exigencia y desde el amor propio.",
-                                "affirmationText": "Escribe una carta para ti misma del futuro. Aunque no sepas por dónde empezar. Aunque solo pongas: 'Estoy intentando volver.' Escribir es empezar a escucharte."
-                            },
-                            "metadata": {
-                                "designer": {
-                                    "x": 1728,
-                                    "y": 853
-                                },
-                                "restore": {
-                                    "parameters": {
-                                        "type": {
-                                            "label": "Perfil Resultado Automama."
-                                        },
-                                        "space": {
-                                            "label": "Empty"
-                                        }
-                                    },
-                                    "expect": {
-                                        "consequencesList": {
-                                            "mode": "chose",
-                                            "items": [
-                                                null,
-                                                null,
-                                                null,
-                                                null
-                                            ]
-                                        }
-                                    }
-                                },
-                                "parameters": [
-                                    {
-                                        "name": "type",
-                                        "type": "udt",
-                                        "label": "Data structure",
-                                        "required": true
-                                    },
-                                    {
-                                        "name": "space",
-                                        "type": "select",
-                                        "label": "Indentation",
-                                        "validate": {
-                                            "enum": [
-                                                "tab",
-                                                "2",
-                                                "4"
-                                            ]
-                                        }
-                                    }
-                                ],
-                                "expect": [
-                                    {
-                                        "name": "profileTitle",
-                                        "type": "text",
-                                        "label": null
-                                    },
-                                    {
-                                        "name": "archetypeText",
-                                        "type": "text",
-                                        "label": null
-                                    },
-                                    {
-                                        "name": "biologyText",
-                                        "type": "text",
-                                        "label": null
-                                    },
-                                    {
-                                        "name": "consequencesList",
-                                        "type": "array",
-                                        "label": null,
-                                        "spec": {
-                                            "type": "text",
-                                            "name": "value"
-                                        }
-                                    },
-                                    {
-                                        "name": "danjaNote",
-                                        "type": "text",
-                                        "label": null
-                                    },
-                                    {
-                                        "name": "affirmationText",
-                                        "type": "text",
-                                        "label": null
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "id": 32,
+                            "id": 46,
                             "module": "gateway:WebhookRespond",
                             "version": 1,
                             "parameters": {},
+                            "filter": {
+                                "name": "Filtro Ruta 2: Perfil Sobreviviente en Silencio",
+                                "conditions": [
+                                    [
+                                        {
+                                            "a": "{{39.scoreSobreviviente}}",
+                                            "o": "number:greaterorequal",
+                                            "b": "{{max(39.scoreLucha; 39.scoreDesconectada; 39.scoreSobreviviente)}}"
+                                        }
+                                    ]
+                                ]
+                            },
+                            "mapper": {
+                                "status": "200",
+                                "body": "{\n  \"profileTitle\": \"Perfil: La que sobrevive en silencio\",\n  \"archetypeText\": \"Has sostenido tanto por tanto tiempo que ahora estás apagada. No hay energía, ni ganas, ni entusiasmo. Solo rutina, cansancio y la sensación de que simplemente estás sobreviviendo. Tu cuerpo está en estado de congelamiento.\",\n  \"biologyText\": \"Cuando el sistema nervioso entra en congelamiento (modo dorsal vagal), reduce la actividad de glándulas productoras de serotonina, dopamina y oxitocina. Esto genera un estado de desconexión fisiológica, disminuye la respuesta inmune y favorece estados inflamatorios, hormonales y emocionales complejos.\",\n  \"consequencesList\": [\n    \"Depresión de base fisiológica\",\n    \"Hipotiroidismo\",\n    \"Falta total de motivación (anhedonia)\",\n    \"Aislamiento emocional\"\n  ],\n  \"danjaNote\": \"Yo también estuve ahí. Sin ganas, sin energía, sin sentirme yo. Pero aprendí que incluso desde ese lugar hay un primer paso posible. No estás rota. Tu cuerpo solo se está protegiendo. Estoy aquí si quieres dar ese paso conmigo.\",\n  \"affirmationText\": \"Toca tu corazón con las manos. Repite en voz baja: 'Estoy aquí. Y merezco más que sobrevivir.' Haz esto cada mañana, al despertar.\"\n}",
+                                "headers": []
+                            },
+                            "metadata": {
+                                "designer": {
+                                    "x": 863,
+                                    "y": 1014
+                                },
+                                "restore": {
+                                    "expect": {
+                                        "headers": {
+                                            "mode": "chose"
+                                        }
+                                    }
+                                },
+                                "expect": [
+                                    {
+                                        "name": "status",
+                                        "type": "uinteger",
+                                        "label": "Status",
+                                        "validate": {
+                                            "min": 100
+                                        },
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "body",
+                                        "type": "any",
+                                        "label": "Body"
+                                    },
+                                    {
+                                        "name": "headers",
+                                        "type": "array",
+                                        "label": "Custom headers",
+                                        "validate": {
+                                            "maxItems": 16
+                                        },
+                                        "spec": [
+                                            {
+                                                "name": "key",
+                                                "label": "Key",
+                                                "type": "text",
+                                                "required": true,
+                                                "validate": {
+                                                    "max": 256
+                                                }
+                                            },
+                                            {
+                                                "name": "value",
+                                                "label": "Value",
+                                                "type": "text",
+                                                "required": true,
+                                                "validate": {
+                                                    "max": 4096
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "flow": [
+                        {
+                            "id": 47,
+                            "module": "gateway:WebhookRespond",
+                            "version": 1,
+                            "parameters": {},
+                            "filter": {
+                                "name": "Filtro Ruta 3: Perfil Desconectada",
+                                "conditions": [
+                                    [
+                                        {
+                                            "a": "{{39.scoreDesconectada}}",
+                                            "o": "time:greaterorequal",
+                                            "b": "{{max(39.scoreLucha; 39.scoreDesconectada)}}"
+                                        }
+                                    ]
+                                ]
+                            },
                             "mapper": {
                                 "status": "200",
                                 "body": "{\n  \"profileTitle\": \"Perfil: La desconectada de sí misma\",\n  \"archetypeText\": \"Sientes que estás en piloto automático. Cumples con tus tareas, pero por dentro te sientes apagada, desconectada, como si hubieras perdido la brújula interna que te decía quién eres. Tu cuerpo no tiene energía, ni motivación.\",\n  \"biologyText\": \"Tu sistema nervioso parasimpático —el encargado de regular descanso, digestión y regeneración— no se está activando correctamente. Esto interrumpe la producción de serotonina en el intestino, desregulando tu estado de ánimo, concentración y placer. Tu cuerpo prioriza solo lo urgente: sobrevivir, no vivir con claridad ni alegría.\",\n  \"consequencesList\": [\n    \"Insensibilidad emocional\",\n    \"Ansiedad y apatía combinadas\",\n    \"Problemas digestivos persistentes\",\n    \"Sentimiento profundo de vacío personal\"\n  ],\n  \"danjaNote\": \"Yo también olvidé cómo se sentía tener ganas. Perdí la conexión conmigo misma. Pero aprendí que volver a una misma no requiere cambios drásticos, sino pequeños actos de presencia. Hoy quiero guiarte en ese regreso a ti, con respeto y dulzura.\",\n  \"affirmationText\": \"Escribe una carta para ti misma del futuro. Aunque no sepas por dónde empezar. Aunque solo pongas: 'Estoy intentando volver.' Escribir es empezar a escucharte.\"\n}",
@@ -1220,8 +801,8 @@
                             },
                             "metadata": {
                                 "designer": {
-                                    "x": 2066,
-                                    "y": 848
+                                    "x": 1111,
+                                    "y": 1318
                                 },
                                 "restore": {
                                     "expect": {
@@ -1281,115 +862,14 @@
                 {
                     "flow": [
                         {
-                            "id": 30,
-                            "module": "json:CreateJSON",
-                            "version": 1,
-                            "parameters": {
-                                "type": 142183,
-                                "space": ""
-                            },
-                            "mapper": {
-                                "profileTitle": "Perfil: La madre en lucha silenciosa",
-                                "archetypeText": "Eres una mujer fuerte, funcional y comprometida. Pero esa fuerza ha venido con un precio alto. Sostienes a todos y todo, incluso cuando no puedes más. Tu cuerpo está en una lucha silenciosa diaria, intentando mantenerte en pie a pesar del agotamiento interno.",
-                                "biologyText": "Tu sistema nervioso simpático —el que se activa en situaciones de peligro— está encendido crónicamente. Esto hace que tus glándulas suprarrenales produzcan cortisol sin pausa. Al mantener este estado por mucho tiempo, tu cuerpo entra en modo de supervivencia, suspendiendo funciones vitales como la digestión, el equilibrio hormonal y la regeneración celular. Así es como se debilita tu sistema inmune, se altera tu menstruación o tiroides, y aparecen síntomas como fatiga, ansiedad o insomnio.",
-                                "consequencesList": [
-                                    "Fatiga suprarrenal",
-                                    "Insomnio persistente",
-                                    "Enfermedades autoinmunes (Hashimoto, lupus)",
-                                    "Depresión fisiológica, cuando el cuerpo ya no produce neurotransmisores por agotamiento total."
-                                ],
-                                "danjaNote": "Yo también pensé que podía con todo… hasta que no pude más. Y mi cuerpo colapsó. Aprendí que sanar no es dejar de ser fuerte, es aprender a sostenerte tú primero. Estoy aquí para caminar contigo ese nuevo camino, con herramientas reales, sin exigencia y desde el amor propio.",
-                                "affirmationText": "Haz una pausa consciente. Respira 5 minutos con los ojos cerrados. Apóyate el corazón y repite: “Hoy me elijo a mí.”"
-                            },
-                            "metadata": {
-                                "designer": {
-                                    "x": 1743,
-                                    "y": 1115
-                                },
-                                "restore": {
-                                    "parameters": {
-                                        "type": {
-                                            "label": "Perfil Resultado Automama."
-                                        },
-                                        "space": {
-                                            "label": "Empty"
-                                        }
-                                    },
-                                    "expect": {
-                                        "consequencesList": {
-                                            "mode": "chose",
-                                            "items": [
-                                                null,
-                                                null,
-                                                null,
-                                                null
-                                            ]
-                                        }
-                                    }
-                                },
-                                "parameters": [
-                                    {
-                                        "name": "type",
-                                        "type": "udt",
-                                        "label": "Data structure",
-                                        "required": true
-                                    },
-                                    {
-                                        "name": "space",
-                                        "type": "select",
-                                        "label": "Indentation",
-                                        "validate": {
-                                            "enum": [
-                                                "tab",
-                                                "2",
-                                                "4"
-                                            ]
-                                        }
-                                    }
-                                ],
-                                "expect": [
-                                    {
-                                        "name": "profileTitle",
-                                        "type": "text",
-                                        "label": null
-                                    },
-                                    {
-                                        "name": "archetypeText",
-                                        "type": "text",
-                                        "label": null
-                                    },
-                                    {
-                                        "name": "biologyText",
-                                        "type": "text",
-                                        "label": null
-                                    },
-                                    {
-                                        "name": "consequencesList",
-                                        "type": "array",
-                                        "label": null,
-                                        "spec": {
-                                            "type": "text",
-                                            "name": "value"
-                                        }
-                                    },
-                                    {
-                                        "name": "danjaNote",
-                                        "type": "text",
-                                        "label": null
-                                    },
-                                    {
-                                        "name": "affirmationText",
-                                        "type": "text",
-                                        "label": null
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "id": 31,
+                            "id": 48,
                             "module": "gateway:WebhookRespond",
                             "version": 1,
                             "parameters": {},
+                            "filter": {
+                                "name": "Ruta 4: Perfil Lucha Silenciosa",
+                                "conditions": []
+                            },
                             "mapper": {
                                 "status": "200",
                                 "body": "{\n  \"profileTitle\": \"Perfil: La madre en lucha silenciosa\",\n  \"archetypeText\": \"Eres una mujer fuerte, funcional y comprometida. Pero esa fuerza ha venido con un precio alto. Sostienes a todos y todo, incluso cuando no puedes más. Tu cuerpo está en una lucha silenciosa diaria, intentando mantenerte en pie a pesar del agotamiento interno.\",\n  \"biologyText\": \"Tu sistema nervioso simpático —el que se activa en situaciones de peligro— está encendido crónicamente. Esto hace que tus glándulas suprarrenales produzcan cortisol sin pausa. Al mantener este estado por mucho tiempo, tu cuerpo entra en modo de supervivencia, suspendiendo funciones vitales como la digestión, el equilibrio hormonal y la regeneración celular. Así es como se debilita tu sistema inmune, se altera tu menstruación o tiroides, y aparecen síntomas como fatiga, ansiedad o insomnio.\",\n  \"consequencesList\": [\n    \"Fatiga suprarrenal\",\n    \"Insomnio persistente\",\n    \"Enfermedades autoinmunes (Hashimoto, lupus)\",\n    \"Depresión fisiológica, cuando el cuerpo ya no produce neurotransmisores por agotamiento total.\"\n  ],\n  \"danjaNote\": \"Yo también pensé que podía con todo… hasta que no pude más. Y mi cuerpo colapsó. Aprendí que sanar no es dejar de ser fuerte, es aprender a sostenerte tú primero. Estoy aquí para caminar contigo ese nuevo camino, con herramientas reales, sin exigencia y desde el amor propio.\",\n  \"affirmationText\": \"Haz una pausa consciente. Respira 5 minutos con los ojos cerrados. Apóyate el corazón y repite: “Hoy me elijo a mí.”\"\n}",
@@ -1397,8 +877,8 @@
                             },
                             "metadata": {
                                 "designer": {
-                                    "x": 2161,
-                                    "y": 1142
+                                    "x": 765,
+                                    "y": 1763
                                 },
                                 "restore": {
                                     "expect": {
@@ -1474,7 +954,976 @@
             "freshVariables": false
         },
         "designer": {
-            "orphans": []
+            "orphans": [
+                [
+                    {
+                        "id": 41,
+                        "module": "util:SetVariable2",
+                        "version": 1,
+                        "parameters": {},
+                        "mapper": {
+                            "name": "perfilGanador",
+                            "scope": "roundtrip",
+                            "value": "if({{39.scoreInflamada}} >= max({{39.scoreLucha}}; {{39.scoreDesconectada}}; {{39.scoreInflamada}}; {{39.scoreSobreviviente}}); \"Inflamada\"; if({{39.scoreSobreviviente}} >= max({{39.scoreLucha}}; {{39.scoreDesconectada}}; {{39.scoreSobreviviente}}); \"Sobreviviente\"; if({{39.scoreDesconectada}} >= max({{39.scoreLucha}}; {{39.scoreDesconectada}}); \"Desconectada\"; \"Lucha\")))"
+                        },
+                        "metadata": {
+                            "designer": {
+                                "x": 810,
+                                "y": 358,
+                                "messages": [
+                                    {
+                                        "category": "link",
+                                        "severity": "warning",
+                                        "message": "The module is not connected to the data flow."
+                                    },
+                                    {
+                                        "category": "reference",
+                                        "severity": "warning",
+                                        "message": "Referenced module 'Tools - Set multiple variables' [39] is not accessible."
+                                    }
+                                ]
+                            },
+                            "restore": {
+                                "expect": {
+                                    "scope": {
+                                        "label": "One cycle"
+                                    }
+                                }
+                            },
+                            "expect": [
+                                {
+                                    "name": "name",
+                                    "type": "text",
+                                    "label": "Variable name",
+                                    "required": true
+                                },
+                                {
+                                    "name": "scope",
+                                    "type": "select",
+                                    "label": "Variable lifetime",
+                                    "required": true,
+                                    "validate": {
+                                        "enum": [
+                                            "roundtrip",
+                                            "execution"
+                                        ]
+                                    }
+                                },
+                                {
+                                    "name": "value",
+                                    "type": "any",
+                                    "label": "Variable value"
+                                }
+                            ],
+                            "interface": [
+                                {
+                                    "name": "perfilGanador",
+                                    "label": "perfilGanador",
+                                    "type": "any"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "id": 42,
+                        "module": "util:Switcher",
+                        "version": 1,
+                        "parameters": {},
+                        "mapper": {
+                            "input": "perfilGanador",
+                            "useRegExpMatch": false,
+                            "casesTable": [
+                                {
+                                    "pattern": "Inflamada",
+                                    "output": ""
+                                },
+                                {
+                                    "pattern": "Sobreviviente",
+                                    "output": ""
+                                },
+                                {
+                                    "pattern": "Desconectada",
+                                    "output": ""
+                                }
+                            ],
+                            "elseOutput": "Lucha"
+                        },
+                        "metadata": {
+                            "designer": {
+                                "x": 1102,
+                                "y": 372
+                            },
+                            "restore": {
+                                "expect": {
+                                    "casesTable": {
+                                        "mode": "chose",
+                                        "items": [
+                                            null,
+                                            null,
+                                            null
+                                        ]
+                                    }
+                                }
+                            },
+                            "expect": [
+                                {
+                                    "name": "input",
+                                    "type": "text",
+                                    "label": "Input"
+                                },
+                                {
+                                    "name": "useRegExpMatch",
+                                    "type": "boolean",
+                                    "label": "Use regular expressions to match",
+                                    "required": true
+                                },
+                                {
+                                    "name": "casesTable",
+                                    "type": "array",
+                                    "label": "Cases",
+                                    "required": true,
+                                    "spec": [
+                                        {
+                                            "name": "pattern",
+                                            "label": "Pattern",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "name": "output",
+                                            "label": "Output",
+                                            "type": "any"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "elseOutput",
+                                    "type": "any",
+                                    "label": "Else"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "id": 28,
+                        "module": "builtin:BasicRouter",
+                        "version": 1,
+                        "mapper": null,
+                        "metadata": {
+                            "designer": {
+                                "x": 1258,
+                                "y": 671
+                            }
+                        },
+                        "routes": [
+                            {
+                                "flow": [
+                                    {
+                                        "id": 26,
+                                        "module": "json:CreateJSON",
+                                        "version": 1,
+                                        "parameters": {
+                                            "type": 142183,
+                                            "space": ""
+                                        },
+                                        "mapper": {
+                                            "profileTitle": "Perfil: La emocionalmente inflamada",
+                                            "archetypeText": "Tu cuerpo está inflamado, y no solo por lo que comes. Emociones como rabia contenida, tristeza silenciada o frustración acumulada están activando procesos inflamatorios profundos. Estás inflamándote emocional y físicamente a la vez.",
+                                            "biologyText": "Cuando se reprimen emociones, el cuerpo libera citoquinas proinflamatorias, afectando articulaciones, piel, intestino y sistema hormonal. El hígado se sobrecarga al metabolizar emociones densas, lo que también altera el metabolismo general y la inmunidad.",
+                                            "consequencesList": [
+                                                "Dolor muscular, brotes de piel",
+                                                "Insomnio persistente",
+                                                "Migrañas frecuentes",
+                                                "Problemas digestivos y hormonales"
+                                            ],
+                                            "danjaNote": "Yo también aprendí a reprimir para sobrevivir. Hasta que mi cuerpo me gritó. No estás mal por sentir. Sanar es también permitirte liberar. Estoy aquí para acompañarte a hacerlo de forma segura y amorosa.",
+                                            "affirmationText": "Coloca una canción que te conmueva, y deja que tu cuerpo se exprese. Llora, baila o tiembla. El cuerpo sabe cómo soltar."
+                                        },
+                                        "metadata": {
+                                            "designer": {
+                                                "x": 1675,
+                                                "y": 386
+                                            },
+                                            "restore": {
+                                                "parameters": {
+                                                    "type": {
+                                                        "label": "Perfil Resultado Automama."
+                                                    },
+                                                    "space": {
+                                                        "label": "Empty"
+                                                    }
+                                                },
+                                                "expect": {
+                                                    "consequencesList": {
+                                                        "mode": "chose",
+                                                        "items": [
+                                                            null,
+                                                            null,
+                                                            null,
+                                                            null
+                                                        ]
+                                                    }
+                                                }
+                                            },
+                                            "parameters": [
+                                                {
+                                                    "name": "type",
+                                                    "type": "udt",
+                                                    "label": "Data structure",
+                                                    "required": true
+                                                },
+                                                {
+                                                    "name": "space",
+                                                    "type": "select",
+                                                    "label": "Indentation",
+                                                    "validate": {
+                                                        "enum": [
+                                                            "tab",
+                                                            "2",
+                                                            "4"
+                                                        ]
+                                                    }
+                                                }
+                                            ],
+                                            "expect": [
+                                                {
+                                                    "name": "profileTitle",
+                                                    "type": "text",
+                                                    "label": null
+                                                },
+                                                {
+                                                    "name": "archetypeText",
+                                                    "type": "text",
+                                                    "label": null
+                                                },
+                                                {
+                                                    "name": "biologyText",
+                                                    "type": "text",
+                                                    "label": null
+                                                },
+                                                {
+                                                    "name": "consequencesList",
+                                                    "type": "array",
+                                                    "label": null,
+                                                    "spec": {
+                                                        "type": "text",
+                                                        "name": "value"
+                                                    }
+                                                },
+                                                {
+                                                    "name": "danjaNote",
+                                                    "type": "text",
+                                                    "label": null
+                                                },
+                                                {
+                                                    "name": "affirmationText",
+                                                    "type": "text",
+                                                    "label": null
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "id": 3,
+                                        "module": "gateway:WebhookRespond",
+                                        "version": 1,
+                                        "parameters": {},
+                                        "mapper": {
+                                            "status": "200",
+                                            "body": "{\n  \"profileTitle\": \"Perfil: La emocionalmente inflamada\",\n  \"archetypeText\": \"Tu cuerpo está inflamado, y no solo por lo que comes. Emociones como rabia contenida, tristeza silenciada o frustración acumulada están activando procesos inflamatorios profundos. Estás inflamándote emocional y físicamente a la vez.\",\n  \"biologyText\": \"Cuando se reprimen emociones, el cuerpo libera citoquinas proinflamatorias, afectando articulaciones, piel, intestino y sistema hormonal. El hígado se sobrecarga al metabolizar emociones densas, lo que también altera el metabolismo general y la inmunidad.\",\n  \"consequencesList\": [\n    \"Dolor muscular, brotes de piel\",\n    \"Ciclos menstruales alterados\",\n    \"Migrañas frecuentes\",\n    \"Problemas digestivos y hormonales\",\n    \"Ansiedad y agotamiento mental prolongado\"\n  ],\n  \"danjaNote\": \"Yo también aprendí a reprimir para sobrevivir. Hasta que mi cuerpo me gritó. No estás mal por sentir. Sanar es también permitirte liberar. Estoy aquí para acompañarte a hacerlo de forma segura y amorosa.\",\n  \"affirmationText\": \"Coloca una canción que te conmueva, y deja que tu cuerpo se exprese. Llora, baila o tiembla. El cuerpo sabe cómo soltar.\"\n}",
+                                            "headers": []
+                                        },
+                                        "metadata": {
+                                            "designer": {
+                                                "x": 2020,
+                                                "y": 322
+                                            },
+                                            "restore": {
+                                                "expect": {
+                                                    "headers": {
+                                                        "mode": "chose"
+                                                    }
+                                                }
+                                            },
+                                            "expect": [
+                                                {
+                                                    "name": "status",
+                                                    "type": "uinteger",
+                                                    "label": "Status",
+                                                    "validate": {
+                                                        "min": 100
+                                                    },
+                                                    "required": true
+                                                },
+                                                {
+                                                    "name": "body",
+                                                    "type": "any",
+                                                    "label": "Body"
+                                                },
+                                                {
+                                                    "name": "headers",
+                                                    "type": "array",
+                                                    "label": "Custom headers",
+                                                    "validate": {
+                                                        "maxItems": 16
+                                                    },
+                                                    "spec": [
+                                                        {
+                                                            "name": "key",
+                                                            "label": "Key",
+                                                            "type": "text",
+                                                            "required": true,
+                                                            "validate": {
+                                                                "max": 256
+                                                            }
+                                                        },
+                                                        {
+                                                            "name": "value",
+                                                            "label": "Value",
+                                                            "type": "text",
+                                                            "required": true,
+                                                            "validate": {
+                                                                "max": 4096
+                                                            }
+                                                        }
+                                                    ]
+                                                }
+                                            ],
+                                            "advanced": true
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "flow": [
+                                    {
+                                        "id": 27,
+                                        "module": "json:CreateJSON",
+                                        "version": 1,
+                                        "parameters": {
+                                            "type": 142183,
+                                            "space": ""
+                                        },
+                                        "mapper": {
+                                            "profileTitle": "Perfil: La que sobrevive en silencio",
+                                            "archetypeText": "Has sostenido tanto por tanto tiempo que ahora estás apagada. No hay energía, ni ganas, ni entusiasmo. Solo rutina, cansancio y la sensación de que simplemente estás sobreviviendo. Tu cuerpo está en estado de congelamiento.",
+                                            "biologyText": "Cuando el sistema nervioso entra en congelamiento (modo dorsal vagal), reduce la actividad de glándulas productoras de serotonina, dopamina y oxitocina. Esto genera un estado de desconexión fisiológica, disminuye la respuesta inmune y favorece estados inflamatorios, hormonales y emocionales complejos.",
+                                            "consequencesList": [
+                                                "Depresión de base fisiológica",
+                                                "Hipotiroidismo",
+                                                "Falta total de motivación (anhedonia)",
+                                                "Aislamiento emocional"
+                                            ],
+                                            "danjaNote": "Yo también estuve ahí. Sin ganas, sin energía, sin sentirme yo. Pero aprendí que incluso desde ese lugar hay un primer paso posible. No estás rota. Tu cuerpo solo se está protegiendo. Estoy aquí si quieres dar ese paso conmigo.",
+                                            "affirmationText": "Toca tu corazón con las manos. Repite en voz baja: 'Estoy aquí. Y merezco más que sobrevivir.' Haz esto cada mañana, al despertar."
+                                        },
+                                        "metadata": {
+                                            "designer": {
+                                                "x": 1722,
+                                                "y": 598
+                                            },
+                                            "restore": {
+                                                "parameters": {
+                                                    "type": {
+                                                        "label": "Perfil Resultado Automama."
+                                                    },
+                                                    "space": {
+                                                        "label": "Empty"
+                                                    }
+                                                },
+                                                "expect": {
+                                                    "consequencesList": {
+                                                        "mode": "chose",
+                                                        "items": [
+                                                            null,
+                                                            null,
+                                                            null,
+                                                            null
+                                                        ]
+                                                    }
+                                                }
+                                            },
+                                            "parameters": [
+                                                {
+                                                    "name": "type",
+                                                    "type": "udt",
+                                                    "label": "Data structure",
+                                                    "required": true
+                                                },
+                                                {
+                                                    "name": "space",
+                                                    "type": "select",
+                                                    "label": "Indentation",
+                                                    "validate": {
+                                                        "enum": [
+                                                            "tab",
+                                                            "2",
+                                                            "4"
+                                                        ]
+                                                    }
+                                                }
+                                            ],
+                                            "expect": [
+                                                {
+                                                    "name": "profileTitle",
+                                                    "type": "text",
+                                                    "label": null
+                                                },
+                                                {
+                                                    "name": "archetypeText",
+                                                    "type": "text",
+                                                    "label": null
+                                                },
+                                                {
+                                                    "name": "biologyText",
+                                                    "type": "text",
+                                                    "label": null
+                                                },
+                                                {
+                                                    "name": "consequencesList",
+                                                    "type": "array",
+                                                    "label": null,
+                                                    "spec": {
+                                                        "type": "text",
+                                                        "name": "value"
+                                                    }
+                                                },
+                                                {
+                                                    "name": "danjaNote",
+                                                    "type": "text",
+                                                    "label": null
+                                                },
+                                                {
+                                                    "name": "affirmationText",
+                                                    "type": "text",
+                                                    "label": null
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "id": 33,
+                                        "module": "gateway:WebhookRespond",
+                                        "version": 1,
+                                        "parameters": {},
+                                        "mapper": {
+                                            "status": "200",
+                                            "body": "{\r\n  \"profileTitle\": \"Perfil: La que sobrevive en silencio\",\r\n  \"archetypeText\": \"Has sostenido tanto por tanto tiempo que ahora estás apagada. No hay energía, ni ganas, ni entusiasmo. Solo rutina, cansancio y la sensación de que simplemente estás sobreviviendo. Tu cuerpo está en estado de congelamiento.\",\r\n  \"biologyText\": \"Cuando el sistema nervioso entra en congelamiento (modo dorsal vagal), reduce la actividad de glándulas productoras de serotonina, dopamina y oxitocina. Esto genera un estado de desconexión fisiológica, disminuye la respuesta inmune y favorece estados inflamatorios, hormonales y emocionales complejos.\",\r\n  \"consequencesList\": [\r\n    \"Depresión de base fisiológica\",\r\n    \"Hipotiroidismo\",\r\n    \"Falta total de motivación (anhedonia)\",\r\n    \"Aislamiento emocional\"\r\n  ],\r\n  \"danjaNote\": \"Yo también estuve ahí. Sin ganas, sin energía, sin sentirme yo. Pero aprendí que incluso desde ese lugar hay un primer paso posible. No estás rota. Tu cuerpo solo se está protegiendo. Estoy aquí si quieres dar ese paso conmigo.\",\r\n  \"affirmationText\": \"Toca tu corazón con las manos. Repite en voz baja: 'Estoy aquí. Y merezco más que sobrevivir.' Haz esto cada mañana, al despertar.\"\r\n}",
+                                            "headers": []
+                                        },
+                                        "metadata": {
+                                            "designer": {
+                                                "x": 2041,
+                                                "y": 570
+                                            },
+                                            "restore": {
+                                                "expect": {
+                                                    "headers": {
+                                                        "mode": "chose"
+                                                    }
+                                                }
+                                            },
+                                            "expect": [
+                                                {
+                                                    "name": "status",
+                                                    "type": "uinteger",
+                                                    "label": "Status",
+                                                    "validate": {
+                                                        "min": 100
+                                                    },
+                                                    "required": true
+                                                },
+                                                {
+                                                    "name": "body",
+                                                    "type": "any",
+                                                    "label": "Body"
+                                                },
+                                                {
+                                                    "name": "headers",
+                                                    "type": "array",
+                                                    "label": "Custom headers",
+                                                    "validate": {
+                                                        "maxItems": 16
+                                                    },
+                                                    "spec": [
+                                                        {
+                                                            "name": "key",
+                                                            "label": "Key",
+                                                            "type": "text",
+                                                            "required": true,
+                                                            "validate": {
+                                                                "max": 256
+                                                            }
+                                                        },
+                                                        {
+                                                            "name": "value",
+                                                            "label": "Value",
+                                                            "type": "text",
+                                                            "required": true,
+                                                            "validate": {
+                                                                "max": 4096
+                                                            }
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "flow": [
+                                    {
+                                        "id": 29,
+                                        "module": "json:CreateJSON",
+                                        "version": 1,
+                                        "parameters": {
+                                            "type": 142183,
+                                            "space": ""
+                                        },
+                                        "mapper": {
+                                            "profileTitle": "Perfil: La desconectada de sí misma",
+                                            "archetypeText": "Sientes que estás en piloto automático. Cumples con tus tareas, pero por dentro te sientes apagada, desconectada, como si hubieras perdido la brújula interna que te decía quién eres. Tu cuerpo no tiene energía, ni motivación.",
+                                            "biologyText": "Tu sistema nervioso parasimpático —el encargado de regular descanso, digestión y regeneración— no se está activando correctamente. Esto interrumpe la producción de serotonina en el intestino, desregulando tu estado de ánimo, concentración y placer. Tu cuerpo prioriza solo lo urgente: sobrevivir, no vivir con claridad ni alegría.",
+                                            "consequencesList": [
+                                                "Insensibilidad emocional",
+                                                "Ansiedad y apatía combinadas",
+                                                "Problemas digestivos persistentes",
+                                                "Sentimiento profundo de vacío personal"
+                                            ],
+                                            "danjaNote": "Yo también pensé que podía con todo… hasta que no pude más. Y mi cuerpo colapsó. Aprendí que sanar no es dejar de ser fuerte, es aprender a sostenerte tú primero. Estoy aquí para caminar contigo ese nuevo camino, con herramientas reales, sin exigencia y desde el amor propio.",
+                                            "affirmationText": "Escribe una carta para ti misma del futuro. Aunque no sepas por dónde empezar. Aunque solo pongas: 'Estoy intentando volver.' Escribir es empezar a escucharte."
+                                        },
+                                        "metadata": {
+                                            "designer": {
+                                                "x": 1728,
+                                                "y": 853
+                                            },
+                                            "restore": {
+                                                "parameters": {
+                                                    "type": {
+                                                        "label": "Perfil Resultado Automama."
+                                                    },
+                                                    "space": {
+                                                        "label": "Empty"
+                                                    }
+                                                },
+                                                "expect": {
+                                                    "consequencesList": {
+                                                        "mode": "chose",
+                                                        "items": [
+                                                            null,
+                                                            null,
+                                                            null,
+                                                            null
+                                                        ]
+                                                    }
+                                                }
+                                            },
+                                            "parameters": [
+                                                {
+                                                    "name": "type",
+                                                    "type": "udt",
+                                                    "label": "Data structure",
+                                                    "required": true
+                                                },
+                                                {
+                                                    "name": "space",
+                                                    "type": "select",
+                                                    "label": "Indentation",
+                                                    "validate": {
+                                                        "enum": [
+                                                            "tab",
+                                                            "2",
+                                                            "4"
+                                                        ]
+                                                    }
+                                                }
+                                            ],
+                                            "expect": [
+                                                {
+                                                    "name": "profileTitle",
+                                                    "type": "text",
+                                                    "label": null
+                                                },
+                                                {
+                                                    "name": "archetypeText",
+                                                    "type": "text",
+                                                    "label": null
+                                                },
+                                                {
+                                                    "name": "biologyText",
+                                                    "type": "text",
+                                                    "label": null
+                                                },
+                                                {
+                                                    "name": "consequencesList",
+                                                    "type": "array",
+                                                    "label": null,
+                                                    "spec": {
+                                                        "type": "text",
+                                                        "name": "value"
+                                                    }
+                                                },
+                                                {
+                                                    "name": "danjaNote",
+                                                    "type": "text",
+                                                    "label": null
+                                                },
+                                                {
+                                                    "name": "affirmationText",
+                                                    "type": "text",
+                                                    "label": null
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "id": 32,
+                                        "module": "gateway:WebhookRespond",
+                                        "version": 1,
+                                        "parameters": {},
+                                        "mapper": {
+                                            "status": "200",
+                                            "body": "{\n  \"profileTitle\": \"Perfil: La desconectada de sí misma\",\n  \"archetypeText\": \"Sientes que estás en piloto automático. Cumples con tus tareas, pero por dentro te sientes apagada, desconectada, como si hubieras perdido la brújula interna que te decía quién eres. Tu cuerpo no tiene energía, ni motivación.\",\n  \"biologyText\": \"Tu sistema nervioso parasimpático —el encargado de regular descanso, digestión y regeneración— no se está activando correctamente. Esto interrumpe la producción de serotonina en el intestino, desregulando tu estado de ánimo, concentración y placer. Tu cuerpo prioriza solo lo urgente: sobrevivir, no vivir con claridad ni alegría.\",\n  \"consequencesList\": [\n    \"Insensibilidad emocional\",\n    \"Ansiedad y apatía combinadas\",\n    \"Problemas digestivos persistentes\",\n    \"Sentimiento profundo de vacío personal\"\n  ],\n  \"danjaNote\": \"Yo también olvidé cómo se sentía tener ganas. Perdí la conexión conmigo misma. Pero aprendí que volver a una misma no requiere cambios drásticos, sino pequeños actos de presencia. Hoy quiero guiarte en ese regreso a ti, con respeto y dulzura.\",\n  \"affirmationText\": \"Escribe una carta para ti misma del futuro. Aunque no sepas por dónde empezar. Aunque solo pongas: 'Estoy intentando volver.' Escribir es empezar a escucharte.\"\n}",
+                                            "headers": []
+                                        },
+                                        "metadata": {
+                                            "designer": {
+                                                "x": 2066,
+                                                "y": 848
+                                            },
+                                            "restore": {
+                                                "expect": {
+                                                    "headers": {
+                                                        "mode": "chose"
+                                                    }
+                                                }
+                                            },
+                                            "expect": [
+                                                {
+                                                    "name": "status",
+                                                    "type": "uinteger",
+                                                    "label": "Status",
+                                                    "validate": {
+                                                        "min": 100
+                                                    },
+                                                    "required": true
+                                                },
+                                                {
+                                                    "name": "body",
+                                                    "type": "any",
+                                                    "label": "Body"
+                                                },
+                                                {
+                                                    "name": "headers",
+                                                    "type": "array",
+                                                    "label": "Custom headers",
+                                                    "validate": {
+                                                        "maxItems": 16
+                                                    },
+                                                    "spec": [
+                                                        {
+                                                            "name": "key",
+                                                            "label": "Key",
+                                                            "type": "text",
+                                                            "required": true,
+                                                            "validate": {
+                                                                "max": 256
+                                                            }
+                                                        },
+                                                        {
+                                                            "name": "value",
+                                                            "label": "Value",
+                                                            "type": "text",
+                                                            "required": true,
+                                                            "validate": {
+                                                                "max": 4096
+                                                            }
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "flow": [
+                                    {
+                                        "id": 30,
+                                        "module": "json:CreateJSON",
+                                        "version": 1,
+                                        "parameters": {
+                                            "type": 142183,
+                                            "space": ""
+                                        },
+                                        "mapper": {
+                                            "profileTitle": "Perfil: La madre en lucha silenciosa",
+                                            "archetypeText": "Eres una mujer fuerte, funcional y comprometida. Pero esa fuerza ha venido con un precio alto. Sostienes a todos y todo, incluso cuando no puedes más. Tu cuerpo está en una lucha silenciosa diaria, intentando mantenerte en pie a pesar del agotamiento interno.",
+                                            "biologyText": "Tu sistema nervioso simpático —el que se activa en situaciones de peligro— está encendido crónicamente. Esto hace que tus glándulas suprarrenales produzcan cortisol sin pausa. Al mantener este estado por mucho tiempo, tu cuerpo entra en modo de supervivencia, suspendiendo funciones vitales como la digestión, el equilibrio hormonal y la regeneración celular. Así es como se debilita tu sistema inmune, se altera tu menstruación o tiroides, y aparecen síntomas como fatiga, ansiedad o insomnio.",
+                                            "consequencesList": [
+                                                "Fatiga suprarrenal",
+                                                "Insomnio persistente",
+                                                "Enfermedades autoinmunes (Hashimoto, lupus)",
+                                                "Depresión fisiológica, cuando el cuerpo ya no produce neurotransmisores por agotamiento total."
+                                            ],
+                                            "danjaNote": "Yo también pensé que podía con todo… hasta que no pude más. Y mi cuerpo colapsó. Aprendí que sanar no es dejar de ser fuerte, es aprender a sostenerte tú primero. Estoy aquí para caminar contigo ese nuevo camino, con herramientas reales, sin exigencia y desde el amor propio.",
+                                            "affirmationText": "Haz una pausa consciente. Respira 5 minutos con los ojos cerrados. Apóyate el corazón y repite: “Hoy me elijo a mí.”"
+                                        },
+                                        "metadata": {
+                                            "designer": {
+                                                "x": 1743,
+                                                "y": 1115
+                                            },
+                                            "restore": {
+                                                "parameters": {
+                                                    "type": {
+                                                        "label": "Perfil Resultado Automama."
+                                                    },
+                                                    "space": {
+                                                        "label": "Empty"
+                                                    }
+                                                },
+                                                "expect": {
+                                                    "consequencesList": {
+                                                        "mode": "chose",
+                                                        "items": [
+                                                            null,
+                                                            null,
+                                                            null,
+                                                            null
+                                                        ]
+                                                    }
+                                                }
+                                            },
+                                            "parameters": [
+                                                {
+                                                    "name": "type",
+                                                    "type": "udt",
+                                                    "label": "Data structure",
+                                                    "required": true
+                                                },
+                                                {
+                                                    "name": "space",
+                                                    "type": "select",
+                                                    "label": "Indentation",
+                                                    "validate": {
+                                                        "enum": [
+                                                            "tab",
+                                                            "2",
+                                                            "4"
+                                                        ]
+                                                    }
+                                                }
+                                            ],
+                                            "expect": [
+                                                {
+                                                    "name": "profileTitle",
+                                                    "type": "text",
+                                                    "label": null
+                                                },
+                                                {
+                                                    "name": "archetypeText",
+                                                    "type": "text",
+                                                    "label": null
+                                                },
+                                                {
+                                                    "name": "biologyText",
+                                                    "type": "text",
+                                                    "label": null
+                                                },
+                                                {
+                                                    "name": "consequencesList",
+                                                    "type": "array",
+                                                    "label": null,
+                                                    "spec": {
+                                                        "type": "text",
+                                                        "name": "value"
+                                                    }
+                                                },
+                                                {
+                                                    "name": "danjaNote",
+                                                    "type": "text",
+                                                    "label": null
+                                                },
+                                                {
+                                                    "name": "affirmationText",
+                                                    "type": "text",
+                                                    "label": null
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "id": 31,
+                                        "module": "gateway:WebhookRespond",
+                                        "version": 1,
+                                        "parameters": {},
+                                        "mapper": {
+                                            "status": "200",
+                                            "body": "{\n  \"profileTitle\": \"Perfil: La madre en lucha silenciosa\",\n  \"archetypeText\": \"Eres una mujer fuerte, funcional y comprometida. Pero esa fuerza ha venido con un precio alto. Sostienes a todos y todo, incluso cuando no puedes más. Tu cuerpo está en una lucha silenciosa diaria, intentando mantenerte en pie a pesar del agotamiento interno.\",\n  \"biologyText\": \"Tu sistema nervioso simpático —el que se activa en situaciones de peligro— está encendido crónicamente. Esto hace que tus glándulas suprarrenales produzcan cortisol sin pausa. Al mantener este estado por mucho tiempo, tu cuerpo entra en modo de supervivencia, suspendiendo funciones vitales como la digestión, el equilibrio hormonal y la regeneración celular. Así es como se debilita tu sistema inmune, se altera tu menstruación o tiroides, y aparecen síntomas como fatiga, ansiedad o insomnio.\",\n  \"consequencesList\": [\n    \"Fatiga suprarrenal\",\n    \"Insomnio persistente\",\n    \"Enfermedades autoinmunes (Hashimoto, lupus)\",\n    \"Depresión fisiológica, cuando el cuerpo ya no produce neurotransmisores por agotamiento total.\"\n  ],\n  \"danjaNote\": \"Yo también pensé que podía con todo… hasta que no pude más. Y mi cuerpo colapsó. Aprendí que sanar no es dejar de ser fuerte, es aprender a sostenerte tú primero. Estoy aquí para caminar contigo ese nuevo camino, con herramientas reales, sin exigencia y desde el amor propio.\",\n  \"affirmationText\": \"Haz una pausa consciente. Respira 5 minutos con los ojos cerrados. Apóyate el corazón y repite: “Hoy me elijo a mí.”\"\n}",
+                                            "headers": []
+                                        },
+                                        "metadata": {
+                                            "designer": {
+                                                "x": 2161,
+                                                "y": 1142
+                                            },
+                                            "restore": {
+                                                "expect": {
+                                                    "headers": {
+                                                        "mode": "chose"
+                                                    }
+                                                }
+                                            },
+                                            "expect": [
+                                                {
+                                                    "name": "status",
+                                                    "type": "uinteger",
+                                                    "label": "Status",
+                                                    "validate": {
+                                                        "min": 100
+                                                    },
+                                                    "required": true
+                                                },
+                                                {
+                                                    "name": "body",
+                                                    "type": "any",
+                                                    "label": "Body"
+                                                },
+                                                {
+                                                    "name": "headers",
+                                                    "type": "array",
+                                                    "label": "Custom headers",
+                                                    "validate": {
+                                                        "maxItems": 16
+                                                    },
+                                                    "spec": [
+                                                        {
+                                                            "name": "key",
+                                                            "label": "Key",
+                                                            "type": "text",
+                                                            "required": true,
+                                                            "validate": {
+                                                                "max": 256
+                                                            }
+                                                        },
+                                                        {
+                                                            "name": "value",
+                                                            "label": "Value",
+                                                            "type": "text",
+                                                            "required": true,
+                                                            "validate": {
+                                                                "max": 4096
+                                                            }
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "id": 43,
+                        "module": "gateway:WebhookRespond",
+                        "version": 1,
+                        "parameters": {},
+                        "mapper": {
+                            "status": "200",
+                            "body": "{{39.jsonResult}}",
+                            "headers": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                },
+                                {
+                                    "key": "Access-Control-Allow-Origin",
+                                    "value": "*"
+                                }
+                            ]
+                        },
+                        "metadata": {
+                            "designer": {
+                                "x": 2018,
+                                "y": 1580,
+                                "messages": [
+                                    {
+                                        "category": "link",
+                                        "severity": "warning",
+                                        "message": "The module is not connected to the data flow."
+                                    },
+                                    {
+                                        "category": "reference",
+                                        "severity": "warning",
+                                        "message": "Referenced module 'Tools - Set multiple variables' [39] is not accessible."
+                                    }
+                                ]
+                            },
+                            "restore": {
+                                "expect": {
+                                    "headers": {
+                                        "mode": "chose",
+                                        "items": [
+                                            null,
+                                            null
+                                        ]
+                                    }
+                                }
+                            },
+                            "expect": [
+                                {
+                                    "name": "status",
+                                    "type": "uinteger",
+                                    "label": "Status",
+                                    "validate": {
+                                        "min": 100
+                                    },
+                                    "required": true
+                                },
+                                {
+                                    "name": "body",
+                                    "type": "any",
+                                    "label": "Body"
+                                },
+                                {
+                                    "name": "headers",
+                                    "type": "array",
+                                    "label": "Custom headers",
+                                    "validate": {
+                                        "maxItems": 16
+                                    },
+                                    "spec": [
+                                        {
+                                            "name": "key",
+                                            "label": "Key",
+                                            "type": "text",
+                                            "required": true,
+                                            "validate": {
+                                                "max": 256
+                                            }
+                                        },
+                                        {
+                                            "name": "value",
+                                            "label": "Value",
+                                            "type": "text",
+                                            "required": true,
+                                            "validate": {
+                                                "max": 4096
+                                            }
+                                        }
+                                    ]
+                                }
+                            ],
+                            "advanced": true
+                        }
+                    }
+                ]
+            ]
         },
         "zone": "us2.make.com",
         "notes": []
