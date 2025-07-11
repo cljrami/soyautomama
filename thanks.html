@@ -28,6 +28,72 @@
         --brand-footer-green: #3e563e;
       }
 
+      /* --- INICIO: ESTILOS PARA LA PANTALLA DE CARGA --- */
+      #loading-screen {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: var(--brand-bg);
+        z-index: 10001;
+        transition: opacity 0.8s ease-out;
+        color: var(--brand-text-light);
+        font-family: var(--font-primary);
+      }
+      .loading-content {
+        text-align: center;
+        padding: 2rem;
+      }
+      .loading-content .icon {
+        font-size: 3rem;
+        margin-bottom: 1.5rem;
+        display: block;
+        animation: pulse 2.5s infinite ease-in-out;
+        color: var(--brand-accent);
+      }
+      @keyframes pulse {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.1);
+        }
+      }
+      .loading-content h1 {
+        font-family: var(--font-serif);
+        font-size: clamp(1.8rem, 5vw, 2.5rem);
+        color: #fff;
+        margin-bottom: 1rem;
+      }
+      .loading-message {
+        min-height: 2em;
+        font-size: 1.1rem;
+        opacity: 0.8;
+        transition: opacity 0.5s;
+      }
+      .loading-bar-container {
+        width: 80%;
+        max-width: 300px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 20px;
+        height: 8px;
+        margin-top: 2.5rem;
+      }
+      .loading-bar-fill {
+        height: 100%;
+        width: 0%;
+        background: var(--brand-accent);
+        border-radius: 20px;
+        transition: width 0.5s ease-out;
+      }
+      /* --- FIN: ESTILOS DE CARGA --- */
+
       *,
       *::before,
       *::after {
@@ -54,22 +120,17 @@
         font-family: var(--font-primary);
         color: var(--brand-text-light);
         background-color: var(--brand-bg);
+        opacity: 0; /* Empieza oculto para la transición */
+        transition: opacity 1s ease-in;
+      }
+      .page-wrapper.visible {
+        opacity: 1;
       }
       .container {
         max-width: 900px;
         margin: 0 auto;
         padding: 0 1.5rem;
       }
-
-      .scroll-reveal {
-        opacity: 0;
-        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-      }
-      .scroll-reveal.visible {
-        opacity: 1;
-        transform: translateY(0) !important;
-      }
-
       h1,
       h2 {
         font-family: var(--font-serif);
@@ -95,7 +156,6 @@
         font-weight: 400;
         opacity: 0.9;
       }
-
       main > section {
         padding: 6rem 0;
         text-align: center;
@@ -108,7 +168,6 @@
         background-color: var(--brand-bg);
         color: var(--brand-text-light);
       }
-
       .hero-section {
         min-height: 80vh;
         display: flex;
@@ -135,7 +194,6 @@
         font-size: 1.2rem;
         margin-top: 1.5rem;
       }
-
       .cta-button {
         background: linear-gradient(
           145deg,
@@ -162,7 +220,6 @@
       .cta-button:hover {
         transform: translateY(-5px) scale(1.05);
       }
-
       .profile-card {
         background: #fff;
         color: var(--brand-text-deep);
@@ -171,45 +228,6 @@
         text-align: left;
         box-shadow: 0 30px 60px -15px rgba(40, 20, 45, 0.3);
         min-height: 200px;
-      }
-
-      .loading-placeholder {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        min-height: 200px;
-      }
-      .loading-placeholder p {
-        font-family: var(--font-serif);
-        font-style: italic;
-        font-size: 1.2rem;
-        color: var(--brand-text-deep);
-        opacity: 0.8;
-        margin-bottom: 1.25rem;
-        width: 100%;
-        text-align: center;
-      }
-      .loading-bar-container {
-        width: 80%;
-        max-width: 400px;
-        background-color: #e9e2f1;
-        border-radius: 20px;
-        height: 12px;
-        overflow: hidden;
-        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
-      }
-      .loading-bar-fill {
-        background: linear-gradient(
-          90deg,
-          var(--brand-accent-dark),
-          var(--brand-accent)
-        );
-        height: 100%;
-        width: 0%;
-        border-radius: 20px;
-        transition: width 0.4s ease-out;
       }
       .profile-header {
         text-align: center;
@@ -306,7 +324,6 @@
         font-family: var(--font-serif);
         font-style: italic;
       }
-
       .glass-card {
         background-color: rgba(255, 255, 255, 0.05);
         backdrop-filter: blur(15px);
@@ -325,7 +342,6 @@
         max-width: 40rem;
         margin: 1.5rem auto 2.5rem;
       }
-
       .site-footer {
         background-color: var(--brand-footer-green);
         padding: 3rem 1.5rem;
@@ -401,8 +417,21 @@
     </style>
   </head>
   <body>
-    <div class="page-wrapper">
-      <header class="hero-section" id="heroSection">
+    <div id="loading-screen">
+      <div class="loading-content">
+        <span class="icon">✨</span>
+        <h1>Estamos creando tu perfil</h1>
+        <p class="loading-message" id="loading-message">
+          Analizando tu energía...
+        </p>
+        <div class="loading-bar-container">
+          <div class="loading-bar-fill" id="loading-bar-fill"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-wrapper" id="page-wrapper">
+      <header class="hero-section">
         <div class="container">
           <img
             src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/W7yFCk0DmEmhBQ43y4Bs/media/68534989b1f8e47ec7659e62.png"
@@ -412,8 +441,8 @@
           <div class="hero-content">
             <h1>Tu cuerpo habló. Ahora empieza tu regreso a ti.</h1>
             <p class="subtitle text-light">
-              Gracias por completar el test. A continuación, estamos generando
-              tu perfil de agotamiento personalizado.
+              Gracias por completar el test. A continuación, tu perfil de
+              agotamiento personalizado.
             </p>
           </div>
         </div>
@@ -421,16 +450,10 @@
       <main>
         <section id="test-result" class="bg-light text-deep">
           <div class="container">
-            <div class="profile-card" id="profile-card-container">
-              <div class="loading-placeholder" id="loading-placeholder">
-                <p>Generando tu perfil personalizado...</p>
-                <div class="loading-bar-container">
-                  <div class="loading-bar-fill" id="loading-bar-fill"></div>
-                </div>
-              </div>
-            </div>
+            <div class="profile-card" id="profile-card-container"></div>
           </div>
         </section>
+
         <section id="freebie-download" class="bg-dark text-light">
           <div class="container">
             <div class="glass-card">
@@ -456,6 +479,7 @@
             </div>
           </div>
         </section>
+
         <section class="transition-section bg-light text-deep">
           <div class="container">
             <h2>¿Y si este fuera solo el comienzo?</h2>
@@ -468,6 +492,7 @@
             </p>
           </div>
         </section>
+
         <section class="cta-final-section bg-dark text-light">
           <div class="container">
             <i
@@ -487,6 +512,7 @@
           </div>
         </section>
       </main>
+
       <footer class="site-footer">
         <div class="container footer-content">
           <div class="footer-column footer-logo">
@@ -524,136 +550,100 @@
         </div>
       </footer>
     </div>
+
     <script>
       document.addEventListener("DOMContentLoaded", function () {
+        const loadingScreen = document.getElementById("loading-screen");
+        const pageWrapper = document.getElementById("page-wrapper");
         const profileCardContainer = document.getElementById(
           "profile-card-container"
         );
         const loadingBarFill = document.getElementById("loading-bar-fill");
+        const loadingMessage = document.getElementById("loading-message");
 
-        let progressInterval;
-
-        const startLoadingSimulation = () => {
-          let progress = 0;
-          if (progressInterval) clearInterval(progressInterval);
-          progressInterval = setInterval(() => {
-            progress += 1;
-            if (progress >= 95) {
-              clearInterval(progressInterval);
-            }
-            if (loadingBarFill) loadingBarFill.style.width = progress + "%";
-          }, 40);
-        };
-
-        const completeLoading = (callback) => {
-          clearInterval(progressInterval);
-          if (loadingBarFill) loadingBarFill.style.width = "100%";
-          setTimeout(() => {
-            callback();
-          }, 400);
-        };
+        const messages = [
+          "Conectando con tu arquetipo...",
+          "Sintonizando con tus síntomas...",
+          "Componiendo tu resultado...",
+          "Casi listo...",
+        ];
 
         const fetchAndDisplayResults = async () => {
-          startLoadingSimulation();
+          let messageIndex = 0;
+          let progress = 0;
+          const progressInterval = setInterval(() => {
+            progress += 4;
+            if (loadingBarFill) loadingBarFill.style.width = progress + "%";
+            if (progress > 25 && messageIndex === 0) {
+              messageIndex++;
+              if (loadingMessage) loadingMessage.textContent = messages[0];
+            }
+            if (progress > 50 && messageIndex === 1) {
+              messageIndex++;
+              if (loadingMessage) loadingMessage.textContent = messages[1];
+            }
+            if (progress > 75 && messageIndex === 2) {
+              messageIndex++;
+              if (loadingMessage) loadingMessage.textContent = messages[2];
+            }
+            if (progress >= 100) {
+              clearInterval(progressInterval);
+            }
+          }, 400);
+
           try {
             const storedAnswers = sessionStorage.getItem("automamaQuizAnswers");
-            if (!storedAnswers) {
+            if (!storedAnswers)
               throw new Error("No se encontraron respuestas.");
-            }
+
             const answers = JSON.parse(storedAnswers);
             const webhookUrl =
               "https://hook.us2.make.com/nnlnnlgldaeo8osrloymx6e1v491ivzs";
+
             const response = await fetch(webhookUrl, {
               method: "POST",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify(answers),
             });
-            if (!response.ok) {
-              throw new Error(`Error del servidor`);
-            }
+
+            if (!response.ok)
+              throw new Error(`Error del servidor: ${response.statusText}`);
+
             const resultData = await response.json();
 
-            completeLoading(() => {
-              let consequencesHTML = "";
-              if (
-                resultData.consequencesList &&
-                Array.isArray(resultData.consequencesList)
-              ) {
-                consequencesHTML = resultData.consequencesList
-                  .map((item) => `<li>${item}</li>`)
-                  .join("");
-              }
+            clearInterval(progressInterval);
+            if (loadingBarFill) loadingBarFill.style.width = "100%";
 
-              const resultHTML = `
-                <div class="profile-header"><h2>${
-                  resultData.profileTitle || ""
-                }</h2></div>
-                <div class="profile-flow">
-                  <div class="flow-step">
-                    <div class="flow-icon"><i class="fa-solid fa-user-shield"></i></div><h3>Arquetipo emocional</h3><p>${
-                      resultData.archetypeText || ""
-                    }</p>
-                  </div>
-                  <div class="flow-step">
-                    <div class="flow-icon"><i class="fa-solid fa-dna"></i></div><h3>Explicación biológica</h3><p>${
-                      resultData.biologyText || ""
-                    }</p>
-                  </div>
-                  <div class="flow-step">
-                    <div class="flow-icon"><i class="fa-solid fa-triangle-exclamation"></i></div><h3>Consecuencias si no haces nada</h3><ul class="consequences-list">${consequencesHTML}</ul>
-                  </div>
-                  <div class="danja-note-wrapper">
-                    <p>"${
-                      resultData.danjaNote || ""
-                    }"</p><div class="name">Danja</div>
-                  </div>
-                  <div class="first-step">
-                    <h3><i class="fa-solid fa-hand-holding-heart"></i>Afirmación y Primer Paso</h3><p>“${
-                      resultData.affirmationText || ""
-                    }”</p>
-                  </div>
-                </div>`;
-
-              profileCardContainer.style.transition = "opacity 0.5s ease-out";
-              profileCardContainer.style.opacity = 0;
+            setTimeout(() => {
+              loadingScreen.style.opacity = "0";
               setTimeout(() => {
-                profileCardContainer.innerHTML = resultHTML;
-                profileCardContainer.style.opacity = 1;
-              }, 500);
-            });
+                loadingScreen.style.display = "none";
+                pageWrapper.classList.add("visible"); // Usamos la clase para mostrar la página
+              }, 800);
+
+              let consequencesHTML = resultData.consequencesList
+                .map((item) => `<li>${item}</li>`)
+                .join("");
+              const resultHTML = `
+                            <div class="profile-header"><h2>${resultData.profileTitle}</h2></div>
+                            <div class="profile-flow">
+                                <div class="flow-step"><div class="flow-icon"><i class="fa-solid fa-user-shield"></i></div><h3>Arquetipo emocional</h3><p>${resultData.archetypeText}</p></div>
+                                <div class="flow-step"><div class="flow-icon"><i class="fa-solid fa-dna"></i></div><h3>Explicación biológica</h3><p>${resultData.biologyText}</p></div>
+                                <div class="flow-step"><div class="flow-icon"><i class="fa-solid fa-triangle-exclamation"></i></div><h3>Consecuencias si no haces nada</h3><ul class="consequences-list">${consequencesHTML}</ul></div>
+                                <div class="danja-note-wrapper"><p>"${resultData.danjaNote}"</p><div class="name">Danja</div></div>
+                                <div class="first-step"><h3><i class="fa-solid fa-hand-holding-heart"></i>Afirmación y Primer Paso</h3><p>“${resultData.affirmationText}”</p></div>
+                            </div>`;
+              profileCardContainer.innerHTML = resultHTML;
+            }, 600);
           } catch (error) {
             console.error("Error al procesar los resultados:", error);
-            clearInterval(progressInterval);
-            profileCardContainer.innerHTML = `
-              <div class="loading-placeholder">
-                <i class="fa-solid fa-circle-exclamation" style="font-size: 2.5rem; color: #c53030; margin-bottom: 1rem;"></i>
-                <h3 style="color: var(--brand-text-deep);">¡Ups! Ocurrió un error</h3>
-                <p style="font-size: 1rem; opacity: 0.7;">No pudimos generar tus resultados. Por favor, intenta hacer el test nuevamente.</p>
-              </div>`;
+            loadingScreen.innerHTML = `<div class="loading-content"><h3 style="font-family: var(--font-serif); font-size: 1.5rem;">¡Ups! Ocurrió un error</h3><p style="opacity: 0.8;">No pudimos generar tus resultados.<br>Por favor, intenta hacer el test nuevamente.</p></div>`;
           } finally {
             sessionStorage.removeItem("automamaQuizAnswers");
           }
         };
 
-        function initializeScrollAnimations() {
-          const observer = new IntersectionObserver(
-            (entries) => {
-              entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                  entry.target.classList.add("visible");
-                  observer.unobserve(entry.target);
-                }
-              });
-            },
-            { threshold: 0.1 }
-          );
-          document
-            .querySelectorAll(".scroll-reveal")
-            .forEach((el) => observer.observe(el));
-        }
-
         fetchAndDisplayResults();
-        initializeScrollAnimations();
       });
     </script>
   </body>
